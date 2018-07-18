@@ -414,7 +414,445 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>什么是TypeScript？</p>
+<blockquote>
+<p>来自官网： TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript。TypeScript 可以在任何浏览器、任何计算机和任何操作系统上运行，并且是开源的。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>感觉这里很夸大，首先至少是目前 TypeScript 都没办法在任何浏览器上运行，它只能够通过编译成原生 js 才能够在浏览器中运行起来。而编译的过程同样耗时，消耗性能，如果不解决直接运行的这个问题，每次都需要编译的话，并不能完全展示其真正的价值。</p>
+</blockquote>
+</blockquote>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>支持js中所有的数据类型，并有枚举型（enum）、任意型（any）、无返回型函数（void）、永不存在的值的类型（never）。</p>
+<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><pre><code>let isDone: boolean = false;
+</code></pre><h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><pre><code>let decLiteral: number = 6;
+
+let hexLiteral: number = 0xf00d;
+
+let binaryLiteral: number = 0b1010;
+
+let octalLiteral: number = 0o744;
+
+let floatNum: number = 12.23;
+</code></pre><h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><pre><code>let name: string = &quot;bob&quot;;
+
+name = &quot;smith&quot;;
+</code></pre><blockquote>
+<p>也可以使用es6的模板字符串</p>
+</blockquote>
+<pre><code>let name: string = `Gene`;
+
+let age: number = 18;
+
+let sentence: string = `Hello, my name is ${ name }.
+I&apos;m ${ age + 1 } years old `;
+</code></pre><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><pre><code>let arr1: number[] = [1, 2, 3];
+
+let arr2: Array&lt;string&gt; = [&apos;h&apos;, &apos;e&apos;, &apos;l&apos;];
+
+let arr3: Array&lt;string|number&gt; = [&apos;1&apos;,2,3,4,&apos;6&apos;];
+
+let arr4: Array&lt;string|number|Array&lt;string&gt;&gt; = [&apos;h&apos;,&apos;e&apos;,3,4,&apos;6&apos;,[&apos;a&apos;]];
+
+let arr5: any[] = [1, true, &quot;free&quot;,[1,2,3],{name:&apos;zs&apos;,age:16}]; // 定义一个任意类型的数组
+</code></pre><h4 id="元组-Tuple"><a href="#元组-Tuple" class="headerlink" title="元组 Tuple"></a>元组 Tuple</h4><pre><code>// Declare a tuple type
+
+let t: [string, number];
+
+// Initialize it
+
+t = [&apos;hello&apos;, 10]; // OK
+
+// Initialize it incorrectly
+
+t = [10, &apos;hello&apos;]; // Error
+
+console.log(t[0].substr(1)); // OK
+
+console.log(t[1].substr(1)); // Error, &apos;number&apos; does not have &apos;substr&apos;
+
+t[3] = &apos;world&apos;; // OK, 字符串可以赋值给(string | number)类型
+
+console.log(t[5].toString()); // OK, &apos;string&apos; 和 &apos;number&apos; 都有 toString
+
+t[6] = true; // Error, 布尔不是(string | number)类型
+</code></pre><h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><blockquote>
+<p>enum类型是对JavaScript标准数据类型的一个补充。类似于es6的解构赋值。便于取出对象中的key、value。</p>
+</blockquote>
+<pre><code>let o:object = {
+    name: &apos;zs&apos;,
+    age:18
+}
+let {name} = o; // 报错 [ts] 类型“object”不具有属性“name”和字符串索引签名。
+console.log(o.name); //报错
+
+----------------------------------------------
+// 取key
+
+enum Color {Red, Green, Blue}
+let c: Color = Color.Green;
+console.log(c) // 1 这里打印的是其索引
+
+enum Color {Red = 1, Green, Blue}
+let c: Color = Color.Green;
+console.log(c) // 2 枚举型索引默认从0开始，但是经过赋值已经改变其初始项的索引为1
+
+enum Color {Red = 1, Green = 3, Blue = 4}
+let c: number = Color.Green;  // 由于这里取的是索引，所以c的类型可以是数字型
+console.log(c) // 3
+
+------------------------------------------------
+// 取value
+
+enum Color {Red = 1, Green, Blue}
+let colorName: string = Color[2];
+console.log(colorName);  // &apos;Green&apos;
+</code></pre><h4 id="Any"><a href="#Any" class="headerlink" title="Any"></a>Any</h4><blockquote>
+<p>Any就是为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 any类型来标记这些变量：（感觉这个类型还是为了迎合js的弱类型，比如定义一个null变量，在ajax请求数据后，将请求数据赋值给该变量）</p>
+</blockquote>
+<pre><code>let notSure: any = 4;
+notSure = &quot;maybe a string instead&quot;;
+notSure = false;
+notSure = {};
+</code></pre><blockquote>
+<p>Any 区别于 Object 类型，Object 类型的变量只是允许你给它赋任意值，但是却不能够在它上面调用任意的方法，即便它真的有这些方法，而 Any 可以。</p>
+</blockquote>
+<pre><code>let notSure: any = 4;
+notSure.ifItExists(); // okay, ifItExists might exist at runtime
+notSure.toFixed(); // okay, toFixed exists (but the compiler doesn&apos;t check)
+
+let prettySure: Object = 4;
+prettySure.toFixed(); // Error: Property &apos;toFixed&apos; doesn&apos;t exist on type &apos;Object&apos;.
+
+let list4: any[] = [1, true, &quot;free&quot;,[1,2,3],{name:&apos;zs&apos;,age:16}];
+list4[1] = 100;
+console.log(list4);
+</code></pre><h4 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h4><blockquote>
+<p>当一个函数没有返回值时，你通常会见到其返回值类型是 void 。(和C语言的 void 函数一样，无可用返回即定义一个 void 函数)</p>
+</blockquote>
+<pre><code>function noReturn(): void {
+    console.log(&apos;this is a no return function&apos;);
+    return ;  // 这里的 return 可省略
+}
+</code></pre><blockquote>
+<blockquote>
+<p>void 类型的变量只能为它赋值undefined和null<br>    let un: void = undefined;<br>    let nu: void = null;</p>
+</blockquote>
+</blockquote>
+<h4 id="Null-和-Undefined"><a href="#Null-和-Undefined" class="headerlink" title="Null 和 Undefined"></a>Null 和 Undefined</h4><pre><code>let u: undefined = undefined; // 这里只能赋值undefined
+let n: null = null; // 这里只能赋值null
+</code></pre><blockquote>
+<p>默认情况下 null 和 undefined 是所有类型的子类型。 就是说你可以把 null 和 undefined 赋值给 number 类型的变量。然而，当你指定了 –strictNullChecks 标记， null 和 undefined 只能赋值给 void 和它们各自。 这能避免很多常见的问题。 也许在某处你想传入一个 string 或 null 或 undefined ，你可以使用联合类型 string | null | undefined 。</p>
+</blockquote>
+<h4 id="Never"><a href="#Never" class="headerlink" title="Never"></a>Never</h4><blockquote>
+<p>never类型表示的是那些永不存在的值的类型。 例如， never 类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型； 变量也可能是 never 类型，当它们被永不为真的类型保护所约束时。never 类型是任何类型的子类型，也可以赋值给任何类型；然而，没有类型是 never 的子类型或可以赋值给 never 类型（除了 never 本身之外）。 即使 any 也不可以赋值给 never 。</p>
+</blockquote>
+<pre><code>// 返回never的函数必须存在无法达到的终点
+function error(message: string): never {
+    throw new Error(message);
+}
+
+// 推断的返回值类型为never
+function fail() {
+    return error(&quot;Something failed&quot;);
+}
+
+// 返回never的函数必须存在无法达到的终点
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+</code></pre><h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><blockquote>
+<p>强制按照我们的想法去定义某个变量的类型，不需要 ts 进行检测。类型断言好比其它语言里的类型转换，但是不进行特殊的数据检查和解构。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>类型断言有两种形式</p>
+</blockquote>
+</blockquote>
+<pre><code>// &quot;尖括号&quot;语法:
+
+let strValue: any = &quot;this is a string&quot;;
+let strLength: number = (&lt;string&gt;strValue).length;
+console.log(strLength) // 16
+
+let numValue: any = 1234;
+let numLength: number = (&lt;string&gt;numValue).length;
+console.log(numLength);  // undefined
+
+---------------------------------------------------------
+
+// as语法：
+
+let strValue: any = &quot;this is a string&quot;;
+let strLength: number = (strValue as string).length;
+console.log(strLength) // 16
+
+let numValue: any = 1234;
+let numLength: number = (numValue as string).length;
+console.log(numLength);  // undefined
+</code></pre><h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><blockquote>
+<p>与 js 完全一样，支持 es6 新特性。</p>
+</blockquote>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><blockquote>
+<p>TypeScript 的核心原则之一是对值所具有的结构进行类型检查。它有时被称做 “duck typing” 或 “structural subtyping” 。在 TypeScript 里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。(感觉翻译不是很好，跑去看了下英文文档，结果发现英语水平有点差，大概就先这样理解吧)</p>
+</blockquote>
+<pre><code>---------------------------------------------------------------
+function printLabel(labelledObj: { label: string }) {
+    console.log(labelledObj.label);
+}
+
+let myObj = { size: 10, label: &quot;Size 10 Object&quot; };
+printLabel(myObj);
+let test1Obj = {size: 20}
+printLabel(test1Obj);  // error 参数缺少 label 属性
+
+let test2Obj = {size: 20, label: 123}
+printLabel(test2Obj);  // error 参数的 label 属性的值必须为string
+
+---------------------------------------------------------------
+// 接口写法
+interface LabelledValue {
+    label: string;
+}
+
+function printLabel(labelledObj: LabelledValue) {
+    console.log(labelledObj.label);
+}
+
+let myObj = {size: 10, label: &quot;Size 10 Object&quot;};
+printLabel(myObj);
+</code></pre><h4 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h4><blockquote>
+<p>接口里的属性不全都是必需的。 有些是只在某些条件下存在，或者根本不存在。 可选属性在应用“option bags”模式时很常用，即给函数传入的参数对象中只有部分属性赋值了。</p>
+</blockquote>
+<pre><code>interface Person {
+    name?: string;
+    age?: number;
+}
+
+function createPerson(config: Person) {
+    let newPerson:Person = {name: &quot;zs&quot;, age: 18};
+    if (config.name) {
+        newPerson.name = config.name;
+    }
+    if (config.age) {
+        newPerson.age = config.age;
+    }
+    return newPerson;
+}
+
+let ls = createPerson({name: &quot;ls&quot;});
+console.log(ls);
+</code></pre><h4 id="只读属性"><a href="#只读属性" class="headerlink" title="只读属性"></a>只读属性</h4><blockquote>
+<p>一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用 readonly来指定只读属性:</p>
+</blockquote>
+<pre><code>interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+
+let p1: Point = { x: 10, y: 20 };
+
+p1.x = 5; // error!
+</code></pre><blockquote>
+<p>TypeScript具有ReadonlyArray<t>类型，它与Array<t>相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改：</t></t></p>
+</blockquote>
+<pre><code>let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray&lt;number&gt; = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+let d: number[] = [1,2,3]
+d = ro; // error!
+let b = ro;  // [1,2,3,4]
+</code></pre><blockquote>
+<p>由上例可以看到不能把整个ReadonlyArray赋值到一个已经有值的数组。 但是你如果你想把一个只读的数组赋值给普通数组可以用类型断言重写：</p>
+</blockquote>
+<pre><code>a = ro as number[];
+</code></pre><blockquote>
+<p><font color="#ff2200">readonly</font> vs <font color="#ff2200">const</font></p>
+<blockquote>
+<p>做为<font color="#ff6688">常量</font>使用的话使用 const，若做为<font color="#ff6688">属性</font>则使用 readonly 。</p>
+</blockquote>
+</blockquote>
+<h4 id="额外的属性检查"><a href="#额外的属性检查" class="headerlink" title="额外的属性检查"></a>额外的属性检查</h4><pre><code>interface Person {
+    name?: string;
+    age?: number;
+}
+
+function createPerson(config: Person) {
+    let newPerson:Person = {name: &quot;zs&quot;, age: 18};
+    if (config.name) {
+        newPerson.name = config.name;
+    }
+    if (config.age) {
+        newPerson.age = config.age;
+    }
+    return newPerson;
+}
+
+let ls = createPerson({name: &quot;ls&quot;, sex:&quot;femail&quot;});  // 这里会报错 [ts]类型“{ name: string; sex: string; }”的参数不能赋给类型“Person”的参数。对象文字可以只指定已知属性，并且“sex”不在类型“Person”中。
+</code></pre><blockquote>
+<p>最简便的解决方法——使用类型断言：</p>
+</blockquote>
+<pre><code>interface Person {
+    name?: string;
+    age?: number;
+}
+
+function createPerson(config: Person) {
+    let newPerson:Person = {name: &quot;zs&quot;, age: 18};
+    if (config.name) {
+        newPerson.name = config.name;
+    }
+    if (config.age) {
+        newPerson.age = config.age;
+    }
+    /**
+     *  error [ts] 类型“Person”上不存在属性“sex”。
+        if (config.sex) {
+            newPerson.sex = config.sex;
+        }
+    */
+    return newPerson;
+}
+
+let ls = createPerson({name: &quot;ls&quot;, age:2, sex:&quot;femail&quot;} as Person);
+console.log(ls) // {name: &apos;ls&apos;, age:2}
+</code></pre><blockquote>
+<p>最佳的方式是能够添加一个字符串索引签名，前提是你能够确定这个对象可能具有某些做为特殊用途使用的额外属性。 如果 Person带有上面定义的类型的 name 和 age 属性，并且还会带有任意数量的其它属性，那么我们可以这样定义它：</p>
+</blockquote>
+<pre><code>interface Person {
+    name?: string;
+    age?: number;
+    [propName: string]: any;
+}
+
+function createPerson(config: Person) {
+    let newPerson:Person = {name: &quot;zs&quot;, age: 18};
+    if (config.name) {
+        newPerson.name = config.name;
+    }
+    if (config.age) {
+        newPerson.age = config.age;
+    }
+    if (config.sex) {
+        newPerson.sex = config.sex
+    }
+    if (config.friends) {
+        newPerson.friends = config.friends
+    }
+    return newPerson;
+}
+
+let ls = createPerson({name: &quot;ls&quot;, age:2, sex:&quot;femail&quot;, friends: [{name:&apos;zs&apos;,age:18},{name: &apos;xm&apos;, age: 17}]});
+console.log(ls) // { name: &apos;ls&apos;,age: 2,sex: &apos;femail&apos;,friends: [ { name: &apos;zs&apos;, age: 18 }, { name: &apos;xm&apos;, age: 17 } ] }
+</code></pre><h4 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h4><blockquote>
+<p>接口能够描述JavaScript中对象拥有的各种各样的外形。 除了描述带有属性的普通对象外，接口也可以描述函数类型。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>为了使用接口表示函数类型，我们需要给接口定义一个调用签名。 它就像是一个只有参数列表和返回值类型的函数定义。参数列表里的每个参数都需要名字和类型。</p>
+</blockquote>
+</blockquote>
+<pre><code>interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(source: string, subString: string) {
+    let result = source.search(subString);
+    return result &gt; -1;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(src: string, sub: string): boolean {
+    let result = src.search(sub);
+    return result &gt; -1;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(src, sub) {
+    let result = src.search(sub);
+    return result &gt; -1;
+}
+</code></pre><h4 id="可索引的类型"><a href="#可索引的类型" class="headerlink" title="可索引的类型"></a>可索引的类型</h4><blockquote>
+<p>与使用接口描述函数类型差不多，我们也可以描述那些能够“通过索引得到”的类型，比如a[10]或ageMap[“daniel”]。 可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</p>
+</blockquote>
+<pre><code>interface StringArray {
+    [index: number]: string;
+}
+
+let myArray: StringArray;
+myArray = [&quot;Bob&quot;, &quot;Fred&quot;];
+
+let myStr: string = myArray[0];
+
+console.log(myArray); //[ &apos;Bob&apos;, &apos;Fred&apos; ]
+console.log(myStr); // Bob
+</code></pre><blockquote>
+<p>上面例子里，我们定义了StringArray接口，它具有索引签名。 这个索引签名表示了当用 number去索引StringArray时会得到string类型的返回值。</p>
+</blockquote>
+<blockquote>
+<p>共有支持两种索引签名：字符串和数字。 可以同时使用两种类型的索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。 这是因为当使用 number来索引时，JavaScript会将它转换成string然后再去索引对象。 也就是说用 100（一个number）去索引等同于使用”100”（一个string）去索引，因此两者需要保持一致。</p>
+</blockquote>
+<pre><code>class Animal {
+    name: string;
+}
+class Dog extends Animal {
+    breed: string;
+}
+
+// 错误：使用数值型的字符串索引，有时会得到完全不同的Animal!
+interface NotOkay {
+    [x: number]: Animal;
+    [x: string]: Dog;
+}
+</code></pre><blockquote>
+<p>字符串索引签名能够很好的描述dictionary模式，并且它们也会确保所有属性与其返回值类型相匹配。 因为字符串索引声明了 obj.property和obj[“property”]两种形式都可以。 下面的例子里， name的类型与字符串索引类型不匹配，所以类型检查器给出一个错误提示：</p>
+</blockquote>
+<pre><code>interface NumberDictionary {
+    [index: string]: number;
+    length: number;    // 可以，length是number类型
+    name: string       // 错误，`name`的类型与索引类型返回值的类型不匹配
+}
+</code></pre><blockquote>
+<p>最后，你可以将索引签名设置为只读，这样就防止了给索引赋值：</p>
+</blockquote>
+<pre><code>interface ReadonlyStringArray {
+    readonly [index: number]: string;
+}
+let myArray: ReadonlyStringArray = [&quot;Alice&quot;, &quot;Bob&quot;];
+myArray[2] = &quot;Mallory&quot;; // error! 你不能设置myArray[2]，因为索引签名是只读的。
+</code></pre><h4 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h4><blockquote>
+<p>TypeScript 能够用它来明确的强制一个类去符合某种契约。</p>
+</blockquote>
+<pre><code>interface ClockInterface {
+    currentTime: Date;
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
+</code></pre><blockquote>
+<p>也可以在接口中描述一个方法，在类里实现它。</p>
+</blockquote>
+<pre><code>interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date);
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date;
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) { }
+}
+</code></pre><p>接口描述了类的公共部分，而不是公共和私有两部分。 它不会帮你检查类是否具有某些私有成员。</p>
+<p>类静态部分与实例部分的区别</p>
+
       
 
       
