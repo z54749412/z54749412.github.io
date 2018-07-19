@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="什么是TypeScript？  来自官网： TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript。TypeScript 可以在任何浏览器、任何计算机和任何操作系统上运行，并且是开源的。    感觉这里很夸大，首先至少是目前 TypeScript 都没办法在任何浏览器上运行，它只能够通过编译成原生 js 才能够在浏览器中运行起来。而编译的过程同样耗时，消耗">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-18T12:58:07.490Z">
+<meta property="og:updated_time" content="2018-07-19T12:28:03.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TypeScript">
 <meta name="twitter:description" content="什么是TypeScript？  来自官网： TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript。TypeScript 可以在任何浏览器、任何计算机和任何操作系统上运行，并且是开源的。    感觉这里很夸大，首先至少是目前 TypeScript 都没办法在任何浏览器上运行，它只能够通过编译成原生 js 才能够在浏览器中运行起来。而编译的过程同样耗时，消耗">
@@ -606,6 +606,127 @@ class Clock implements ClockInterface {
 }
 </code></pre><p>接口描述了类的公共部分，而不是公共和私有两部分。 它不会帮你检查类是否具有某些私有成员。</p>
 <p>类静态部分与实例部分的区别</p>
+<blockquote>
+<p>当你操作类和接口的时候，你要知道类是具有两个类型的：静态部分的类型和实例的类型。 你会注意到，当你用构造器签名去定义一个接口并试图定义一个类去实现这个接口时会得到一个错误：</p>
+</blockquote>
+<pre><code>interface ClockConstructor {
+    new (hour: number, minute: number);
+}
+
+class Clock implements ClockConstructor {  // error [ts]类“Clock”错误实现接口“ClockConstructor”。类型“Clock”提供的内容与签名“new (hour: number, minute: number): any”不匹配。
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
+</code></pre><p>这里因为当一个类实现了一个接口时，只对其实例部分进行类型检查。 constructor存在于类的静态部分，所以不在检查的范围内。</p>
+<p>因此，我们应该直接操作类的静态部分。 看下面的例子，我们定义了两个接口， ClockConstructor为构造函数所用和ClockInterface为实例方法所用。 为了方便我们定义一个构造函数 createClock，它用传入的类型创建实例。</p>
+<pre><code>interface ClockConstructor {
+    new (hour: number, minute: number): ClockInterface;
+}
+interface ClockInterface {
+    tick();
+}
+
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+    return new ctor(hour, minute);
+}
+
+class DigitalClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log(&quot;beep beep&quot;);
+    }
+}
+class AnalogClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log(&quot;tick tock&quot;);
+    }
+}
+
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
+</code></pre><p>因为createClock的第一个参数是ClockConstructor类型，在createClock(AnalogClock, 7, 32)里，会检查AnalogClock是否符合构造函数签名。</p>
+<h4 id="继承接口"><a href="#继承接口" class="headerlink" title="继承接口"></a>继承接口</h4><blockquote>
+<p>和类一样，接口也可以相互继承。 这让我们能够从一个接口里复制成员到另一个接口里，可以更灵活地将接口分割到可重用的模块里。</p>
+</blockquote>
+<pre><code>interface Shape {
+    color: string;
+}
+
+interface Square extends Shape {
+    sideLength: number;
+}
+
+let square = &lt;Square&gt;{};
+square.color = &quot;blue&quot;;
+square.sideLength = 10;
+</code></pre><blockquote>
+<p>一个接口可以继承多个接口，创建出多个接口的合成接口。</p>
+</blockquote>
+<pre><code>interface Shape {
+    color: string;
+}
+
+interface PenStroke {
+    penWidth: number;
+}
+
+interface Square extends Shape, PenStroke {
+    sideLength: number;
+}
+
+let square = &lt;Square&gt;{};
+square.color = &quot;blue&quot;;
+square.sideLength = 10;
+square.penWidth = 5.0;
+</code></pre><h4 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h4><p>先前我们提过，接口能够描述JavaScript里丰富的类型。 因为JavaScript其动态灵活的特点，有时你会希望一个对象可以同时具有上面提到的多种类型。</p>
+<p>一个例子就是，一个对象可以同时做为函数和对象使用，并带有额外的属性。</p>
+<pre><code>interface Counter {
+    (start: number): string;
+    interval: number;
+    reset(): void;
+}
+
+function getCounter(): Counter {
+    let counter = &lt;Counter&gt;function (start: number) { };
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+
+let c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;
+</code></pre><p>在使用JavaScript第三方库的时候，你可能需要像上面那样去完整地定义类型。</p>
+<h4 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h4><p>当接口继承了一个类类型时，它会继承类的成员但不包括其实现。 就好像接口声明了所有类中存在的成员，但并没有提供具体实现一样。 接口同样会继承到类的private和protected成员。 这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现（implement）。</p>
+<p>当你有一个庞大的继承结构时这很有用，但要指出的是你的代码只在子类拥有特定属性时起作用。 这个子类除了继承至基类外与基类没有任何关系。 例：</p>
+<pre><code>class Control {
+    private state: any;
+}
+
+interface SelectableControl extends Control {
+    select(): void;
+}
+
+class Button extends Control implements SelectableControl {
+    select() { }
+}
+
+class TextBox extends Control {
+    select() { }
+}
+
+// 错误：“Image”类型缺少“state”属性。
+class Image implements SelectableControl {
+    select() { }
+}
+
+class Location {
+
+}
+</code></pre><p>在上面的例子里，SelectableControl包含了Control的所有成员，包括私有成员state。 因为 state是私有成员，所以只能够是Control的子类们才能实现SelectableControl接口。 因为只有 Control的子类才能够拥有一个声明于Control的私有成员state，这对私有成员的兼容性是必需的。</p>
+<p>在Control类内部，是允许通过SelectableControl的实例来访问私有成员state的。 实际上， SelectableControl接口和拥有select方法的Control类是一样的。 Button和TextBox类是SelectableControl的子类（因为它们都继承自Control并有select方法），但Image和Location类并不是这样的。</p>
 
       
 
