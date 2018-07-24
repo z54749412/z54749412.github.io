@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="什么是TypeScript？  来自官网： TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript。TypeScript 可以在任何浏览器、任何计算机和任何操作系统上运行，并且是开源的。    感觉这里很夸大，首先至少是目前 TypeScript 都没办法在任何浏览器上运行，它只能够通过编译成原生 js 才能够在浏览器中运行起来。而编译的过程同样耗时，消耗">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-23T12:17:13.437Z">
+<meta property="og:updated_time" content="2018-07-24T12:16:37.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TypeScript">
 <meta name="twitter:description" content="什么是TypeScript？  来自官网： TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript。TypeScript 可以在任何浏览器、任何计算机和任何操作系统上运行，并且是开源的。    感觉这里很夸大，首先至少是目前 TypeScript 都没办法在任何浏览器上运行，它只能够通过编译成原生 js 才能够在浏览器中运行起来。而编译的过程同样耗时，消耗">
@@ -727,7 +727,310 @@ class Location {
 }
 </code></pre><p>在上面的例子里，SelectableControl包含了Control的所有成员，包括私有成员state。 因为 state是私有成员，所以只能够是Control的子类们才能实现SelectableControl接口。 因为只有 Control的子类才能够拥有一个声明于Control的私有成员state，这对私有成员的兼容性是必需的。</p>
 <p>在Control类内部，是允许通过SelectableControl的实例来访问私有成员state的。 实际上， SelectableControl接口和拥有select方法的Control类是一样的。 Button和TextBox类是SelectableControl的子类（因为它们都继承自Control并有select方法），但Image和Location类并不是这样的。</p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><h4 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h4><pre><code>class Person {
+    name: string;
+    constructor(nickName: string) {
+        this.name = nickName;
+    }
+    sayHello() {
+        console.log( &quot;Hello,My name is &quot; + this.name );
+    }
+}
 
+let xm = new Person(&quot;xiaoming&quot;);
+console.log(xm);  // Person { name: &apos;xiaoming&apos; }
+xm.sayHello();
+</code></pre><p>不对 es6 的类进行介绍了。</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><pre><code>class Animal {
+    move(distanceInMeters: number = 0) {
+        console.log(`Animal moved ${distanceInMeters}m.`);
+    }
+}
+
+class Dog extends Animal {
+    bark() {
+        console.log(&apos;Woof! Woof!&apos;);
+    }
+}
+
+const dog = new Dog();
+dog.bark();
+dog.move(10);
+dog.bark();
+</code></pre><hr>
+<pre><code>class Animal {
+    name: string;
+    constructor(theName: string) { this.name = theName; }
+    move(distanceInMeters: number = 0) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+
+class Snake extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 5) {
+        console.log(&quot;Slithering...&quot;);
+        super.move(distanceInMeters);
+    }
+}
+
+class Horse extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 45) {
+        console.log(&quot;Galloping...&quot;);
+        super.move(distanceInMeters);
+    }
+}
+
+let sam = new Snake(&quot;Sammy the Python&quot;);
+let tom: Animal = new Horse(&quot;Tommy the Palomino&quot;);
+
+sam.move();
+tom.move(34);
+</code></pre><p>TypeScript使用的是结构性类型系统。 当我们比较两种不同的类型时，并不在乎它们从何处而来，如果所有成员的类型都是兼容的，我们就认为它们的类型是兼容的。</p>
+<p>然而，当我们比较带有 private或 protected成员的类型的时候，情况就不同了。 如果其中一个类型里包含一个 private成员，那么只有当另外一个类型中也存在这样一个 private成员， 并且它们都是来自同一处声明时，我们才认为这两个类型是兼容的。 对于 protected成员也使用这个规则。</p>
+<pre><code>class Animal {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+class Rhino extends Animal {
+    constructor() { super(&quot;Rhino&quot;); }
+}
+
+class Employee {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+let animal = new Animal(&quot;Goat&quot;);
+let rhino = new Rhino();
+let employee = new Employee(&quot;Bob&quot;);
+
+animal = rhino;
+animal = employee; // 错误: [ts]不能将类型“Employee”分配给类型“Animal”。类型具有私有属性“name”的单独声明。
+</code></pre><p>这个例子中有 Animal和 Rhino两个类， Rhino是 Animal类的子类。 还有一个 Employee类，其类型看上去与 Animal是相同的。 我们创建了几个这些类的实例，并相互赋值来看看会发生什么。 因为 Animal和 Rhino共享了来自 Animal里的私有成员定义 private name: string，因此它们是兼容的。 然而 Employee却不是这样。当把 Employee赋值给 Animal的时候，得到一个错误，说它们的类型不兼容。 尽管 Employee里也有一个私有成员 name，但它明显不是 Animal里面定义的那个。</p>
+<h5 id="public-修饰符和-private-修饰符"><a href="#public-修饰符和-private-修饰符" class="headerlink" title="public 修饰符和 private 修饰符"></a>public 修饰符和 private 修饰符</h5><h5 id="protected-修饰符"><a href="#protected-修饰符" class="headerlink" title="protected 修饰符"></a>protected 修饰符</h5><p>protected修饰符与 private修饰符的行为很相似，但有一点不同， protected成员在派生类中仍然可以访问。</p>
+<pre><code>class Person {
+    protected name: string;
+    constructor(name: string) { this.name = name; }
+}
+
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name)
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee(&quot;Howard&quot;, &quot;Sales&quot;);
+console.log(howard.getElevatorPitch());
+console.log(howard.name); // [ts] 属性“name”受保护，只能在类“Person”及其子类中访问。
+</code></pre><hr>
+<pre><code>class Person {
+    protected name: string;
+    protected constructor(theName: string) { this.name = theName; }
+}
+
+// Employee 能够继承 Person
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee(&quot;Howard&quot;, &quot;Sales&quot;);
+let john = new Person(&quot;John&quot;); // 错误: &apos;Person&apos; 的构造函数是被保护的.
+</code></pre><h5 id="readonly-修饰符"><a href="#readonly-修饰符" class="headerlink" title="readonly 修饰符"></a>readonly 修饰符</h5><p>readonly关键字将属性设置为只读的。 只读属性必须在声明时或构造函数里被初始化。</p>
+<pre><code>class Octopus {
+    readonly name: string;
+    readonly numberOfLegs: number = 8;
+    constructor (theName: string) {
+        this.name = theName;
+    }
+}
+let dad = new Octopus(&quot;Man with the 8 strong legs&quot;);
+dad.name = &quot;Man with the 3-piece suit&quot;; // 错误! name 是只读的.
+</code></pre><h5 id="参数属性"><a href="#参数属性" class="headerlink" title="参数属性"></a>参数属性</h5><pre><code>class Animal {
+    constructor(private name: string) { }
+    move(distanceInMeters: number) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+</code></pre><h4 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h4><p>TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。</p>
+<p>下面来看如何把一个简单的类改写成使用 get和 set。 首先，我们从一个没有使用存取器的例子开始。</p>
+<pre><code>class Employee {
+    fullName: string;
+}
+
+let employee = new Employee();
+employee.fullName = &quot;Bob Smith&quot;;
+if (employee.fullName) {
+    console.log(employee.fullName);
+}
+</code></pre><p>利用存取器改造上面代码</p>
+<pre><code>let passcode = &quot;secret passcode&quot;;
+
+class Employee {
+    private _fullName: string;
+
+    get fullName(): string {
+        return this._fullName;
+    }
+
+    set fullName(newName: string) {
+        if (passcode &amp;&amp; passcode == &quot;secret passcode&quot;) {
+            this._fullName = newName;
+        }
+        else {
+            console.log(&quot;Error: Unauthorized update of employee!&quot;);
+        }
+    }
+}
+
+let employee = new Employee();
+employee.fullName = &quot;Bob Smith&quot;;
+if (employee.fullName) {
+    alert(employee.fullName);
+}
+</code></pre><h4 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h4><p>那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。</p>
+<pre><code>class Grid {
+    static origin = {x: 0, y: 0};
+    calculateDistanceFromOrigin(point: {x: number; y: number;}) {
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    }
+    constructor (public scale: number) { }
+}
+
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
+
+console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+</code></pre><h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4><p>抽象类做为其它派生类的基类使用。 它们一般不会直接被实例化。 不同于接口，抽象类可以包含成员的实现细节。 abstract关键字是用于定义抽象类和在抽象类内部定义抽象方法。</p>
+<pre><code>abstract class Animal {
+    abstract makeSound(): void;
+    move(): void {
+        console.log(&apos;roaming the earch...&apos;);
+    }
+}
+</code></pre><p>抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。 抽象方法的语法与接口方法相似。 两者都是定义方法签名但不包含方法体。 然而，抽象方法必须包含 abstract关键字并且可以包含访问修饰符。</p>
+<pre><code>abstract class Department {
+
+    constructor(public name: string) {
+    }
+
+    printName(): void {
+        console.log(&apos;Department name: &apos; + this.name);
+    }
+
+    abstract printMeeting(): void; // 必须在派生类中实现
+}
+
+class AccountingDepartment extends Department {
+
+    constructor() {
+        super(&apos;Accounting and Auditing&apos;); // 在派生类的构造函数中必须调用 super()
+    }
+
+    printMeeting(): void {
+        console.log(&apos;The Accounting Department meets each Monday at 10am.&apos;);
+    }
+
+    generateReports(): void {
+        console.log(&apos;Generating accounting reports...&apos;);
+    }
+}
+
+let department: Department; // 允许创建一个对抽象类型的引用
+department = new Department(); // 错误: 不能创建一个抽象类的实例
+department = new AccountingDepartment(); // 允许对一个抽象子类进行实例化和赋值
+department.printName();
+department.printMeeting();
+department.generateReports(); // 错误: 方法在声明的抽象类中不存在
+</code></pre><h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><pre><code>class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return &quot;Hello, &quot; + this.greeting;
+    }
+}
+
+let greeter: Greeter;
+greeter = new Greeter(&quot;world&quot;);
+console.log(greeter.greet());
+
+let Greeter = (function () {
+    function Greeter(message) {
+        this.greeting = message;
+    }
+    Greeter.prototype.greet = function () {
+        return &quot;Hello, &quot; + this.greeting;
+    };
+    return Greeter;
+})();
+
+let greeter;
+greeter = new Greeter(&quot;world&quot;);
+console.log(greeter.greet());
+</code></pre><hr>
+<pre><code>class Greeter {
+    static standardGreeting = &quot;Hello, there&quot;;
+    greeting: string;
+    greet() {
+        if (this.greeting) {
+            return &quot;Hello, &quot; + this.greeting;
+        }
+        else {
+            return Greeter.standardGreeting;
+        }
+    }
+}
+
+let greeter1: Greeter;
+greeter1 = new Greeter();
+console.log(greeter1.greet());
+
+let greeterMaker: typeof Greeter = Greeter;
+greeterMaker.standardGreeting = &quot;Hey there!&quot;;
+
+let greeter2: Greeter = new greeterMaker();
+console.log(greeter2.greet());
+</code></pre><h4 id="把类当做接口使用"><a href="#把类当做接口使用" class="headerlink" title="把类当做接口使用"></a>把类当做接口使用</h4><pre><code>class Point {
+    x: number;
+    y: number;
+}
+
+interface Point3d extends Point {
+    z: number;
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3};
+</code></pre><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><pre><code>// Named function
+function add(x, y) {
+    return x + y;
+}
+
+// Anonymous function
+let myAdd = function(x, y) { return x + y; };
+</code></pre>
       
 
       
