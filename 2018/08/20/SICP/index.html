@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com/child">
   <title>SICP | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。     (d">
+  <meta name="description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。 (define">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SICP">
 <meta property="og:url" content="http://yoursite.com/child/2018/08/20/SICP/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。     (d">
+<meta property="og:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。 (define">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-22T01:37:11.104Z">
+<meta property="og:updated_time" content="2018-08-22T01:42:25.646Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SICP">
-<meta name="twitter:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。     (d">
+<meta name="twitter:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。 (define">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -177,8 +177,12 @@
 (/ 8 4)  2
 (* (+ 1 2) (- 4 1))  9
 </code></pre><h5 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h5><p>Lisp方言Scheme中，通过define关键字来定义变量。</p>
-<p>    (define x 2)<br>    x      2<br>    (<em> 5 x)     10<br>    (define result (</em> 5 x))<br>    result 10</p>
-<p>复合过程定义的一般形式</p>
+<pre><code>(define x 2)
+x      2
+(* 5 x)     10
+(define result (* 5 x))
+result 10
+</code></pre><p>复合过程定义的一般形式</p>
 <pre><code>(define (&lt;name&gt; &lt;fromal parameters&gt; &lt;body&gt;))
 </code></pre><p>例：</p>
 <pre><code>(define (square x) (* x x))

@@ -175,8 +175,12 @@
 (/ 8 4)  2
 (* (+ 1 2) (- 4 1))  9
 </code></pre><h5 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h5><p>Lisp方言Scheme中，通过define关键字来定义变量。</p>
-<p>    (define x 2)<br>    x      2<br>    (<em> 5 x)     10<br>    (define result (</em> 5 x))<br>    result 10</p>
-<p>复合过程定义的一般形式</p>
+<pre><code>(define x 2)
+x      2
+(* 5 x)     10
+(define result (* 5 x))
+result 10
+</code></pre><p>复合过程定义的一般形式</p>
 <pre><code>(define (&lt;name&gt; &lt;fromal parameters&gt; &lt;body&gt;))
 </code></pre><p>例：</p>
 <pre><code>(define (square x) (* x x))
