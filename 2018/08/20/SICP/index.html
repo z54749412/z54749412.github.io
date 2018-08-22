@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。 (define">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-22T01:42:33.602Z">
+<meta property="og:updated_time" content="2018-08-22T01:46:28.585Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SICP">
 <meta name="twitter:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。 (define">
@@ -248,11 +248,18 @@ function abs (x){
 <pre><code>!&lt;e&gt;
 </code></pre><hr>
 <ol>
-<li><p>x &gt;= y</p>
-<p> (define (&gt;= x y) (or (&gt; x y) (= x y)))<br> (&gt;= 5 6)<br> #f<br> (&gt;= 5 5)<br> #t</p>
-</li>
+<li>x &gt;= y</li>
 </ol>
-<p>等同于</p>
+<pre><code>(define (&gt;= x y) (or (&gt; x y) (= x y)))
+
+(&gt;= 5 6)
+
+#f
+
+(&gt;= 5 5)
+
+#t
+</code></pre><p>等同于</p>
 <pre><code>(define (&gt;= x y) (not (&lt; x y)))
 </code></pre><h3 id="练习题1-1"><a href="#练习题1-1" class="headerlink" title="练习题1.1"></a>练习题1.1</h3><pre><code>10                                  // 10
 (+ 5 3 4)                           // 12

@@ -246,11 +246,18 @@ function abs (x){
 <pre><code>!&lt;e&gt;
 </code></pre><hr>
 <ol>
-<li><p>x &gt;= y</p>
-<p> (define (&gt;= x y) (or (&gt; x y) (= x y)))<br> (&gt;= 5 6)<br> #f<br> (&gt;= 5 5)<br> #t</p>
-</li>
+<li>x &gt;= y</li>
 </ol>
-<p>等同于</p>
+<pre><code>(define (&gt;= x y) (or (&gt; x y) (= x y)))
+
+(&gt;= 5 6)
+
+#f
+
+(&gt;= 5 5)
+
+#t
+</code></pre><p>等同于</p>
 <pre><code>(define (&gt;= x y) (not (&lt; x y)))
 </code></pre><h3 id="练习题1-1"><a href="#练习题1-1" class="headerlink" title="练习题1.1"></a>练习题1.1</h3><pre><code>10                                  // 10
 (+ 5 3 4)                           // 12
