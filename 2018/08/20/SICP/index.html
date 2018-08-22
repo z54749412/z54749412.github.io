@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com/child">
   <title>SICP | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。    (de">
+  <meta name="description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。     (d">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SICP">
 <meta property="og:url" content="http://yoursite.com/child/2018/08/20/SICP/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。    (de">
+<meta property="og:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。     (d">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-22T01:33:33.569Z">
+<meta property="og:updated_time" content="2018-08-22T01:36:01.466Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SICP">
-<meta name="twitter:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。    (de">
+<meta name="twitter:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。     (d">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -176,10 +176,13 @@
 (* 4 3)  12
 (/ 8 4)  2
 (* (+ 1 2) (- 4 1))  9
-</code></pre><h5 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h5><p>Lisp方言Scheme中，通过define关键字来定义变量。<br>    (define x 2)<br>    x      2<br>    (<em> 5 x)     10<br>    (define result (</em> 5 x))<br>    result 10</p>
-<p>复合过程定义的一般形式<br>    (define (<name> <fromal parameters=""> <body>))</body></fromal></name></p>
-<p>例：<br>    (define (square x) (* x x))</p>
-<p>可以理解为</p>
+</code></pre><h5 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h5><p>Lisp方言Scheme中，通过define关键字来定义变量。</p>
+<p>    (define x 2)<br>    x      2<br>    (<em> 5 x)     10<br>    (define result (</em> 5 x))<br>    result 10</p>
+<p>复合过程定义的一般形式</p>
+<pre><code>(define (&lt;name&gt; &lt;fromal parameters&gt; &lt;body&gt;))
+</code></pre><p>例：</p>
+<pre><code>(define (square x) (* x x))
+</code></pre><p>可以理解为</p>
 <pre><code>function square(x){
     return x*x
 }
@@ -193,8 +196,17 @@
             ((&lt; x 0) (- x))
     )
 )
-</code></pre><p>用js表示：<br>    function abs(x){<br>        if(x &gt; 0){<br>            return x<br>        }else if(x == 0){<br>            return 0<br>        }else if(x &lt; 0){<br>            return -x<br>        }<br>    }</p>
-<p>另一种写法</p>
+</code></pre><p>用js表示：</p>
+<pre><code>function abs(x){
+    if(x &gt; 0){
+        return x
+    }else if(x == 0){
+        return 0
+    }else if(x &lt; 0){
+        return -x
+    }
+}
+</code></pre><p>另一种写法</p>
 <pre><code>(define (abs x)
     ( cond
             ((&lt; x 0)(- x))
@@ -202,8 +214,10 @@
     )
 )
 </code></pre><p>else 关键字可以在cond 条件判断的最后一个句子中使用。同js中的else 前面的条件如果都不匹配那么默认执行该语句中的代码。</p>
-<p>if写法<br>    (define (abs x) (if (&lt; x 0)(- x) x))</p>
-<pre><code>=&gt;
+<p>if写法</p>
+<pre><code>(define (abs x) (if (&lt; x 0)(- x) x))
+
+=&gt;
 
 function abs (x){
     if(x&lt;0){
@@ -212,15 +226,23 @@ function abs (x){
         return x
     }
 }
-</code></pre><p>Lisp 中的符合运算符<br>    (and <e1>…<en>)<br>    解释器将从左到右一个个求值<e>,如果某个条件<e>求值为假，那么and表达式值为假，后面的条件<en>将不再执行，如果前面所有的条件<e>都为真，那么这一and表达式的值为最后那个条件<e>的值。</e></e></en></e></e></en></e1></p>
-<p>等同于<br>    <e1>&amp;&amp;<e2>&amp;&amp;<e3>&amp;&amp;….&amp;&amp;<en></en></e3></e2></e1></p>
-<pre><code>(or &lt;e1&gt;...&lt;en&gt;)
+</code></pre><p>Lisp 中的符合运算符</p>
+<pre><code>(and &lt;e1&gt;...&lt;en&gt;)
+
+解释器将从左到右一个个求值&lt;e&gt;,如果某个条件&lt;e&gt;求值为假，那么and表达式值为假，后面的条件&lt;en&gt;将不再执行，如果前面所有的条件&lt;e&gt;都为真，那么这一and表达式的值为最后那个条件&lt;e&gt;的值。
+</code></pre><p>等同于</p>
+<pre><code>&lt;e1&gt;&amp;&amp;&lt;e2&gt;&amp;&amp;&lt;e3&gt;&amp;&amp;....&amp;&amp;&lt;en&gt;
+
+(or &lt;e1&gt;...&lt;en&gt;)
 解释器将从左到右一个个求值&lt;e&gt;,如果某个条件&lt;e&gt;求值为真，那么or表达式值为真，后面的条件&lt;en&gt;将不再执行，如果前面所有的条件&lt;e&gt;都为假，那么这一and表达式的值为最后那个条件&lt;e&gt;的值。
-</code></pre><p>等同于<br>    <e1>||<e2>||<e3>||….||<en></en></e3></e2></e1></p>
-<pre><code>(not &lt;e&gt;)
+</code></pre><p>等同于</p>
+<pre><code>&lt;e1&gt;||&lt;e2&gt;||&lt;e3&gt;||....||&lt;en&gt;
+
+(not &lt;e&gt;)
 如果&lt;e&gt;求出的值为假，not表达式就为真，否则为假。
-</code></pre><p>等同于<br>    !<e></e></p>
-<hr>
+</code></pre><p>等同于</p>
+<pre><code>!&lt;e&gt;
+</code></pre><hr>
 <ol>
 <li><p>x &gt;= y</p>
 <p> (define (&gt;= x y) (or (&gt; x y) (= x y)))</p>
@@ -252,6 +274,7 @@ function abs (x){
 (+ 2 (if (&gt; b a) b a))              // 6
 (* (cond ((&gt; a b) a) ((&lt; a b) b) (else -1)) (+ a 1)) // 16
 </code></pre><h3 id="练习题1-2"><a href="#练习题1-2" class="headerlink" title="练习题1.2"></a>练习题1.2</h3><pre><code>将下面表达式转换为前缀形式:
+
 (5+4+(2-(3-(6+4/5)))) / 3(6-2)(2-7)
 
 =&gt;
