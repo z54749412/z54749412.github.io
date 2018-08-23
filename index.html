@@ -291,6 +291,76 @@ function abs (x){
 </code></pre><h3 id="练习题1-4"><a href="#练习题1-4" class="headerlink" title="练习题1.4"></a>练习题1.4</h3><pre><code>描述 (define (a-puls-abs-b a b) ((if (&gt; b 0) + -) a b)) 该公式过程
 
 a + 绝对值b 如果 b &gt; 0 那么返回 (+ a b) 否则返回(- a b)
+</code></pre><h5 id="解平方"><a href="#解平方" class="headerlink" title="解平方"></a>解平方</h5><pre><code>(define (sqrt-iter guess x)
+    (if (good-enough? guess x)
+        guess
+        (sqrt-iter (improve guess x)
+                    x)))
+
+(define (improve guess x) (average guess (/ x guess)))
+
+(define (good-enough? guess x)
+    (&lt; (abs (- (square guess) x)) 0.001))
+
+(define (square x) (* x x))
+
+(define (average x y) (/ (+ x y) 2))
+
+(define (sqrt x) (sqrt-iter 1.0 x))
+</code></pre><p>js写法</p>
+<pre><code>function sqrt(x) {
+    if (x &lt; 0) return -1;
+    let pre = x, tem = (pre + x / pre) / 2;
+    while (Math.abs(tem*tem - x) &gt; 0.000001) {
+        tem = (tem + x / tem) / 2;
+    }
+    return tem;
+}
+</code></pre><h5 id="线性的递归和迭代"><a href="#线性的递归和迭代" class="headerlink" title="线性的递归和迭代"></a>线性的递归和迭代</h5><p>求n!</p>
+<p>递归：<br>    (define (factorial n) (if (= n 1) 1 (* n (factorial (- n 1)))))</p>
+<p>线性递归：</p>
+<pre><code>(define (factorial n)
+    (define (iter product counter)
+        (if (&gt; counter n)
+            product
+            (iter (* counter product)
+                (+ counter 1))
+)) (iter 1 1))
+</code></pre><p>阿克曼（Ackermann）函数 (非原始递归函数)</p>
+<pre><code>(define (A x y)
+    (cond   ((= y 0) 0)
+            ((= x 0) (* 2 y))
+            ((= y 1) 2)
+            (else (A (- x 1) (A x (- y 1))))))
+
+(define (f n) (A 0 n))
+
+通过调用(f n) 实现输出 2n 结果
+
+(define (g n) (A 1 n))
+
+通过调用(g n) 实现输出 2的n次方结果
+
+(define (h n) (A 2 n))
+</code></pre><h6 id="树形递归"><a href="#树形递归" class="headerlink" title="树形递归"></a>树形递归</h6><pre><code>栗子：0,1,1,2,3,5,8,13,21,...
+</code></pre><p>一般的，斐波那契数由下面规则定义:</p>
+<pre><code>            0                     n=0
+Fib(n) = {  1                     n=1
+            Fib(n-1)+Fib(n-2)     else
+</code></pre><p>=&gt;</p>
+<pre><code>(define (fib n) (cond ((= n 0) 0) ((= n 1) 1) (else (+ (fib (- n 1)) (fib (- n 2))))))
+</code></pre><p>硬币找零：<br>    (define (count-change amount) (cc amount 5))</p>
+<pre><code>(define (cc amount kinds-of-coins)
+    (cond ((= amount 0) 1)
+        ((or (&lt; amount 0) (= kinds-of-coins 0)) 0)
+        (else (+ (cc amount (- kinds-of-coins 1))
+                (cc (- amount (first-denomination kinds-of-coins)) kinds-of-coins)))))
+
+(define (first-denomination kinds-of-coins) (cond ((= kinds-of-coins 1) 1)
+                                                ((= kinds-of-coins 2) 5)
+                                                ((= kinds-of-coins 3) 10)
+                                                ((= kinds-of-coins 4) 25)
+                                                ((= kinds-of-coins 5) 50)))
 </code></pre>
       
 
