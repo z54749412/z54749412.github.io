@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。 (define">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-22T10:29:20.755Z">
+<meta property="og:updated_time" content="2018-08-23T08:15:36.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SICP">
 <meta name="twitter:description" content="SICP learnIDE 安装Racket 然后在包管理中下载 sicp命令行中输入 #lang planet neil/sicp 至此 IDE 环境已经配好 表达式前缀表达式(+ 1 2)  3 (- 3 1)  2 (* 4 3)  12 (/ 8 4)  2 (* (+ 1 2) (- 4 1))  9 定义变量Lisp方言Scheme中，通过define关键字来定义变量。 (define">
@@ -363,6 +363,17 @@ Fib(n) = {  1                     n=1
                                                 ((= kinds-of-coins 3) 10)
                                                 ((= kinds-of-coins 4) 25)
                                                 ((= kinds-of-coins 5) 50)))
+</code></pre><h3 id="练习题-1-11"><a href="#练习题-1-11" class="headerlink" title="练习题 1.11"></a>练习题 1.11</h3><p>函数f由如下的规则定义：如果n&lt;3，那么f(n)=n;如果n&gt;=3，那么f(n)=f(n-1)+2f(n-2)+3f(n-3)。</p>
+<p>递归：<br>    (define (f n)<br>        (if (&lt; n 3)<br>                n<br>                (+ (f (- n 1))<br>                (<em> 2 (f (- n 2)))<br>                (</em> 3 (f (- n 3))))))</p>
+<p>迭代：<br>    (define (f n)<br>        (f-iter 2 1 0 0 n))</p>
+<pre><code>(define (f-iter a b c i n)
+    (if (= i n)
+        c
+        (f-iter (+ a (* 2 b) (* 3 c))   ; new a
+                a                       ; new b
+                b                       ; new c
+                (+ i 1)
+                n)))
 </code></pre>
       
 
