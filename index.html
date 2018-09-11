@@ -1029,7 +1029,7 @@ addTen(2);
 <p> apt-get install Haskell-platform</p>
 </blockquote>
 <h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><blockquote>
-<p> 命令行种输入 ghci<br> <img src="./img/start.png" alt="start"></p>
+<p> 命令行种输入 ghci<br> <img src="/img/start.png" alt="start"></p>
 </blockquote>
 <h4 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h4><blockquote>
 <p> 运算</p>
@@ -1912,7 +1912,7 @@ maximum&apos; [x] = x
 
 maximum&apos; (x:xs) = max x (maximum&apos; xs)
 </code></pre><p><code>我们取个 List [2,5,1] 做例子来看看它的工作原理。当调用 maximum&#39; 处理它时，前两个模式不会被匹配，而第三个模式匹 配了它并将其分为 2 与 [5,1] 。 where 子句再取 [5,1] 的最大值。于是再次与第三个模式匹配，并将 [5,1] 分割为 5 和 [1] 。继续， where 子句取 [1] 的最大值，这时终于到了边缘条件！回传 1 。进一步，将 5 与 [1] 中的最大值做比较，易得 5 ，现在我们就得到了[5,1] 的最大值。再进一步，将 2 与 [5,1] 中的最大值相比较，可得 5 更大，最终得 5 。</code></p>
-<p><img src="../img/recursion.jpg" alt="recursion"></p>
+<p><img src="/img/recursion.jpg" alt="recursion"></p>
 <hr>
 <blockquote>
 <p>“快速”排序</p>
