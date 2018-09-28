@@ -1029,6 +1029,26 @@ increment(2);
 
 addTen(2);
 // 12
+</code></pre><hr>
+<pre><code>const toString = Object.prototype.toString;
+
+var isType = function (type) {
+    return function (obj){
+        return toString.call(obj) == `[object ${type}]`;
+    }
+}
+
+let isString = isType(&apos;String&apos;)
+
+isString(123)  // false
+
+isString(&apos;test&apos;) // true
+
+let isArray = isType(&apos;Array&apos;)
+
+isArray([])  // true
+
+isArray(123) //false
 </code></pre>
       
 
