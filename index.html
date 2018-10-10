@@ -166,9 +166,52 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="JS数据类型"><a href="#JS数据类型" class="headerlink" title="JS数据类型"></a>JS数据类型</h2><h5 id="null-判断"><a href="#null-判断" class="headerlink" title="null 判断"></a>null 判断</h5><pre><code>var a = null;
+        <h2 id="JS数据类型"><a href="#JS数据类型" class="headerlink" title="JS数据类型"></a>JS数据类型</h2><h5 id="Javascript-其中内置类型"><a href="#Javascript-其中内置类型" class="headerlink" title="Javascript 其中内置类型:"></a>Javascript 其中内置类型:</h5><h6 id="空值-null"><a href="#空值-null" class="headerlink" title="空值 (null)"></a>空值 (null)</h6><h6 id="未定义-undefined"><a href="#未定义-undefined" class="headerlink" title="未定义 (undefined)"></a>未定义 (undefined)</h6><h6 id="布尔值-boolean"><a href="#布尔值-boolean" class="headerlink" title="布尔值 (boolean)"></a>布尔值 (boolean)</h6><h6 id="数字-number"><a href="#数字-number" class="headerlink" title="数字 (number)"></a>数字 (number)</h6><h6 id="字符串-string"><a href="#字符串-string" class="headerlink" title="字符串 (string)"></a>字符串 (string)</h6><h6 id="对象-object"><a href="#对象-object" class="headerlink" title="对象 (object)"></a>对象 (object)</h6><p><code>其中数组(Array) 函数(function) 是object的一个子类型</code></p>
+<h6 id="符号-symbol"><a href="#符号-symbol" class="headerlink" title="符号 (symbol)"></a>符号 (symbol)</h6><h5 id="null-判断"><a href="#null-判断" class="headerlink" title="null 判断"></a>null 判断</h5><pre><code>var a = null;
 
 (!a &amp;&amp; typeof a === &apos;object&apos;); ß
+</code></pre><h5 id="function的length"><a href="#function的length" class="headerlink" title="function的length"></a>function的length</h5><pre><code>function foo () {}
+
+foo.length // 0
+
+function foo2 (a,b,c) {}
+
+foo2.length // 3
+</code></pre><p>对于function来说，function的length属性就是function的参数个数</p>
+<h5 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h5><pre><code>function foo1(X){
+    x.push(4)
+}
+
+let a = [1,2,3]
+
+foo1(a);
+
+a // [1,2,3,4]
+
+function foo2(x){
+    x = [4,5,6];
+    x.push(7);
+}
+
+let b = [1,2,3];
+
+foo2(b);
+
+b // [1,2,3]
+
+=&gt;
+
+function foo(x){
+    x.push(4);
+    x = [4,5,6]
+    x.push(7);
+}
+
+let c = [1,2,3]
+
+foo(c);
+
+c // [1,2,3,4]
 </code></pre><hr>
 
       
