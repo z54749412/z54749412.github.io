@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>reduce | NTFS</title>
+  <title>Other | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Array.prototype._reduce = function(callback /*, initialValue*/) {     if (this == null) {         // undefined == null         throw new TypeError(&amp;apos;null or undefined&amp;apos;);     }     if (typeof">
+  <meta name="description" content="JS数据类型null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos;object&amp;apos;); ß">
 <meta property="og:type" content="article">
-<meta property="og:title" content="reduce">
-<meta property="og:url" content="http://yoursite.com/child/2018/10/09/reduce/index.html">
+<meta property="og:title" content="Other">
+<meta property="og:url" content="http://yoursite.com/child/2018/10/10/Other/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="Array.prototype._reduce = function(callback /*, initialValue*/) {     if (this == null) {         // undefined == null         throw new TypeError(&amp;apos;null or undefined&amp;apos;);     }     if (typeof">
+<meta property="og:description" content="JS数据类型null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos;object&amp;apos;); ß">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-10-09T10:46:31.421Z">
+<meta property="og:updated_time" content="2018-10-10T04:25:13.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="reduce">
-<meta name="twitter:description" content="Array.prototype._reduce = function(callback /*, initialValue*/) {     if (this == null) {         // undefined == null         throw new TypeError(&amp;apos;null or undefined&amp;apos;);     }     if (typeof">
+<meta name="twitter:title" content="Other">
+<meta name="twitter:description" content="JS数据类型null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos;object&amp;apos;); ß">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -148,79 +148,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-reduce" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Other" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      reduce
+      Other
     </h1>
   
 
         
-        <a href="/2018/10/09/reduce/" class="archive-article-date">
-  	<time datetime="2018-10-09T10:44:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
+        <a href="/2018/10/10/Other/" class="archive-article-date">
+  	<time datetime="2018-10-10T04:23:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code>Array.prototype._reduce = function(callback /*, initialValue*/) {
-    if (this == null) {
-        // undefined == null
-        throw new TypeError(&apos;null or undefined&apos;);
-    }
-    if (typeof callback !== &apos;function&apos;) {
-        throw new TypeError(&apos;callback is not a function&apos;);
-    }
-    var oldArr = Object(this);
-    var len = oldArr.length &gt;&gt;&gt; 0;
-    var initialValue, k=0;
-    if(arguments.length &gt;= 2) {
-        initialValue = arguments[1];
-    } else {
-        while(k &lt; len &amp;&amp; !(k in oldArr)) k++;
-        if(k &gt;= len) {
-            throw new TypeError( &apos;Reduce of empty array &apos; +
-            &apos;with no initial value&apos; );
-        }
-        initialValue = oldArr[k++];
-    }
-    while(k &lt; len) {
-        if(k in oldArr) {
-            initialValue = callback(initialValue, oldArr[k], k, oldArr);
-        }
-        k++;
-    }
-    return initialValue;
-}
-var array = [1, 2, 3, 4, 5];
-// var array = []
-array._reduce(function(acc, cur, index, arr) {
-    console.log(&apos;-&apos;, acc, &apos;-&apos;, cur, &apos;-&apos;, index);
-    return acc + cur;
-}, 100)
+        <h2 id="JS数据类型"><a href="#JS数据类型" class="headerlink" title="JS数据类型"></a>JS数据类型</h2><h5 id="null-判断"><a href="#null-判断" class="headerlink" title="null 判断"></a>null 判断</h5><pre><code>var a = null;
 
-// - 100 - 1 - 0
-// VM109:33 - 101 - 2 - 1
-// VM109:33 - 103 - 3 - 2
-// VM109:33 - 106 - 4 - 3
-// VM109:33 - 110 - 5 - 4
-// 115
-
-array._reduce(function(acc, cur, index, arr) {
-    console.log(&apos;-&apos;, acc, &apos;-&apos;, cur, &apos;-&apos;, index);
-    return acc + cur;
-}, 100)
-
-// - 1 - 2 - 1
-// VM143:2 - 3 - 3 - 2
-// VM143:2 - 6 - 4 - 3
-// VM143:2 - 10 - 5 - 4
-// 15
+(!a &amp;&amp; typeof a === &apos;object&apos;); ß
 </code></pre><hr>
 
       
@@ -280,7 +230,7 @@ array._reduce(function(acc, cur, index, arr) {
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2018/10/09/reduce/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2018/10/10/Other/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -294,18 +244,9 @@ array._reduce(function(acc, cur, index, arr) {
   
 <nav id="article-nav">
   
-    <a href="/2018/10/10/Other/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Other
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/09/RXjs/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">RXjs</div>
+    <a href="/2018/10/09/reduce/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">reduce</div>
       <i class="icon-circle-right"></i>
     </a>
   
