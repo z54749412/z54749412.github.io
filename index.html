@@ -212,7 +212,27 @@ let c = [1,2,3]
 foo(c);
 
 c // [1,2,3,4]
-</code></pre><hr>
+</code></pre><h5 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h5><pre><code>let a = [1,2]
+
+let b = [3,4]
+
+a + b // &quot;1,23,4&quot;
+
+[] + [] // &quot;&quot;
+
+[] + {}  // &quot;[object Object]&quot;
+
+{} + {} // chrome: &quot;[object Object][object Object]&quot; firefox: NaN
+
+{} + [] // 0
+
+/*
+* 这里 {} + [] 和 [] + {} 结果不同，我理解为如果是{}在前面进行运算到的时候，实质是把{}当作花
+* 括号不进行运行，剩下的是+[],对数组进行求正即为 +&quot;&quot; = 0，所以结果为0，而{}在后面的情况是
+* &quot;&quot;+({}).toString = &quot;[object Object]&quot;，至于 {}+{} = NaN就很好理解了，即为 +{} = NaN.
+*/
+</code></pre><p>方便理解加入一个链接 <a href="http://2ality.com/2012/01/object-plus-object.html" target="_blank" rel="noopener">对象数组运算符操作</a></p>
+<hr>
 
       
 
