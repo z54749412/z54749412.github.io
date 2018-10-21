@@ -228,7 +228,7 @@ a + b // &quot;1,23,4&quot;
 
 /*
 * 这里 {} + [] 和 [] + {} 结果不同，我理解为如果是{}在前面进行运算到的时候，实质是把{}当作花
-* 括号不进行运行，剩下的是+[],对数组进行求正即为 +&quot;&quot; = 0，所以结果为0，而{}在后面的情况是
+* 括号不进行运行（实质就是空代码块），剩下的是+[],对数组进行求正即为 +&quot;&quot; = 0，所以结果为0，而{}在后面的情况是
 * &quot;&quot;+({}).toString = &quot;[object Object]&quot;，至于 {}+{} = NaN就很好理解了，即为 +{} = NaN.
 */
 </code></pre><p>方便理解加入一个链接 <a href="http://2ality.com/2012/01/object-plus-object.html" target="_blank" rel="noopener">对象数组运算符操作</a></p>
@@ -239,6 +239,89 @@ Number.prototype.valueOf = function(){return i++}
 var a = new Number(42)
 
 if( a == 2 &amp;&amp; a == 3){console.log(&apos;this is a magic ！&apos;)}
+</code></pre><h5 id="提取所有原音字母"><a href="#提取所有原音字母" class="headerlink" title="提取所有原音字母"></a>提取所有原音字母</h5><pre><code>function vowels(str) {
+  var matches;
+  if(str){
+    matches = str.match(/[aeiou]/g)
+    if(matches){return matches}
+  }
+}
+
+function vowels(str) {
+   var matches;
+    if(str &amp;&amp; (matches = str.match(/[aeiou]/g))){
+      return matches
+    }
+}
+</code></pre><h5 id="标签语句"><a href="#标签语句" class="headerlink" title="标签语句"></a>标签语句</h5><pre><code>foo: for(var i = 0; i &lt; 4; i++) {
+  for (var j = 0; j &lt; 4; j++) {
+    if (j == i) {
+      // 会跳到foo的下一个循环
+      continue foo;
+    }
+
+    if((j * i) % 2 == 1) {
+      continue;
+    }
+
+    console.log(i, j);
+  }
+}
+
+// 1 0
+// 2 0
+// 2 1
+// 3 0
+// 3 2
+
+foo: for(var i = 0; i &lt; 4; i++) {
+  for (var j = 0; j &lt; 4; j++) {
+    if (j == i) {
+      break foo;
+    }
+
+    if((j * i) % 2 == 1) {
+      continue;
+    }
+
+    console.log(i, j);
+  }
+}
+
+// 什么也不输出，看下面例子
+
+foo: for(var i = 0; i &lt; 4; i++) {
+  for (var j = 0; j &lt; 4; j++) {
+    if((j * i) &gt;= 3) {
+      break foo;
+    }
+    console.log(i, j);
+  }
+}
+
+// 0 0
+// 0 1
+// 0 2
+// 0 3
+// 1 0
+// 1 1
+// 1 2
+
+// break foo 是跳出循环，继续执行下面的代码
+
+// 我们也可以对带标签的代码块使用 break _
+
+function foo() {
+  bar: {
+    console.log(&apos;hello&apos;);
+    break bar;
+    console.log(&apos;never runs&apos;);
+  }
+  console.log(&apos;world&apos;);
+}
+
+// hello
+// world
 </code></pre><hr>
 
       
