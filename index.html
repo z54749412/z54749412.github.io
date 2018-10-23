@@ -322,7 +322,12 @@ function foo() {
 
 // hello
 // world
-</code></pre><hr>
+</code></pre><h5 id="ASI"><a href="#ASI" class="headerlink" title="ASI"></a>ASI</h5><p>  ASI 是一个语法纠错机制，如它会替我们填上省略的分号。</p>
+<h5 id="命名参数偏差"><a href="#命名参数偏差" class="headerlink" title="命名参数偏差"></a>命名参数偏差</h5><p>  function foo(a) {<br>    a = 42;<br>    console.log(arguments[0]);<br>  }</p>
+<p>  foo(2) // 42<br>  foo()  // undefined</p>
+<p>  function foo(a) {<br>    “use strict”;<br>    a = 42;<br>    console.log(arguments[0]);<br>  }</p>
+<p>  foo(2) // 2<br>  foo()  // undefined</p>
+<hr>
 
       
 
