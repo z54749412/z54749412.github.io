@@ -328,8 +328,16 @@ function foo() {
 <p>  function foo(a) {<br>    “use strict”;<br>    a = 42;<br>    console.log(arguments[0]);<br>  }</p>
 <p>  foo(2) // 2<br>  foo()  // undefined</p>
 <h5 id="尾调用例子"><a href="#尾调用例子" class="headerlink" title="尾调用例子"></a>尾调用例子</h5><p>  function foo(x) {<br>    if(x&lt;=1) return 1<br>    return (x/2) + foo(x-1)<br>  }</p>
-<p>  foo(123456) // RangeError: Maximum call stack size exceeded<br>  foo(100)</p>
-<p>优化：<br>  var foo2 = (function(){<br>    function _foo(acc, x){<br>      if(x &lt;= 1) return acc<br>      return _foo((x / 2) + acc, x - 1)<br>    }<br>    return function(x){<br>      return _foo(1, x)<br>    }<br>  })()<br>  foo(100)</p>
+<p>  foo(123456) // RangeError: Maximum call stack size exceeded<br>  foo(1000)</p>
+<p>优化1：<br>  var foo2 = (function(){<br>    function _foo(acc, x){<br>      if(x &lt;= 1) return acc<br>      return _foo((x / 2) + acc, x - 1)<br>    }<br>    return function(x){<br>      return _foo(1, x)<br>    }<br>  })()</p>
+<p>  foo2(123456) // RangeError: Maximum call stack size exceeded<br>  foo2(1000)</p>
+<p>  优化2:</p>
+<p>  function trampoline (res) {<br>    while (typeof res == ‘function’){<br>      res = res()<br>    }<br>    return res<br>  }</p>
+<p>  var foo3 = (function(){<br>    function _foo(acc, x){<br>      if(x &lt;= 1) return acc<br>      return function partial(){<br>        return _foo((x / 2) + acc, x - 1)<br>      }<br>    }<br>    return function(x){<br>      return trampoline( _foo(1,x))<br>    }<br>  })()</p>
+<p>  foo3(123456) // 3810376848.5<br>  foo3(1000)</p>
+<p>  优化3:</p>
+<p>  function foo4(x) {<br>    var acc = 1;<br>    while(x &gt; 1){<br>      acc = (x / 2) + acc<br>      x = x - 1;<br>    }<br>    return acc<br>  }</p>
+<p>  foo3(123456) // 3810376848.5<br>  foo3(1000)</p>
 <p>Chrome 测试结果</p>
 <p><img src="/img/otherJsPref.png" alt="jsPref"></p>
 <p><img src="/img/chromeTest.png" alt="jsPref"></p>
@@ -337,7 +345,7 @@ function foo() {
 <p><img src="/img/fireFoxTest.png" alt="jsPref"></p>
 <p>Safari 测试结果</p>
 <p><img src="/img/safariTest.png" alt="jsPref"></p>
-<p><code>以上结果来自于jsPref.com</code></p>
+<p><code>以上结果来自于jsPref.com</code><br><code>这里只比较了尾调用及非尾调用</code></p>
 <hr>
 
       
