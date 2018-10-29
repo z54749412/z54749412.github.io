@@ -339,7 +339,8 @@ function foo(a) {
 
 foo(2) // 2
 foo()  // undefined
-</code></pre><h5 id="尾调用例子"><a href="#尾调用例子" class="headerlink" title="尾调用例子"></a>尾调用例子</h5><pre><code>function foo(x) {
+</code></pre><h5 id="递归优化"><a href="#递归优化" class="headerlink" title="递归优化"></a>递归优化</h5><pre><code>&apos;use strict&apos;;
+function foo(x) {
   if(x&lt;=1) return 1
   return (x/2) + foo(x-1)
 }
@@ -347,7 +348,8 @@ foo()  // undefined
 foo(123456) // RangeError: Maximum call stack size exceeded
 foo(1000)
 </code></pre><p>优化1：</p>
-<pre><code>var foo2 = (function(){
+<pre><code>&apos;use strict&apos;;
+var foo2 = (function(){
   function _foo(acc, x){
     if(x &lt;= 1) return acc
     return _foo((x / 2) + acc, x - 1)
@@ -360,7 +362,8 @@ foo(1000)
 foo2(123456) // RangeError: Maximum call stack size exceeded
 foo2(1000)
 </code></pre><p>  优化2:</p>
-<pre><code>function trampoline (res) {
+<pre><code>&apos;use strict&apos;;
+function trampoline (res) {
   while (typeof res == &apos;function&apos;){
     res = res()
   }
@@ -382,7 +385,8 @@ var foo3 = (function(){
 foo3(123456) // 3810376848.5
 foo3(1000)
 </code></pre><p>  优化3:</p>
-<pre><code>function foo4(x) {
+<pre><code>&apos;use strict&apos;;
+function foo4(x) {
   var acc = 1;
   while(x &gt; 1){
     acc = (x / 2) + acc

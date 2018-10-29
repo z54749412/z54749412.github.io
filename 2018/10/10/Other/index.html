@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/img/chromeTest.png">
 <meta property="og:image" content="http://yoursite.com/img/fireFoxTest.png">
 <meta property="og:image" content="http://yoursite.com/img/safariTest.png">
-<meta property="og:updated_time" content="2018-10-29T03:29:50.804Z">
+<meta property="og:updated_time" content="2018-10-29T10:24:18.123Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Other">
 <meta name="twitter:description" content="JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos">
@@ -346,7 +346,8 @@ function foo(a) {
 
 foo(2) // 2
 foo()  // undefined
-</code></pre><h5 id="尾调用例子"><a href="#尾调用例子" class="headerlink" title="尾调用例子"></a>尾调用例子</h5><pre><code>function foo(x) {
+</code></pre><h5 id="递归优化"><a href="#递归优化" class="headerlink" title="递归优化"></a>递归优化</h5><pre><code>&apos;use strict&apos;;
+function foo(x) {
   if(x&lt;=1) return 1
   return (x/2) + foo(x-1)
 }
@@ -354,7 +355,8 @@ foo()  // undefined
 foo(123456) // RangeError: Maximum call stack size exceeded
 foo(1000)
 </code></pre><p>优化1：</p>
-<pre><code>var foo2 = (function(){
+<pre><code>&apos;use strict&apos;;
+var foo2 = (function(){
   function _foo(acc, x){
     if(x &lt;= 1) return acc
     return _foo((x / 2) + acc, x - 1)
@@ -367,7 +369,8 @@ foo(1000)
 foo2(123456) // RangeError: Maximum call stack size exceeded
 foo2(1000)
 </code></pre><p>  优化2:</p>
-<pre><code>function trampoline (res) {
+<pre><code>&apos;use strict&apos;;
+function trampoline (res) {
   while (typeof res == &apos;function&apos;){
     res = res()
   }
@@ -389,7 +392,8 @@ var foo3 = (function(){
 foo3(123456) // 3810376848.5
 foo3(1000)
 </code></pre><p>  优化3:</p>
-<pre><code>function foo4(x) {
+<pre><code>&apos;use strict&apos;;
+function foo4(x) {
   var acc = 1;
   while(x &gt; 1){
     acc = (x / 2) + acc
