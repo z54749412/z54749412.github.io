@@ -19,7 +19,7 @@
 <meta property="og:image" content="http://yoursite.com/img/chromeTest.png">
 <meta property="og:image" content="http://yoursite.com/img/fireFoxTest.png">
 <meta property="og:image" content="http://yoursite.com/img/safariTest.png">
-<meta property="og:updated_time" content="2018-10-27T05:02:47.864Z">
+<meta property="og:updated_time" content="2018-10-29T03:29:50.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Other">
 <meta name="twitter:description" content="JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos">
@@ -408,7 +408,23 @@ foo3(1000)
 <p>Safari 测试结果</p>
 <p><img src="/img/safariTest.png" alt="jsPref"></p>
 <p><a href="https://jsperf.com/recursion-optimize/1" target="_blank" rel="noopener">Racket</a></p>
-<hr>
+<h5 id="将阿拉伯数字每三位一逗号分隔"><a href="#将阿拉伯数字每三位一逗号分隔" class="headerlink" title="将阿拉伯数字每三位一逗号分隔"></a>将阿拉伯数字每三位一逗号分隔</h5><pre><code>function toMoney (number) {
+  if(isNaN(number)){throw &apos;请输入数字&apos;}
+  return (number-0).toLocaleString()
+}
+
+function toMoney (number) {
+  if(isNaN(number)){throw &apos;请输入数字&apos;}
+  let tmpArr = number.toString().split(&apos;.&apos;)
+  let integer = tmpArr[0].split(&apos;&apos;)
+  let result =&apos;&apos;
+  result = integer.reverse().join(&quot;&quot;).replace(/(\d{3})(?=[^$])/g, &quot;$1,&quot;).split(&quot;&quot;).reverse().join(&quot;&quot;)
+  if(tmpArr[1]){
+    result = result+&apos;.&apos;+tmpArr[1]
+  }
+  return result
+}
+</code></pre><hr>
 
       
 
