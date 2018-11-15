@@ -488,7 +488,27 @@ function　mergeSort(items){
     }
     return arr;
 };
-</code></pre><hr>
+</code></pre><h5 id="js-类型需要注意的点"><a href="#js-类型需要注意的点" class="headerlink" title="js 类型需要注意的点"></a>js 类型需要注意的点</h5><pre><code>[]
+
+if([]){console.log(1)} // 这里[]是true
+
+[] == true  // false
+[] == false // true
+[0] == 0 // true
+
+[] + []  // &apos;&apos;
+[] + {}  // &quot;[object Object]&quot;
+
+{}
+
+if([]){console.log(1)} // 这里[]是true
+
+{} + [] // 0
+
+{} + {} // chrome &quot;[object Object][object Object]&quot;
+        // firefox NaN
+</code></pre><p><code>这里又提了一遍，解释在上面已经标准过了</code></p>
+<hr>
 
       
 
