@@ -509,16 +509,18 @@ if([]){console.log(1)} // 这里[]是true
         // firefox NaN
 </code></pre><p><code>这里又提了一遍，解释在上面已经标注过了</code></p>
 <h5 id="promise-some"><a href="#promise-some" class="headerlink" title="promise.some"></a>promise.some</h5><p>  promise.all方法只要有一个返回为reject，那么函数返回即为reject，现在需求为，即时返回reject，也返回resolve，实现promise.some</p>
-<p>  function some( promises, count = 1 ){</p>
-<pre><code>const wrapped = promises.map( promise =&gt; promise.then(value =&gt; ({ success: true, value }), () =&gt; ({ success: false })) );
-return Promise.all( wrapped ).then(function(results){
-    const successful = results.filter(result =&gt; result.success);
-    if( successful.length &lt; count )
-      throw new Error(&quot;Only &quot; + successful.length + &quot; resolved.&quot;)
-    return successful.map(result =&gt; result.value);
-});
-</code></pre><p>  }</p>
-<hr>
+<pre><code>function some( promises, count = 1 ){
+
+    const wrapped = promises.map( promise =&gt; promise.then(value =&gt; ({ success: true, value }), () =&gt; ({ success: false })) );
+    return Promise.all( wrapped ).then(function(results){
+        const successful = results.filter(result =&gt; result.success);
+        if( successful.length &lt; count )
+          throw new Error(&quot;Only &quot; + successful.length + &quot; resolved.&quot;)
+        return successful.map(result =&gt; result.value);
+    });
+
+}
+</code></pre><hr>
 
       
 
