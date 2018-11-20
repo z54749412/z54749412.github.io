@@ -514,7 +514,7 @@ if([]){console.log(1)} // 这里[]是true
     const wrapped = promises.map( promise =&gt; promise.then(value =&gt; ({ success: true, value }), () =&gt; ({ success: false })) );
     return Promise.all( wrapped ).then(function(results){
         const successful = results.filter(result =&gt; result.success);
-        if( successful.length &lt; count ) {
+        if(successful.length &lt; count){
             throw new Error(&quot;Only &quot; + successful.length + &quot; resolved.&quot;)
         }
         return successful.map(result =&gt; result.value);
