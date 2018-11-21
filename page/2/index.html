@@ -6,24 +6,15 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>Other | NTFS</title>
+  <title>NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Other">
-<meta property="og:url" content="http://yoursite.com/child/2018/10/10/Other/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="NTFS">
+<meta property="og:url" content="http://yoursite.com/child/page/2/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/otherJsPref.png">
-<meta property="og:image" content="http://yoursite.com/img/chromeTest.png">
-<meta property="og:image" content="http://yoursite.com/img/fireFoxTest.png">
-<meta property="og:image" content="http://yoursite.com/img/safariTest.png">
-<meta property="og:updated_time" content="2018-11-21T03:43:35.956Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Other">
-<meta name="twitter:description" content="JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos">
-<meta name="twitter:image" content="http://yoursite.com/img/otherJsPref.png">
+<meta name="twitter:title" content="NTFS">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -153,385 +144,38 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Other" class="article article-type-post " itemscope itemprop="blogPost">
+            
+  
+    <article id="post-Pure-Function" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      Other
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/18/Pure-Function/">Pure Function</a>
     </h1>
   
 
         
-        <a href="/2018/10/10/Other/" class="archive-article-date">
-  	<time datetime="2018-10-10T04:23:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-10</time>
+        <a href="/2018/07/18/Pure-Function/" class="archive-article-date">
+  	<time datetime="2018-07-18T00:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="JS数据类型"><a href="#JS数据类型" class="headerlink" title="JS数据类型"></a>JS数据类型</h2><h5 id="Javascript-其中内置类型"><a href="#Javascript-其中内置类型" class="headerlink" title="Javascript 其中内置类型:"></a>Javascript 其中内置类型:</h5><h6 id="空值-null"><a href="#空值-null" class="headerlink" title="空值 (null)"></a>空值 (null)</h6><h6 id="未定义-undefined"><a href="#未定义-undefined" class="headerlink" title="未定义 (undefined)"></a>未定义 (undefined)</h6><h6 id="布尔值-boolean"><a href="#布尔值-boolean" class="headerlink" title="布尔值 (boolean)"></a>布尔值 (boolean)</h6><h6 id="数字-number"><a href="#数字-number" class="headerlink" title="数字 (number)"></a>数字 (number)</h6><h6 id="字符串-string"><a href="#字符串-string" class="headerlink" title="字符串 (string)"></a>字符串 (string)</h6><h6 id="对象-object"><a href="#对象-object" class="headerlink" title="对象 (object)"></a>对象 (object)</h6><p><code>其中数组(Array) 函数(function) 是object的一个子类型</code></p>
-<h6 id="符号-symbol"><a href="#符号-symbol" class="headerlink" title="符号 (symbol)"></a>符号 (symbol)</h6><h5 id="null-判断"><a href="#null-判断" class="headerlink" title="null 判断"></a>null 判断</h5><pre><code>var a = null;
-
-(!a &amp;&amp; typeof a === &apos;object&apos;); ß
-</code></pre><h5 id="function的length"><a href="#function的length" class="headerlink" title="function的length"></a>function的length</h5><pre><code>function foo () {}
-
-foo.length // 0
-
-function foo2 (a,b,c) {}
-
-foo2.length // 3
-</code></pre><p>对于function来说，function的length属性就是function的参数个数</p>
-<h5 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h5><pre><code>function foo1(X){
-    x.push(4)
-}
-
-let a = [1,2,3]
-
-foo1(a);
-
-a // [1,2,3,4]
-
-function foo2(x){
-    x = [4,5,6];
-    x.push(7);
-}
-
-let b = [1,2,3];
-
-foo2(b);
-
-b // [1,2,3]
-
-=&gt;
-
-function foo(x){
-    x.push(4);
-    x = [4,5,6]
-    x.push(7);
-}
-
-let c = [1,2,3]
-
-foo(c);
-
-c // [1,2,3,4]
-</code></pre><h5 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h5><pre><code>let a = [1,2]
-
-let b = [3,4]
-
-a + b // &quot;1,23,4&quot;
-
-[] + [] // &quot;&quot;
-
-[] + {}  // &quot;[object Object]&quot;
-
-{} + {} // chrome: &quot;[object Object][object Object]&quot; firefox: NaN
-
-{} + [] // 0
-
-/*
-* 这里 {} + [] 和 [] + {} 结果不同，我理解为如果是{}在前面进行运算到的时候，实质是把{}当作花
-* 括号不进行运行（实质就是空代码块），剩下的是+[],对数组进行求正即为 +&quot;&quot; = 0，所以结果为0，而{}在后面的情况是
-* &quot;&quot;+({}).toString = &quot;[object Object]&quot;，至于 {}+{} = NaN就很好理解了，即为 +{} = NaN.
-*/
-</code></pre><p>方便理解加入一个链接 <a href="http://2ality.com/2012/01/object-plus-object.html" target="_blank" rel="noopener">对象数组运算符操作</a></p>
-<h5 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h5><pre><code>var i = 2
-
-Number.prototype.valueOf = function(){return i++}
-
-var a = new Number(42)
-
-if( a == 2 &amp;&amp; a == 3){console.log(&apos;this is a magic ！&apos;)}
-</code></pre><h5 id="提取所有原音字母"><a href="#提取所有原音字母" class="headerlink" title="提取所有原音字母"></a>提取所有原音字母</h5><pre><code>function vowels(str) {
-  var matches;
-  if(str){
-    matches = str.match(/[aeiou]/g)
-    if(matches){return matches}
-  }
-}
-
-function vowels(str) {
-   var matches;
-    if(str &amp;&amp; (matches = str.match(/[aeiou]/g))){
-      return matches
-    }
-}
-</code></pre><h5 id="标签语句"><a href="#标签语句" class="headerlink" title="标签语句"></a>标签语句</h5><pre><code>foo: for(var i = 0; i &lt; 4; i++) {
-  for (var j = 0; j &lt; 4; j++) {
-    if (j == i) {
-      // 会跳到foo的下一个循环
-      continue foo;
-    }
-
-    if((j * i) % 2 == 1) {
-      continue;
-    }
-
-    console.log(i, j);
-  }
-}
-
-// 1 0
-// 2 0
-// 2 1
-// 3 0
-// 3 2
-
-foo: for(var i = 0; i &lt; 4; i++) {
-  for (var j = 0; j &lt; 4; j++) {
-    if (j == i) {
-      break foo;
-    }
-
-    if((j * i) % 2 == 1) {
-      continue;
-    }
-
-    console.log(i, j);
-  }
-}
-
-// 什么也不输出，看下面例子
-
-foo: for(var i = 0; i &lt; 4; i++) {
-  for (var j = 0; j &lt; 4; j++) {
-    if((j * i) &gt;= 3) {
-      break foo;
-    }
-    console.log(i, j);
-  }
-}
-
-// 0 0
-// 0 1
-// 0 2
-// 0 3
-// 1 0
-// 1 1
-// 1 2
-
-// break foo 是跳出循环，继续执行下面的代码
-
-// 我们也可以对带标签的代码块使用 break _
-
-function foo() {
-  bar: {
-    console.log(&apos;hello&apos;);
-    break bar;
-    console.log(&apos;never runs&apos;);
-  }
-  console.log(&apos;world&apos;);
-}
-
-// hello
-// world
-</code></pre><h5 id="ASI"><a href="#ASI" class="headerlink" title="ASI"></a>ASI</h5><p>  ASI 是一个语法纠错机制，如它会替我们填上省略的分号。</p>
-<h5 id="命名参数偏差"><a href="#命名参数偏差" class="headerlink" title="命名参数偏差"></a>命名参数偏差</h5><pre><code>function foo(a) {
-  a = 42;
-  console.log(arguments[0]);
-}
-
-foo(2) // 42
-foo()  // undefined
-
-function foo(a) {
-  &quot;use strict&quot;;
-  a = 42;
-  console.log(arguments[0]);
-}
-
-foo(2) // 2
-foo()  // undefined
-</code></pre><h5 id="递归优化"><a href="#递归优化" class="headerlink" title="递归优化"></a>递归优化</h5><pre><code>&apos;use strict&apos;;
-function foo(x) {
-  if(x&lt;=1) return 1
-  return (x/2) + foo(x-1)
-}
-
-foo(123456) // RangeError: Maximum call stack size exceeded
-foo(1000)
-</code></pre><p>优化1：</p>
-<pre><code>&apos;use strict&apos;;
-var foo2 = (function(){
-  function _foo(acc, x){
-    if(x &lt;= 1) return acc
-    return _foo((x / 2) + acc, x - 1)
-  }
-  return function(x){
-    return _foo(1, x)
-  }
-})()
-
-foo2(123456) // RangeError: Maximum call stack size exceeded
-foo2(1000)
-</code></pre><p>  优化2:</p>
-<pre><code>&apos;use strict&apos;;
-function trampoline (res) {
-  while (typeof res == &apos;function&apos;){
-    res = res()
-  }
-  return res
-}
-
-var foo3 = (function(){
-  function _foo(acc, x){
-    if(x &lt;= 1) return acc
-    return function partial(){
-  return _foo((x / 2) + acc, x - 1)
-    }
-  }
-  return function(x){
-    return trampoline( _foo(1,x))
-  }
-})()
-
-foo3(123456) // 3810376848.5
-foo3(1000)
-</code></pre><p>  优化3:</p>
-<pre><code>&apos;use strict&apos;;
-function foo4(x) {
-  var acc = 1;
-  while(x &gt; 1){
-    acc = (x / 2) + acc
-    x = x - 1;
-  }
-  return acc
-}
-
-foo3(123456) // 3810376848.5
-foo3(1000)
-</code></pre><p>Chrome 测试结果</p>
-<p><img src="/img/otherJsPref.png" alt="jsPref"></p>
-<p><img src="/img/chromeTest.png" alt="jsPref"></p>
-<p>Firefox 测试结果</p>
-<p><img src="/img/fireFoxTest.png" alt="jsPref"></p>
-<p>Safari 测试结果</p>
-<p><img src="/img/safariTest.png" alt="jsPref"></p>
-<p><a href="https://jsperf.com/recursion-optimize/1" target="_blank" rel="noopener">Racket</a></p>
-<h5 id="将阿拉伯数字每三位一逗号分隔"><a href="#将阿拉伯数字每三位一逗号分隔" class="headerlink" title="将阿拉伯数字每三位一逗号分隔"></a>将阿拉伯数字每三位一逗号分隔</h5><pre><code>function toMoney (number) {
-  if(isNaN(number)){throw &apos;请输入数字&apos;}
-  return (number-0).toLocaleString()
-}
-
-function toMoney (number) {
-  if(isNaN(number)){throw &apos;请输入数字&apos;}
-  let tmpArr = number.toString().split(&apos;.&apos;)
-  let integer = tmpArr[0].split(&apos;&apos;)
-  let result =&apos;&apos;
-  result = integer.reverse().join(&quot;&quot;).replace(/(\d{3})(?=[^$])/g, &quot;$1,&quot;).split(&quot;&quot;).reverse().join(&quot;&quot;)
-  if(tmpArr[1]){
-    result = result+&apos;.&apos;+tmpArr[1]
-  }
-  return result
-}
-</code></pre><h5 id="归并"><a href="#归并" class="headerlink" title="归并"></a>归并</h5><pre><code>function　merge(left, right){
-    var　result=[];
-    while(left.length&gt;0 &amp;&amp; right.length&gt;0){
-        if(left[0]&lt;right[0]){
-            result.push(left.shift());
-        }else{
-            result.push(right.shift());
-        }
-    }
-    return　result.concat(left).concat(right);
-}
-function　mergeSort(items){
-    if(items.length == 1){
-        return　items;
-    }
-    var　middle = Math.floor(items.length/2);
-    var left = items.slice(0, middle);
-    var right = items.slice(middle);
-    return　merge(mergeSort(left), mergeSort(right));
-}
-</code></pre><h5 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h5><pre><code>var quickSort = function (arr) {
-    if (arr.length &lt;= 1) {
-        return arr;
-    }
-    var pivotIndex = Math.floor(arr.length / 2);
-    var pivot = arr.splice(pivotIndex, 1)[0];
-    var left = [];
-    var right = [];
-    for (var i = 0; i &lt; arr.length; i++) {
-        if (arr[i] &lt; pivot) {
-            left.push(arr[i]);
-        } else {
-            right.push(arr[i]);
-        }
-    }
-    return quickSort(left).concat([pivot], quickSort(right));
-};
-</code></pre><h5 id="堆排"><a href="#堆排" class="headerlink" title="堆排"></a>堆排</h5><pre><code>heap_sort = function(item) {
-    var arr = item.slice(0);
-    function swap(i, j) {
-        var tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
-
-    function max_heapify(start, end) {
-        var dad = start;
-        var son = dad * 2 + 1;
-        if (son &gt;= end)
-            return;
-        if (son + 1 &lt; end &amp;&amp; arr[son] &lt; arr[son + 1])
-            son++;
-        if (arr[dad] &lt;= arr[son]) {
-            swap(dad, son);
-            max_heapify(son, end);
-        }
-    }
-
-    var len = arr.length;
-    for (var i = Math.floor(len / 2) - 1; i &gt;= 0; i--)
-      max_heapify(i, len);
-    for (var i = len - 1; i &gt; 0; i--) {
-      swap(0, i);
-      max_heapify(0, i);
-    }
-    return arr;
-};
-</code></pre><h5 id="js-类型需要注意的点"><a href="#js-类型需要注意的点" class="headerlink" title="js 类型需要注意的点"></a>js 类型需要注意的点</h5><pre><code>[]
-
-if([]){console.log(1)} // 这里[]是true
-
-[] == true  // false
-[] == false // true
-[0] == 0 // true
-
-[] + []  // &apos;&apos;
-[] + {}  // &quot;[object Object]&quot;
-
-{}
-
-if([]){console.log(1)} // 这里[]是true
-
-{} + [] // 0
-
-{} + {} // chrome &quot;[object Object][object Object]&quot;
-        // firefox NaN
-</code></pre><p><code>这里又提了一遍，解释在上面已经标注过了</code></p>
-<h5 id="promise-some"><a href="#promise-some" class="headerlink" title="promise.some"></a>promise.some</h5><p>  promise.all方法只要有一个返回为reject，那么函数返回即为reject，现在需求为，即时返回reject，也返回resolve，实现promise.some</p>
-<pre><code>function some( promises, count = 1 ){
-
-    const wrapped = promises.map( promise =&gt; promise.then(value =&gt; ({ success: true, value }), () =&gt; ({ success: false })) );
-    return Promise.all( wrapped ).then(function(results){
-        const successful = results.filter(result =&gt; result.success);
-        if(successful.length &lt; count){
-            throw new Error(&quot;Only &quot; + successful.length + &quot; resolved.&quot;)
-        }
-        return successful.map(result =&gt; result.value);
-    });
-
-}
-</code></pre><h5 id="CSS的加载对页面的影响"><a href="#CSS的加载对页面的影响" class="headerlink" title="CSS的加载对页面的影响"></a>CSS的加载对页面的影响</h5><pre><code>1.css加载不会阻塞DOM树的解析
-2.css加载会阻塞DOM树的渲染
-3.css加载会阻塞后面js语句的执行
-</code></pre><hr>
+        <p>什么是纯函数？</p>
+<blockquote>
+<p>纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。</p>
+<blockquote>
+<p>这里又提出了函数副作用，那么什么是函数副作用？</p>
+<blockquote>
+<p>函数副作用指当调用函数时，除了返回函数值之外，还对主调用函数产生附加的影响。</p>
+</blockquote>
+</blockquote>
+</blockquote>
 
       
 
@@ -543,84 +187,16 @@ if([]){console.log(1)} // 这里[]是true
       
 
       
-
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/18/Pure-Function/">展开全文 >></a>
+        </p>
       
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
 
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2018/10/10/Other/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/11/21/map/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          map
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/10/09/reduce/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">reduce</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -640,14 +216,936 @@ if([]){console.log(1)} // 这里[]是true
 
 
 
-  
-  
-  
 
   
-
+    <article id="post-TypeScript" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/18/TypeScript/">TypeScript</a>
+    </h1>
   
 
+        
+        <a href="/2018/07/18/TypeScript/" class="archive-article-date">
+  	<time datetime="2018-07-18T00:23:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>什么是TypeScript？</p>
+<blockquote>
+<p>来自官网： TypeScript 是 JavaScript 类型的超集，它可以编译成纯 JavaScript。TypeScript 可以在任何浏览器、任何计算机和任何操作系统上运行，并且是开源的。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>感觉这里很夸大，首先至少是目前 TypeScript 都没办法在任何浏览器上运行，它只能够通过编译成原生 js 才能够在浏览器中运行起来。而编译的过程同样耗时，消耗性能，如果不解决直接运行的这个问题，每次都需要编译的话，并不能完全展示其真正的价值。</p>
+</blockquote>
+</blockquote>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>支持js中所有的数据类型，并有枚举型（enum）、任意型（any）、无返回型函数（void）、永不存在的值的类型（never）。</p>
+<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><pre><code>let isDone: boolean = false;
+</code></pre><h4 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h4><pre><code>let decLiteral: number = 6;
+
+let hexLiteral: number = 0xf00d;
+
+let binaryLiteral: number = 0b1010;
+
+let octalLiteral: number = 0o744;
+
+let floatNum: number = 12.23;
+</code></pre><h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><pre><code>let name: string = &quot;bob&quot;;
+
+name = &quot;smith&quot;;
+</code></pre><blockquote>
+<p>也可以使用es6的模板字符串</p>
+</blockquote>
+<pre><code>let name: string = `Gene`;
+
+let age: number = 18;
+
+let sentence: string = `Hello, my name is ${ name }.
+I&apos;m ${ age + 1 } years old `;
+</code></pre><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><pre><code>let arr1: number[] = [1, 2, 3];
+
+let arr2: Array&lt;string&gt; = [&apos;h&apos;, &apos;e&apos;, &apos;l&apos;];
+
+let arr3: Array&lt;string|number&gt; = [&apos;1&apos;,2,3,4,&apos;6&apos;];
+
+let arr4: Array&lt;string|number|Array&lt;string&gt;&gt; = [&apos;h&apos;,&apos;e&apos;,3,4,&apos;6&apos;,[&apos;a&apos;]];
+
+let arr5: any[] = [1, true, &quot;free&quot;,[1,2,3],{name:&apos;zs&apos;,age:16}]; // 定义一个任意类型的数组
+</code></pre><h4 id="元组-Tuple"><a href="#元组-Tuple" class="headerlink" title="元组 Tuple"></a>元组 Tuple</h4><pre><code>// Declare a tuple type
+
+let t: [string, number];
+
+// Initialize it
+
+t = [&apos;hello&apos;, 10]; // OK
+
+// Initialize it incorrectly
+
+t = [10, &apos;hello&apos;]; // Error
+
+console.log(t[0].substr(1)); // OK
+
+console.log(t[1].substr(1)); // Error, &apos;number&apos; does not have &apos;substr&apos;
+
+t[3] = &apos;world&apos;; // OK, 字符串可以赋值给(string | number)类型
+
+console.log(t[5].toString()); // OK, &apos;string&apos; 和 &apos;number&apos; 都有 toString
+
+t[6] = true; // Error, 布尔不是(string | number)类型
+</code></pre><h4 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h4><blockquote>
+<p>enum类型是对JavaScript标准数据类型的一个补充。类似于es6的解构赋值。便于取出对象中的key、value。</p>
+</blockquote>
+<pre><code>let o:object = {
+    name: &apos;zs&apos;,
+    age:18
+}
+let {name} = o; // 报错 [ts] 类型“object”不具有属性“name”和字符串索引签名。
+console.log(o.name); //报错
+
+----------------------------------------------
+// 取key
+
+enum Color {Red, Green, Blue}
+let c: Color = Color.Green;
+console.log(c) // 1 这里打印的是其索引
+
+enum Color {Red = 1, Green, Blue}
+let c: Color = Color.Green;
+console.log(c) // 2 枚举型索引默认从0开始，但是经过赋值已经改变其初始项的索引为1
+
+enum Color {Red = 1, Green = 3, Blue = 4}
+let c: number = Color.Green;  // 由于这里取的是索引，所以c的类型可以是数字型
+console.log(c) // 3
+
+------------------------------------------------
+// 取value
+
+enum Color {Red = 1, Green, Blue}
+let colorName: string = Color[2];
+console.log(colorName);  // &apos;Green&apos;
+</code></pre><h4 id="Any"><a href="#Any" class="headerlink" title="Any"></a>Any</h4><blockquote>
+<p>Any就是为那些在编程阶段还不清楚类型的变量指定一个类型。 这些值可能来自于动态的内容，比如来自用户输入或第三方代码库。 这种情况下，我们不希望类型检查器对这些值进行检查而是直接让它们通过编译阶段的检查。 那么我们可以使用 any类型来标记这些变量：（感觉这个类型还是为了迎合js的弱类型，比如定义一个null变量，在ajax请求数据后，将请求数据赋值给该变量）</p>
+</blockquote>
+<pre><code>let notSure: any = 4;
+notSure = &quot;maybe a string instead&quot;;
+notSure = false;
+notSure = {};
+</code></pre><blockquote>
+<p>Any 区别于 Object 类型，Object 类型的变量只是允许你给它赋任意值，但是却不能够在它上面调用任意的方法，即便它真的有这些方法，而 Any 可以。</p>
+</blockquote>
+<pre><code>let notSure: any = 4;
+notSure.ifItExists(); // okay, ifItExists might exist at runtime
+notSure.toFixed(); // okay, toFixed exists (but the compiler doesn&apos;t check)
+
+let prettySure: Object = 4;
+prettySure.toFixed(); // Error: Property &apos;toFixed&apos; doesn&apos;t exist on type &apos;Object&apos;.
+
+let list4: any[] = [1, true, &quot;free&quot;,[1,2,3],{name:&apos;zs&apos;,age:16}];
+list4[1] = 100;
+console.log(list4);
+</code></pre><h4 id="Void"><a href="#Void" class="headerlink" title="Void"></a>Void</h4><blockquote>
+<p>当一个函数没有返回值时，你通常会见到其返回值类型是 void 。(和C语言的 void 函数一样，无可用返回即定义一个 void 函数)</p>
+</blockquote>
+<pre><code>function noReturn(): void {
+    console.log(&apos;this is a no return function&apos;);
+    return ;  // 这里的 return 可省略
+}
+</code></pre><blockquote>
+<blockquote>
+<p>void 类型的变量只能为它赋值undefined和null<br>    let un: void = undefined;<br>    let nu: void = null;</p>
+</blockquote>
+</blockquote>
+<h4 id="Null-和-Undefined"><a href="#Null-和-Undefined" class="headerlink" title="Null 和 Undefined"></a>Null 和 Undefined</h4><pre><code>let u: undefined = undefined; // 这里只能赋值undefined
+let n: null = null; // 这里只能赋值null
+</code></pre><blockquote>
+<p>默认情况下 null 和 undefined 是所有类型的子类型。 就是说你可以把 null 和 undefined 赋值给 number 类型的变量。然而，当你指定了 –strictNullChecks 标记， null 和 undefined 只能赋值给 void 和它们各自。 这能避免很多常见的问题。 也许在某处你想传入一个 string 或 null 或 undefined ，你可以使用联合类型 string | null | undefined 。</p>
+</blockquote>
+<h4 id="Never"><a href="#Never" class="headerlink" title="Never"></a>Never</h4><blockquote>
+<p>never类型表示的是那些永不存在的值的类型。 例如， never 类型是那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型； 变量也可能是 never 类型，当它们被永不为真的类型保护所约束时。never 类型是任何类型的子类型，也可以赋值给任何类型；然而，没有类型是 never 的子类型或可以赋值给 never 类型（除了 never 本身之外）。 即使 any 也不可以赋值给 never 。</p>
+</blockquote>
+<pre><code>// 返回never的函数必须存在无法达到的终点
+function error(message: string): never {
+    throw new Error(message);
+}
+
+// 推断的返回值类型为never
+function fail() {
+    return error(&quot;Something failed&quot;);
+}
+
+// 返回never的函数必须存在无法达到的终点
+function infiniteLoop(): never {
+    while (true) {
+    }
+}
+</code></pre><h4 id="类型断言"><a href="#类型断言" class="headerlink" title="类型断言"></a>类型断言</h4><blockquote>
+<p>强制按照我们的想法去定义某个变量的类型，不需要 ts 进行检测。类型断言好比其它语言里的类型转换，但是不进行特殊的数据检查和解构。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>类型断言有两种形式</p>
+</blockquote>
+</blockquote>
+<pre><code>// &quot;尖括号&quot;语法:
+
+let strValue: any = &quot;this is a string&quot;;
+let strLength: number = (&lt;string&gt;strValue).length;
+console.log(strLength) // 16
+
+let numValue: any = 1234;
+let numLength: number = (&lt;string&gt;numValue).length;
+console.log(numLength);  // undefined
+
+---------------------------------------------------------
+
+// as语法：
+
+let strValue: any = &quot;this is a string&quot;;
+let strLength: number = (strValue as string).length;
+console.log(strLength) // 16
+
+let numValue: any = 1234;
+let numLength: number = (numValue as string).length;
+console.log(numLength);  // undefined
+</code></pre><h3 id="变量声明"><a href="#变量声明" class="headerlink" title="变量声明"></a>变量声明</h3><blockquote>
+<p>与 js 完全一样，支持 es6 新特性。</p>
+</blockquote>
+<h3 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h3><blockquote>
+<p>TypeScript 的核心原则之一是对值所具有的结构进行类型检查。它有时被称做 “duck typing” 或 “structural subtyping” 。在 TypeScript 里，接口的作用就是为这些类型命名和为你的代码或第三方代码定义契约。(感觉翻译不是很好，跑去看了下英文文档，结果发现英语水平有点差，大概就先这样理解吧)</p>
+</blockquote>
+<pre><code>---------------------------------------------------------------
+function printLabel(labelledObj: { label: string }) {
+    console.log(labelledObj.label);
+}
+
+let myObj = { size: 10, label: &quot;Size 10 Object&quot; };
+printLabel(myObj);
+let test1Obj = {size: 20}
+printLabel(test1Obj);  // error 参数缺少 label 属性
+
+let test2Obj = {size: 20, label: 123}
+printLabel(test2Obj);  // error 参数的 label 属性的值必须为string
+
+---------------------------------------------------------------
+// 接口写法
+interface LabelledValue {
+    label: string;
+}
+
+function printLabel(labelledObj: LabelledValue) {
+    console.log(labelledObj.label);
+}
+
+let myObj = {size: 10, label: &quot;Size 10 Object&quot;};
+printLabel(myObj);
+</code></pre><h4 id="可选属性"><a href="#可选属性" class="headerlink" title="可选属性"></a>可选属性</h4><blockquote>
+<p>接口里的属性不全都是必需的。 有些是只在某些条件下存在，或者根本不存在。 可选属性在应用“option bags”模式时很常用，即给函数传入的参数对象中只有部分属性赋值了。</p>
+</blockquote>
+<pre><code>interface Person {
+    name?: string;
+    age?: number;
+}
+
+function createPerson(config: Person) {
+    let newPerson:Person = {name: &quot;zs&quot;, age: 18};
+    if (config.name) {
+        newPerson.name = config.name;
+    }
+    if (config.age) {
+        newPerson.age = config.age;
+    }
+    return newPerson;
+}
+
+let ls = createPerson({name: &quot;ls&quot;});
+console.log(ls);
+</code></pre><h4 id="只读属性"><a href="#只读属性" class="headerlink" title="只读属性"></a>只读属性</h4><blockquote>
+<p>一些对象属性只能在对象刚刚创建的时候修改其值。 你可以在属性名前用 readonly来指定只读属性:</p>
+</blockquote>
+<pre><code>interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+
+let p1: Point = { x: 10, y: 20 };
+
+p1.x = 5; // error!
+</code></pre><blockquote>
+<p>TypeScript具有ReadonlyArray<t>类型，它与Array<t>相似，只是把所有可变方法去掉了，因此可以确保数组创建后再也不能被修改：</t></t></p>
+</blockquote>
+<pre><code>let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray&lt;number&gt; = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+let d: number[] = [1,2,3]
+d = ro; // error!
+let b = ro;  // [1,2,3,4]
+</code></pre><blockquote>
+<p>由上例可以看到不能把整个ReadonlyArray赋值到一个已经有值的数组。 但是你如果你想把一个只读的数组赋值给普通数组可以用类型断言重写：</p>
+</blockquote>
+<pre><code>a = ro as number[];
+</code></pre><blockquote>
+<p><font color="#ff2200">readonly</font> vs <font color="#ff2200">const</font></p>
+<blockquote>
+<p>做为<font color="#ff6688">常量</font>使用的话使用 const，若做为<font color="#ff6688">属性</font>则使用 readonly 。</p>
+</blockquote>
+</blockquote>
+<h4 id="额外的属性检查"><a href="#额外的属性检查" class="headerlink" title="额外的属性检查"></a>额外的属性检查</h4><pre><code>interface Person {
+    name?: string;
+    age?: number;
+}
+
+function createPerson(config: Person) {
+    let newPerson:Person = {name: &quot;zs&quot;, age: 18};
+    if (config.name) {
+        newPerson.name = config.name;
+    }
+    if (config.age) {
+        newPerson.age = config.age;
+    }
+    return newPerson;
+}
+
+let ls = createPerson({name: &quot;ls&quot;, sex:&quot;femail&quot;});  // 这里会报错 [ts]类型“{ name: string; sex: string; }”的参数不能赋给类型“Person”的参数。对象文字可以只指定已知属性，并且“sex”不在类型“Person”中。
+</code></pre><blockquote>
+<p>最简便的解决方法——使用类型断言：</p>
+</blockquote>
+<pre><code>interface Person {
+    name?: string;
+    age?: number;
+}
+
+function createPerson(config: Person) {
+    let newPerson:Person = {name: &quot;zs&quot;, age: 18};
+    if (config.name) {
+        newPerson.name = config.name;
+    }
+    if (config.age) {
+        newPerson.age = config.age;
+    }
+    /**
+     *  error [ts] 类型“Person”上不存在属性“sex”。
+        if (config.sex) {
+            newPerson.sex = config.sex;
+        }
+    */
+    return newPerson;
+}
+
+let ls = createPerson({name: &quot;ls&quot;, age:2, sex:&quot;femail&quot;} as Person);
+console.log(ls) // {name: &apos;ls&apos;, age:2}
+</code></pre><blockquote>
+<p>最佳的方式是能够添加一个字符串索引签名，前提是你能够确定这个对象可能具有某些做为特殊用途使用的额外属性。 如果 Person带有上面定义的类型的 name 和 age 属性，并且还会带有任意数量的其它属性，那么我们可以这样定义它：</p>
+</blockquote>
+<pre><code>interface Person {
+    name?: string;
+    age?: number;
+    [propName: string]: any;
+}
+
+function createPerson(config: Person) {
+    let newPerson:Person = {name: &quot;zs&quot;, age: 18};
+    if (config.name) {
+        newPerson.name = config.name;
+    }
+    if (config.age) {
+        newPerson.age = config.age;
+    }
+    if (config.sex) {
+        newPerson.sex = config.sex
+    }
+    if (config.friends) {
+        newPerson.friends = config.friends
+    }
+    return newPerson;
+}
+
+let ls = createPerson({name: &quot;ls&quot;, age:2, sex:&quot;femail&quot;, friends: [{name:&apos;zs&apos;,age:18},{name: &apos;xm&apos;, age: 17}]});
+console.log(ls) // { name: &apos;ls&apos;,age: 2,sex: &apos;femail&apos;,friends: [ { name: &apos;zs&apos;, age: 18 }, { name: &apos;xm&apos;, age: 17 } ] }
+</code></pre><h4 id="函数类型"><a href="#函数类型" class="headerlink" title="函数类型"></a>函数类型</h4><blockquote>
+<p>接口能够描述JavaScript中对象拥有的各种各样的外形。 除了描述带有属性的普通对象外，接口也可以描述函数类型。</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>为了使用接口表示函数类型，我们需要给接口定义一个调用签名。 它就像是一个只有参数列表和返回值类型的函数定义。参数列表里的每个参数都需要名字和类型。</p>
+</blockquote>
+</blockquote>
+<pre><code>interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(source: string, subString: string) {
+    let result = source.search(subString);
+    return result &gt; -1;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(src: string, sub: string): boolean {
+    let result = src.search(sub);
+    return result &gt; -1;
+}
+
+let mySearch: SearchFunc;
+mySearch = function(src, sub) {
+    let result = src.search(sub);
+    return result &gt; -1;
+}
+</code></pre><h4 id="可索引的类型"><a href="#可索引的类型" class="headerlink" title="可索引的类型"></a>可索引的类型</h4><blockquote>
+<p>与使用接口描述函数类型差不多，我们也可以描述那些能够“通过索引得到”的类型，比如a[10]或ageMap[“daniel”]。 可索引类型具有一个 索引签名，它描述了对象索引的类型，还有相应的索引返回值类型。</p>
+</blockquote>
+<pre><code>interface StringArray {
+    [index: number]: string;
+}
+
+let myArray: StringArray;
+myArray = [&quot;Bob&quot;, &quot;Fred&quot;];
+
+let myStr: string = myArray[0];
+
+console.log(myArray); //[ &apos;Bob&apos;, &apos;Fred&apos; ]
+console.log(myStr); // Bob
+</code></pre><blockquote>
+<p>上面例子里，我们定义了StringArray接口，它具有索引签名。 这个索引签名表示了当用 number去索引StringArray时会得到string类型的返回值。</p>
+</blockquote>
+<blockquote>
+<p>共有支持两种索引签名：字符串和数字。 可以同时使用两种类型的索引，但是数字索引的返回值必须是字符串索引返回值类型的子类型。 这是因为当使用 number来索引时，JavaScript会将它转换成string然后再去索引对象。 也就是说用 100（一个number）去索引等同于使用”100”（一个string）去索引，因此两者需要保持一致。</p>
+</blockquote>
+<pre><code>class Animal {
+    name: string;
+}
+class Dog extends Animal {
+    breed: string;
+}
+
+// 错误：使用数值型的字符串索引，有时会得到完全不同的Animal!
+interface NotOkay {
+    [x: number]: Animal;
+    [x: string]: Dog;
+}
+</code></pre><blockquote>
+<p>字符串索引签名能够很好的描述dictionary模式，并且它们也会确保所有属性与其返回值类型相匹配。 因为字符串索引声明了 obj.property和obj[“property”]两种形式都可以。 下面的例子里， name的类型与字符串索引类型不匹配，所以类型检查器给出一个错误提示：</p>
+</blockquote>
+<pre><code>interface NumberDictionary {
+    [index: string]: number;
+    length: number;    // 可以，length是number类型
+    name: string       // 错误，`name`的类型与索引类型返回值的类型不匹配
+}
+</code></pre><blockquote>
+<p>最后，你可以将索引签名设置为只读，这样就防止了给索引赋值：</p>
+</blockquote>
+<pre><code>interface ReadonlyStringArray {
+    readonly [index: number]: string;
+}
+let myArray: ReadonlyStringArray = [&quot;Alice&quot;, &quot;Bob&quot;];
+myArray[2] = &quot;Mallory&quot;; // error! 你不能设置myArray[2]，因为索引签名是只读的。
+</code></pre><h4 id="类类型"><a href="#类类型" class="headerlink" title="类类型"></a>类类型</h4><blockquote>
+<p>TypeScript 能够用它来明确的强制一个类去符合某种契约。</p>
+</blockquote>
+<pre><code>interface ClockInterface {
+    currentTime: Date;
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
+</code></pre><blockquote>
+<p>也可以在接口中描述一个方法，在类里实现它。</p>
+</blockquote>
+<pre><code>interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date);
+}
+
+class Clock implements ClockInterface {
+    currentTime: Date;
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) { }
+}
+</code></pre><p>接口描述了类的公共部分，而不是公共和私有两部分。 它不会帮你检查类是否具有某些私有成员。</p>
+<p>类静态部分与实例部分的区别</p>
+<blockquote>
+<p>当你操作类和接口的时候，你要知道类是具有两个类型的：静态部分的类型和实例的类型。 你会注意到，当你用构造器签名去定义一个接口并试图定义一个类去实现这个接口时会得到一个错误：</p>
+</blockquote>
+<pre><code>interface ClockConstructor {
+    new (hour: number, minute: number);
+}
+
+class Clock implements ClockConstructor {  // error [ts]类“Clock”错误实现接口“ClockConstructor”。类型“Clock”提供的内容与签名“new (hour: number, minute: number): any”不匹配。
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
+</code></pre><p>这里因为当一个类实现了一个接口时，只对其实例部分进行类型检查。 constructor存在于类的静态部分，所以不在检查的范围内。</p>
+<p>因此，我们应该直接操作类的静态部分。 看下面的例子，我们定义了两个接口， ClockConstructor为构造函数所用和ClockInterface为实例方法所用。 为了方便我们定义一个构造函数 createClock，它用传入的类型创建实例。</p>
+<pre><code>interface ClockConstructor {
+    new (hour: number, minute: number): ClockInterface;
+}
+interface ClockInterface {
+    tick();
+}
+
+function createClock(ctor: ClockConstructor, hour: number, minute: number): ClockInterface {
+    return new ctor(hour, minute);
+}
+
+class DigitalClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log(&quot;beep beep&quot;);
+    }
+}
+class AnalogClock implements ClockInterface {
+    constructor(h: number, m: number) { }
+    tick() {
+        console.log(&quot;tick tock&quot;);
+    }
+}
+
+let digital = createClock(DigitalClock, 12, 17);
+let analog = createClock(AnalogClock, 7, 32);
+</code></pre><p>因为createClock的第一个参数是ClockConstructor类型，在createClock(AnalogClock, 7, 32)里，会检查AnalogClock是否符合构造函数签名。</p>
+<h4 id="继承接口"><a href="#继承接口" class="headerlink" title="继承接口"></a>继承接口</h4><blockquote>
+<p>和类一样，接口也可以相互继承。 这让我们能够从一个接口里复制成员到另一个接口里，可以更灵活地将接口分割到可重用的模块里。</p>
+</blockquote>
+<pre><code>interface Shape {
+    color: string;
+}
+
+interface Square extends Shape {
+    sideLength: number;
+}
+
+let square = &lt;Square&gt;{};
+square.color = &quot;blue&quot;;
+square.sideLength = 10;
+</code></pre><blockquote>
+<p>一个接口可以继承多个接口，创建出多个接口的合成接口。</p>
+</blockquote>
+<pre><code>interface Shape {
+    color: string;
+}
+
+interface PenStroke {
+    penWidth: number;
+}
+
+interface Square extends Shape, PenStroke {
+    sideLength: number;
+}
+
+let square = &lt;Square&gt;{};
+square.color = &quot;blue&quot;;
+square.sideLength = 10;
+square.penWidth = 5.0;
+</code></pre><h4 id="混合类型"><a href="#混合类型" class="headerlink" title="混合类型"></a>混合类型</h4><p>先前我们提过，接口能够描述JavaScript里丰富的类型。 因为JavaScript其动态灵活的特点，有时你会希望一个对象可以同时具有上面提到的多种类型。</p>
+<p>一个例子就是，一个对象可以同时做为函数和对象使用，并带有额外的属性。</p>
+<pre><code>interface Counter {
+    (start: number): string;
+    interval: number;
+    reset(): void;
+}
+
+function getCounter(): Counter {
+    let counter = &lt;Counter&gt;function (start: number) { };
+    counter.interval = 123;
+    counter.reset = function () { };
+    return counter;
+}
+
+let c = getCounter();
+c(10);
+c.reset();
+c.interval = 5.0;
+</code></pre><p>在使用JavaScript第三方库的时候，你可能需要像上面那样去完整地定义类型。</p>
+<h4 id="接口继承类"><a href="#接口继承类" class="headerlink" title="接口继承类"></a>接口继承类</h4><p>当接口继承了一个类类型时，它会继承类的成员但不包括其实现。 就好像接口声明了所有类中存在的成员，但并没有提供具体实现一样。 接口同样会继承到类的private和protected成员。 这意味着当你创建了一个接口继承了一个拥有私有或受保护的成员的类时，这个接口类型只能被这个类或其子类所实现（implement）。</p>
+<p>当你有一个庞大的继承结构时这很有用，但要指出的是你的代码只在子类拥有特定属性时起作用。 这个子类除了继承至基类外与基类没有任何关系。 例：</p>
+<pre><code>class Control {
+    private state: any;
+}
+
+interface SelectableControl extends Control {
+    select(): void;
+}
+
+class Button extends Control implements SelectableControl {
+    select() { }
+}
+
+class TextBox extends Control {
+    select() { }
+}
+
+// 错误：“Image”类型缺少“state”属性。
+class Image implements SelectableControl {
+    select() { }
+}
+
+class Location {
+
+}
+</code></pre><p>在上面的例子里，SelectableControl包含了Control的所有成员，包括私有成员state。 因为 state是私有成员，所以只能够是Control的子类们才能实现SelectableControl接口。 因为只有 Control的子类才能够拥有一个声明于Control的私有成员state，这对私有成员的兼容性是必需的。</p>
+<p>在Control类内部，是允许通过SelectableControl的实例来访问私有成员state的。 实际上， SelectableControl接口和拥有select方法的Control类是一样的。 Button和TextBox类是SelectableControl的子类（因为它们都继承自Control并有select方法），但Image和Location类并不是这样的。</p>
+<h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><h4 id="类-1"><a href="#类-1" class="headerlink" title="类"></a>类</h4><pre><code>class Person {
+    name: string;
+    constructor(nickName: string) {
+        this.name = nickName;
+    }
+    sayHello() {
+        console.log( &quot;Hello,My name is &quot; + this.name );
+    }
+}
+
+let xm = new Person(&quot;xiaoming&quot;);
+console.log(xm);  // Person { name: &apos;xiaoming&apos; }
+xm.sayHello();
+</code></pre><p>不对 es6 的类进行介绍了。</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><pre><code>class Animal {
+    move(distanceInMeters: number = 0) {
+        console.log(`Animal moved ${distanceInMeters}m.`);
+    }
+}
+
+class Dog extends Animal {
+    bark() {
+        console.log(&apos;Woof! Woof!&apos;);
+    }
+}
+
+const dog = new Dog();
+dog.bark();
+dog.move(10);
+dog.bark();
+</code></pre><hr>
+<pre><code>class Animal {
+    name: string;
+    constructor(theName: string) { this.name = theName; }
+    move(distanceInMeters: number = 0) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+
+class Snake extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 5) {
+        console.log(&quot;Slithering...&quot;);
+        super.move(distanceInMeters);
+    }
+}
+
+class Horse extends Animal {
+    constructor(name: string) { super(name); }
+    move(distanceInMeters = 45) {
+        console.log(&quot;Galloping...&quot;);
+        super.move(distanceInMeters);
+    }
+}
+
+let sam = new Snake(&quot;Sammy the Python&quot;);
+let tom: Animal = new Horse(&quot;Tommy the Palomino&quot;);
+
+sam.move();
+tom.move(34);
+</code></pre><p>TypeScript使用的是结构性类型系统。 当我们比较两种不同的类型时，并不在乎它们从何处而来，如果所有成员的类型都是兼容的，我们就认为它们的类型是兼容的。</p>
+<p>然而，当我们比较带有 private或 protected成员的类型的时候，情况就不同了。 如果其中一个类型里包含一个 private成员，那么只有当另外一个类型中也存在这样一个 private成员， 并且它们都是来自同一处声明时，我们才认为这两个类型是兼容的。 对于 protected成员也使用这个规则。</p>
+<pre><code>class Animal {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+class Rhino extends Animal {
+    constructor() { super(&quot;Rhino&quot;); }
+}
+
+class Employee {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+let animal = new Animal(&quot;Goat&quot;);
+let rhino = new Rhino();
+let employee = new Employee(&quot;Bob&quot;);
+
+animal = rhino;
+animal = employee; // 错误: [ts]不能将类型“Employee”分配给类型“Animal”。类型具有私有属性“name”的单独声明。
+</code></pre><p>这个例子中有 Animal和 Rhino两个类， Rhino是 Animal类的子类。 还有一个 Employee类，其类型看上去与 Animal是相同的。 我们创建了几个这些类的实例，并相互赋值来看看会发生什么。 因为 Animal和 Rhino共享了来自 Animal里的私有成员定义 private name: string，因此它们是兼容的。 然而 Employee却不是这样。当把 Employee赋值给 Animal的时候，得到一个错误，说它们的类型不兼容。 尽管 Employee里也有一个私有成员 name，但它明显不是 Animal里面定义的那个。</p>
+<h5 id="public-修饰符和-private-修饰符"><a href="#public-修饰符和-private-修饰符" class="headerlink" title="public 修饰符和 private 修饰符"></a>public 修饰符和 private 修饰符</h5><h5 id="protected-修饰符"><a href="#protected-修饰符" class="headerlink" title="protected 修饰符"></a>protected 修饰符</h5><p>protected修饰符与 private修饰符的行为很相似，但有一点不同， protected成员在派生类中仍然可以访问。</p>
+<pre><code>class Person {
+    protected name: string;
+    constructor(name: string) { this.name = name; }
+}
+
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name)
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee(&quot;Howard&quot;, &quot;Sales&quot;);
+console.log(howard.getElevatorPitch());
+console.log(howard.name); // [ts] 属性“name”受保护，只能在类“Person”及其子类中访问。
+</code></pre><hr>
+<pre><code>class Person {
+    protected name: string;
+    protected constructor(theName: string) { this.name = theName; }
+}
+
+// Employee 能够继承 Person
+class Employee extends Person {
+    private department: string;
+
+    constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+
+let howard = new Employee(&quot;Howard&quot;, &quot;Sales&quot;);
+let john = new Person(&quot;John&quot;); // 错误: &apos;Person&apos; 的构造函数是被保护的.
+</code></pre><h5 id="readonly-修饰符"><a href="#readonly-修饰符" class="headerlink" title="readonly 修饰符"></a>readonly 修饰符</h5><p>readonly关键字将属性设置为只读的。 只读属性必须在声明时或构造函数里被初始化。</p>
+<pre><code>class Octopus {
+    readonly name: string;
+    readonly numberOfLegs: number = 8;
+    constructor (theName: string) {
+        this.name = theName;
+    }
+}
+let dad = new Octopus(&quot;Man with the 8 strong legs&quot;);
+dad.name = &quot;Man with the 3-piece suit&quot;; // 错误! name 是只读的.
+</code></pre><h5 id="参数属性"><a href="#参数属性" class="headerlink" title="参数属性"></a>参数属性</h5><pre><code>class Animal {
+    constructor(private name: string) { }
+    move(distanceInMeters: number) {
+        console.log(`${this.name} moved ${distanceInMeters}m.`);
+    }
+}
+</code></pre><h4 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h4><p>TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。</p>
+<p>下面来看如何把一个简单的类改写成使用 get和 set。 首先，我们从一个没有使用存取器的例子开始。</p>
+<pre><code>class Employee {
+    fullName: string;
+}
+
+let employee = new Employee();
+employee.fullName = &quot;Bob Smith&quot;;
+if (employee.fullName) {
+    console.log(employee.fullName);
+}
+</code></pre><p>利用存取器改造上面代码</p>
+<pre><code>let passcode = &quot;secret passcode&quot;;
+
+class Employee {
+    private _fullName: string;
+
+    get fullName(): string {
+        return this._fullName;
+    }
+
+    set fullName(newName: string) {
+        if (passcode &amp;&amp; passcode == &quot;secret passcode&quot;) {
+            this._fullName = newName;
+        }
+        else {
+            console.log(&quot;Error: Unauthorized update of employee!&quot;);
+        }
+    }
+}
+
+let employee = new Employee();
+employee.fullName = &quot;Bob Smith&quot;;
+if (employee.fullName) {
+    alert(employee.fullName);
+}
+</code></pre><h4 id="静态属性"><a href="#静态属性" class="headerlink" title="静态属性"></a>静态属性</h4><p>那些仅当类被实例化的时候才会被初始化的属性。 我们也可以创建类的静态成员，这些属性存在于类本身上面而不是类的实例上。 在这个例子里，我们使用 static定义 origin，因为它是所有网格都会用到的属性。 每个实例想要访问这个属性的时候，都要在 origin前面加上类名。 如同在实例属性上使用 this.前缀来访问属性一样，这里我们使用 Grid.来访问静态属性。</p>
+<pre><code>class Grid {
+    static origin = {x: 0, y: 0};
+    calculateDistanceFromOrigin(point: {x: number; y: number;}) {
+        let xDist = (point.x - Grid.origin.x);
+        let yDist = (point.y - Grid.origin.y);
+        return Math.sqrt(xDist * xDist + yDist * yDist) / this.scale;
+    }
+    constructor (public scale: number) { }
+}
+
+let grid1 = new Grid(1.0);  // 1x scale
+let grid2 = new Grid(5.0);  // 5x scale
+
+console.log(grid1.calculateDistanceFromOrigin({x: 10, y: 10}));
+console.log(grid2.calculateDistanceFromOrigin({x: 10, y: 10}));
+</code></pre><h4 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h4><p>抽象类做为其它派生类的基类使用。 它们一般不会直接被实例化。 不同于接口，抽象类可以包含成员的实现细节。 abstract关键字是用于定义抽象类和在抽象类内部定义抽象方法。</p>
+<pre><code>abstract class Animal {
+    abstract makeSound(): void;
+    move(): void {
+        console.log(&apos;roaming the earch...&apos;);
+    }
+}
+</code></pre><p>抽象类中的抽象方法不包含具体实现并且必须在派生类中实现。 抽象方法的语法与接口方法相似。 两者都是定义方法签名但不包含方法体。 然而，抽象方法必须包含 abstract关键字并且可以包含访问修饰符。</p>
+<pre><code>abstract class Department {
+
+    constructor(public name: string) {
+    }
+
+    printName(): void {
+        console.log(&apos;Department name: &apos; + this.name);
+    }
+
+    abstract printMeeting(): void; // 必须在派生类中实现
+}
+
+class AccountingDepartment extends Department {
+
+    constructor() {
+        super(&apos;Accounting and Auditing&apos;); // 在派生类的构造函数中必须调用 super()
+    }
+
+    printMeeting(): void {
+        console.log(&apos;The Accounting Department meets each Monday at 10am.&apos;);
+    }
+
+    generateReports(): void {
+        console.log(&apos;Generating accounting reports...&apos;);
+    }
+}
+
+let department: Department; // 允许创建一个对抽象类型的引用
+department = new Department(); // 错误: 不能创建一个抽象类的实例
+department = new AccountingDepartment(); // 允许对一个抽象子类进行实例化和赋值
+department.printName();
+department.printMeeting();
+department.generateReports(); // 错误: 方法在声明的抽象类中不存在
+</code></pre><h4 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h4><pre><code>class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return &quot;Hello, &quot; + this.greeting;
+    }
+}
+
+let greeter: Greeter;
+greeter = new Greeter(&quot;world&quot;);
+console.log(greeter.greet());
+
+let Greeter = (function () {
+    function Greeter(message) {
+        this.greeting = message;
+    }
+    Greeter.prototype.greet = function () {
+        return &quot;Hello, &quot; + this.greeting;
+    };
+    return Greeter;
+})();
+
+let greeter;
+greeter = new Greeter(&quot;world&quot;);
+console.log(greeter.greet());
+</code></pre><hr>
+<pre><code>class Greeter {
+    static standardGreeting = &quot;Hello, there&quot;;
+    greeting: string;
+    greet() {
+        if (this.greeting) {
+            return &quot;Hello, &quot; + this.greeting;
+        }
+        else {
+            return Greeter.standardGreeting;
+        }
+    }
+}
+
+let greeter1: Greeter;
+greeter1 = new Greeter();
+console.log(greeter1.greet());
+
+let greeterMaker: typeof Greeter = Greeter;
+greeterMaker.standardGreeting = &quot;Hey there!&quot;;
+
+let greeter2: Greeter = new greeterMaker();
+console.log(greeter2.greet());
+</code></pre><h4 id="把类当做接口使用"><a href="#把类当做接口使用" class="headerlink" title="把类当做接口使用"></a>把类当做接口使用</h4><pre><code>class Point {
+    x: number;
+    y: number;
+}
+
+interface Point3d extends Point {
+    z: number;
+}
+
+let point3d: Point3d = {x: 1, y: 2, z: 3};
+</code></pre><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><pre><code>// Named function
+function add(x, y) {
+    return x + y;
+}
+
+// Anonymous function
+let myAdd = function(x, y) { return x + y; };
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/18/TypeScript/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -670,8 +1168,8 @@ if([]){console.log(1)} // 这里[]是true
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
