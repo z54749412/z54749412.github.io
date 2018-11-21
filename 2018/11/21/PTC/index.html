@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>Archives | NTFS</title>
+  <title>PTC | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="NTFS">
-<meta property="og:url" content="http://yoursite.com/child/archives/index.html">
+  <meta name="description" content="递归优化&amp;apos;use strict&amp;apos;; function foo(x) {   if(x&amp;lt;=1) return 1   return (x/2) + foo(x-1) }  foo(123456) // RangeError: Maximum call stack size exceeded foo(1000) 优化1： &amp;apos;use strict&amp;apos;; var">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PTC">
+<meta property="og:url" content="http://yoursite.com/child/2018/11/21/PTC/index.html">
 <meta property="og:site_name" content="NTFS">
+<meta property="og:description" content="递归优化&amp;apos;use strict&amp;apos;; function foo(x) {   if(x&amp;lt;=1) return 1   return (x/2) + foo(x-1) }  foo(123456) // RangeError: Maximum call stack size exceeded foo(1000) 优化1： &amp;apos;use strict&amp;apos;; var">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/img/otherJsPref.png">
+<meta property="og:image" content="http://yoursite.com/img/chromeTest.png">
+<meta property="og:image" content="http://yoursite.com/img/fireFoxTest.png">
+<meta property="og:image" content="http://yoursite.com/img/safariTest.png">
+<meta property="og:updated_time" content="2018-11-21T07:54:27.694Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NTFS">
+<meta name="twitter:title" content="PTC">
+<meta name="twitter:description" content="递归优化&amp;apos;use strict&amp;apos;; function foo(x) {   if(x&amp;lt;=1) return 1   return (x/2) + foo(x-1) }  foo(123456) // RangeError: Maximum call stack size exceeded foo(1000) 优化1： &amp;apos;use strict&amp;apos;; var">
+<meta name="twitter:image" content="http://yoursite.com/img/otherJsPref.png">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -144,295 +153,199 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-PTC" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      PTC
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/21/PTC/" class="archive-article-date">
+
+        
+        <a href="/2018/11/21/PTC/" class="archive-article-date">
   	<time datetime="2018-11-21T07:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/21/PTC/">PTC</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="递归优化"><a href="#递归优化" class="headerlink" title="递归优化"></a>递归优化</h3><pre><code>&apos;use strict&apos;;
+function foo(x) {
+  if(x&lt;=1) return 1
+  return (x/2) + foo(x-1)
+}
 
-        <div class="article-info info-on-right">
-          
-          
+foo(123456) // RangeError: Maximum call stack size exceeded
+foo(1000)
+</code></pre><p>优化1：</p>
+<pre><code>&apos;use strict&apos;;
+var foo2 = (function(){
+  function _foo(acc, x){
+    if(x &lt;= 1) return acc
+    return _foo((x / 2) + acc, x - 1)
+  }
+  return function(x){
+    return _foo(1, x)
+  }
+})()
 
+foo2(123456) // RangeError: Maximum call stack size exceeded
+foo2(1000)
+</code></pre><p>  优化2:</p>
+<pre><code>&apos;use strict&apos;;
+function trampoline (res) {
+  while (typeof res == &apos;function&apos;){
+    res = res()
+  }
+  return res
+}
+
+var foo3 = (function(){
+  function _foo(acc, x){
+    if(x &lt;= 1) return acc
+    return function partial(){
+  return _foo((x / 2) + acc, x - 1)
+    }
+  }
+  return function(x){
+    return trampoline( _foo(1,x))
+  }
+})()
+
+foo3(123456) // 3810376848.5
+foo3(1000)
+</code></pre><p>  优化3:</p>
+<pre><code>&apos;use strict&apos;;
+function foo4(x) {
+  var acc = 1;
+  while(x &gt; 1){
+    acc = (x / 2) + acc
+    x = x - 1;
+  }
+  return acc
+}
+
+foo3(123456) // 3810376848.5
+foo3(1000)
+</code></pre><p>Chrome 测试结果</p>
+<p><img src="/img/otherJsPref.png" alt="jsPref"></p>
+<p><img src="/img/chromeTest.png" alt="jsPref"></p>
+<p>Firefox 测试结果</p>
+<p><img src="/img/fireFoxTest.png" alt="jsPref"></p>
+<p>Safari 测试结果</p>
+<p><img src="/img/safariTest.png" alt="jsPref"></p>
+<p><a href="https://jsperf.com/recursion-optimize/1" target="_blank" rel="noopener">Racket</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2018/11/21/PTC/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/21/sort/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:43:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/21/sort/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">sort</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/21/sort/">sort</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/21/promise-some/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:37:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/21/promise-some/">promise.some</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/21/find/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/21/find/">find</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/21/filter/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/21/filter/">filter</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/21/map/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:23:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/21/map/">map</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/10/Other/" class="archive-article-date">
-  	<time datetime="2018-10-10T04:23:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/10/Other/">Other</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/09/reduce/" class="archive-article-date">
-  	<time datetime="2018-10-09T10:44:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/09/reduce/">reduce</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/09/RXjs/" class="archive-article-date">
-  	<time datetime="2018-10-09T02:23:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/09/RXjs/">RXjs</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/20/SICP/" class="archive-article-date">
-  	<time datetime="2018-08-20T04:31:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/20/SICP/">SICP</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -456,8 +369,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
