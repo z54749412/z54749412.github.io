@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-25T10:20:54.773Z">
+<meta property="og:updated_time" content="2018-11-25T16:49:57.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Other">
 <meta name="twitter:description" content="JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a === &amp;apos">
@@ -380,6 +380,35 @@ if([]){console.log(1)} // 这里[]是true
 <h3 id="CSS的加载对页面的影响"><a href="#CSS的加载对页面的影响" class="headerlink" title="CSS的加载对页面的影响"></a>CSS的加载对页面的影响</h3><pre><code>1.css加载不会阻塞DOM树的解析
 2.css加载会阻塞DOM树的渲染
 3.css加载会阻塞后面js语句的执行
+</code></pre><h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">正则</a></p>
+<p>方法：</p>
+<p>test 检索字符串中指定的值。返回 true 或 false。</p>
+<p>exec 检索字符串中指定的值。返回找到的值，并确定其位置。</p>
+<p>search 检索与正则表达式相匹配的值。</p>
+<p>match 找到一个或多个正则表达式的匹配。</p>
+<p>replace 替换与正则表达式匹配的子串。</p>
+<p>split 把字符串分割为字符串数组。</p>
+<p>转义字符：</p>
+<pre><code>\s 空格
+\S 非空格
+\d 数字
+\D 非数字
+\w 字符 (字母、数字、下划线)
+\W 非字符
+</code></pre><p>正则最后的标识符：</p>
+<pre><code>/.../i  表示不区分大小写，默认区分
+</code></pre><p>正则量词：</p>
+<pre><code>{n,m} 最少n次，最多m次
+
+{n,} 最少出现n次
+
+{n} 正好出现n次
+
++ 最少出现一次
+
+? 0次或1次
+
+* 0次或多次
 </code></pre><hr>
 
       
