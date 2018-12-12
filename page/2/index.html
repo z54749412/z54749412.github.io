@@ -407,6 +407,27 @@ if([]){console.log(1)} // 这里[]是true
 ? 0次或1次
 
 * 0次或多次
+</code></pre><h3 id="简单实现一个-module-exports"><a href="#简单实现一个-module-exports" class="headerlink" title="简单实现一个 module.exports"></a>简单实现一个 module.exports</h3><pre><code>(function(exports,require,module,__filename,__dirname){
+
+    // exports 内存中指向的就是module.exports指向的那块空间
+
+    // require 作用是能够在当前模块引入其它模块，就是引入模块
+
+    // module 基本包含了当前模块的全部信息
+
+    // __filename 当前模块的文件路径
+
+    // __dirname 存放当前模块的文件夹路径
+
+    this = {};
+
+    exports = this;
+
+    module.exports = exports;
+
+    return module.exports;
+
+})(exports,require,module,__filename,__dirname);
 </code></pre><hr>
 
       
