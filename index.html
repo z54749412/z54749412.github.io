@@ -478,134 +478,6 @@
 
 
   
-    <article id="post-PTC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/21/PTC/">PTC</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/21/PTC/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="递归优化"><a href="#递归优化" class="headerlink" title="递归优化"></a>递归优化</h3><pre><code>&apos;use strict&apos;;
-function foo(x) {
-  if(x&lt;=1) return 1
-  return (x/2) + foo(x-1)
-}
-
-foo(123456) // RangeError: Maximum call stack size exceeded
-foo(1000)
-</code></pre><p>优化1：</p>
-<pre><code>&apos;use strict&apos;;
-var foo2 = (function(){
-  function _foo(acc, x){
-    if(x &lt;= 1) return acc
-    return _foo((x / 2) + acc, x - 1)
-  }
-  return function(x){
-    return _foo(1, x)
-  }
-})()
-
-foo2(123456) // RangeError: Maximum call stack size exceeded
-foo2(1000)
-</code></pre><p>  优化2:</p>
-<pre><code>&apos;use strict&apos;;
-function trampoline (res) {
-  while (typeof res == &apos;function&apos;){
-    res = res()
-  }
-  return res
-}
-
-var foo3 = (function(){
-  function _foo(acc, x){
-    if(x &lt;= 1) return acc
-    return function partial(){
-  return _foo((x / 2) + acc, x - 1)
-    }
-  }
-  return function(x){
-    return trampoline( _foo(1,x))
-  }
-})()
-
-foo3(123456) // 3810376848.5
-foo3(1000)
-</code></pre><p>  优化3:</p>
-<pre><code>&apos;use strict&apos;;
-function foo4(x) {
-  var acc = 1;
-  while(x &gt; 1){
-    acc = (x / 2) + acc
-    x = x - 1;
-  }
-  return acc
-}
-
-foo3(123456) // 3810376848.5
-foo3(1000)
-</code></pre><p>Chrome 测试结果</p>
-<p><img src="/img/otherJsPref.png" alt="jsPref"></p>
-<p><img src="/img/chromeTest.png" alt="jsPref"></p>
-<p>Firefox 测试结果</p>
-<p><img src="/img/fireFoxTest.png" alt="jsPref"></p>
-<p>Safari 测试结果</p>
-<p><img src="/img/safariTest.png" alt="jsPref"></p>
-<p><a href="https://jsperf.com/recursion-optimize/1" target="_blank" rel="noopener">Racket</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/21/PTC/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
     <article id="post-promise-some" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -613,13 +485,13 @@ foo3(1000)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/21/promise-some/">promise.some</a>
+      <a class="article-title" href="/2018/11/22/promise-some/">promise.some</a>
     </h1>
   
 
         
-        <a href="/2018/11/21/promise-some/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:37:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
+        <a href="/2018/11/22/promise-some/" class="archive-article-date">
+  	<time datetime="2018-11-22T13:37:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
 </a>
         
       </header>
@@ -652,128 +524,7 @@ foo3(1000)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/21/promise-some/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-find" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/21/find/">find</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/21/find/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="数组-find-方法理解"><a href="#数组-find-方法理解" class="headerlink" title="数组 find 方法理解"></a>数组 find 方法理解</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" rel="noopener">数组 find 方法</a></p>
-<pre><code>/**
-* find 方法返回数组中满足提供的测试函数的第一个元素的值。 否则返回 undefined。
-* @param {Array} arr
-* @param {function} fn
-*/
-
-function find(arr, fn){
-    for (let i = 0; i &lt; arr.length; i++) {
-        if (fn.call(null, arr[i], i, arr)) {
-            return  arr[i]
-        }
-    }
-    return undefined
-}
-
-// find方法原生分析
-Array.prototype._find = function (callback /*, thisArg*/ ) {
-    if (this == null) {
-        // undefined == null
-        throw new TypeError(&apos;null or undefined&apos;);
-    }
-    if (typeof callback !== &apos;function&apos;) {
-        throw new TypeError(&apos;callback is not a function&apos;);
-    }
-    var oldArr = Object(this);
-    var len = oldArr.length &gt;&gt;&gt; 0;
-    var thisArg = arguments.length &gt;= 2 ? arguments[1] : void 0;
-    var k = 0;
-    while (k &lt; len) {
-        if (k in oldArr) {
-            var val = oldArr[k];
-            if (callback.call(thisArg, val, k, oldArr)) {
-                return val;
-            }
-        }
-        k++;
-    }
-    return undefined;
-}
-
-let array = [1,2,3,4,5]
-let result1 = find(array, function (item, index, arr) {
-    return item &gt; 2
-})
-let result2 = find(array, function(item, index, arr){
-    return item &gt; 6
-})
-
-let result3 = array._find(function (item, index, arr) {
-    return item &gt; 2
-})
-let result4 = array._find(function (item, index, arr) {
-    return item &gt; 6
-})
-console.log(result1)
-console.log(result2)
-console.log(result3)
-console.log(result4)
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/21/find/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/22/promise-some/">展开全文 >></a>
         </p>
       
 
@@ -919,6 +670,127 @@ console.log(arr2)
 
 
   
+    <article id="post-find" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/find/">find</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/20/find/" class="archive-article-date">
+  	<time datetime="2018-11-20T07:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="数组-find-方法理解"><a href="#数组-find-方法理解" class="headerlink" title="数组 find 方法理解"></a>数组 find 方法理解</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" rel="noopener">数组 find 方法</a></p>
+<pre><code>/**
+* find 方法返回数组中满足提供的测试函数的第一个元素的值。 否则返回 undefined。
+* @param {Array} arr
+* @param {function} fn
+*/
+
+function find(arr, fn){
+    for (let i = 0; i &lt; arr.length; i++) {
+        if (fn.call(null, arr[i], i, arr)) {
+            return  arr[i]
+        }
+    }
+    return undefined
+}
+
+// find方法原生分析
+Array.prototype._find = function (callback /*, thisArg*/ ) {
+    if (this == null) {
+        // undefined == null
+        throw new TypeError(&apos;null or undefined&apos;);
+    }
+    if (typeof callback !== &apos;function&apos;) {
+        throw new TypeError(&apos;callback is not a function&apos;);
+    }
+    var oldArr = Object(this);
+    var len = oldArr.length &gt;&gt;&gt; 0;
+    var thisArg = arguments.length &gt;= 2 ? arguments[1] : void 0;
+    var k = 0;
+    while (k &lt; len) {
+        if (k in oldArr) {
+            var val = oldArr[k];
+            if (callback.call(thisArg, val, k, oldArr)) {
+                return val;
+            }
+        }
+        k++;
+    }
+    return undefined;
+}
+
+let array = [1,2,3,4,5]
+let result1 = find(array, function (item, index, arr) {
+    return item &gt; 2
+})
+let result2 = find(array, function(item, index, arr){
+    return item &gt; 6
+})
+
+let result3 = array._find(function (item, index, arr) {
+    return item &gt; 2
+})
+let result4 = array._find(function (item, index, arr) {
+    return item &gt; 6
+})
+console.log(result1)
+console.log(result2)
+console.log(result3)
+console.log(result4)
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/20/find/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-map" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -926,13 +798,13 @@ console.log(arr2)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/21/map/">map</a>
+      <a class="article-title" href="/2018/11/19/map/">map</a>
     </h1>
   
 
         
-        <a href="/2018/11/21/map/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:23:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
+        <a href="/2018/11/19/map/" class="archive-article-date">
+  	<time datetime="2018-11-19T12:00:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-19</time>
 </a>
         
       </header>
@@ -1008,7 +880,7 @@ console.log(arr1, arr2)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/21/map/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/19/map/">展开全文 >></a>
         </p>
       
 
@@ -1038,375 +910,92 @@ console.log(arr1, arr2)
 
 
   
-    <article id="post-Other" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-PTC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/10/Other/">Other</a>
+      <a class="article-title" href="/2018/11/13/PTC/">PTC</a>
     </h1>
   
 
         
-        <a href="/2018/10/10/Other/" class="archive-article-date">
-  	<time datetime="2018-10-10T04:23:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-10</time>
+        <a href="/2018/11/13/PTC/" class="archive-article-date">
+  	<time datetime="2018-11-13T12:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="2018-年"><a href="#2018-年" class="headerlink" title="2018 年"></a>2018 年</h1><h2 id="JS数据类型"><a href="#JS数据类型" class="headerlink" title="JS数据类型"></a>JS数据类型</h2><h3 id="Javascript-其中内置类型"><a href="#Javascript-其中内置类型" class="headerlink" title="Javascript 其中内置类型:"></a>Javascript 其中内置类型:</h3><h4 id="空值-null"><a href="#空值-null" class="headerlink" title="空值 (null)"></a>空值 (null)</h4><h4 id="未定义-undefined"><a href="#未定义-undefined" class="headerlink" title="未定义 (undefined)"></a>未定义 (undefined)</h4><h4 id="布尔值-boolean"><a href="#布尔值-boolean" class="headerlink" title="布尔值 (boolean)"></a>布尔值 (boolean)</h4><h4 id="数字-number"><a href="#数字-number" class="headerlink" title="数字 (number)"></a>数字 (number)</h4><h4 id="字符串-string"><a href="#字符串-string" class="headerlink" title="字符串 (string)"></a>字符串 (string)</h4><h4 id="对象-object"><a href="#对象-object" class="headerlink" title="对象 (object)"></a>对象 (object)</h4><p><code>其中数组(Array) 函数(function) 是object的一个子类型</code></p>
-<h4 id="符号-symbol"><a href="#符号-symbol" class="headerlink" title="符号 (symbol)"></a>符号 (symbol)</h4><h3 id="null-判断"><a href="#null-判断" class="headerlink" title="null 判断"></a>null 判断</h3><pre><code>var a = null;
-
-(!a &amp;&amp; typeof a === &apos;object&apos;); ß
-</code></pre><h3 id="function的length"><a href="#function的length" class="headerlink" title="function的length"></a>function的length</h3><pre><code>function foo () {}
-
-foo.length // 0
-
-function foo2 (a,b,c) {}
-
-foo2.length // 3
-</code></pre><p>对于function来说，function的length属性就是function的参数个数</p>
-<h3 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h3><pre><code>function foo1(X){
-    x.push(4)
+        <h3 id="递归优化"><a href="#递归优化" class="headerlink" title="递归优化"></a>递归优化</h3><pre><code>&apos;use strict&apos;;
+function foo(x) {
+  if(x&lt;=1) return 1
+  return (x/2) + foo(x-1)
 }
 
-let a = [1,2,3]
-
-foo1(a);
-
-a // [1,2,3,4]
-
-function foo2(x){
-    x = [4,5,6];
-    x.push(7);
-}
-
-let b = [1,2,3];
-
-foo2(b);
-
-b // [1,2,3]
-
-=&gt;
-
-function foo(x){
-    x.push(4);
-    x = [4,5,6]
-    x.push(7);
-}
-
-let c = [1,2,3]
-
-foo(c);
-
-c // [1,2,3,4]
-</code></pre><h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><pre><code>let a = [1,2]
-
-let b = [3,4]
-
-a + b // &quot;1,23,4&quot;
-
-[] + [] // &quot;&quot;
-
-[] + {}  // &quot;[object Object]&quot;
-
-{} + {} // chrome: &quot;[object Object][object Object]&quot; firefox: NaN
-
-{} + [] // 0
-
-/*
-* 这里 {} + [] 和 [] + {} 结果不同，我理解为如果是{}在前面进行运算到的时候，实质是把{}当作花
-* 括号不进行运行（实质就是空代码块），剩下的是+[],对数组进行求正即为 +&quot;&quot; = 0，所以结果为0，而{}在后面的情况是
-* &quot;&quot;+({}).toString = &quot;[object Object]&quot;，至于 {}+{} = NaN就很好理解了，即为 +{} = NaN.
-*/
-</code></pre><p>方便理解加入一个链接 <a href="http://2ality.com/2012/01/object-plus-object.html" target="_blank" rel="noopener">对象数组运算符操作</a></p>
-<h3 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h3><pre><code>var i = 2
-
-Number.prototype.valueOf = function(){return i++}
-
-var a = new Number(42)
-
-if( a == 2 &amp;&amp; a == 3){console.log(&apos;this is a magic ！&apos;)}
-</code></pre><h3 id="提取所有原音字母"><a href="#提取所有原音字母" class="headerlink" title="提取所有原音字母"></a>提取所有原音字母</h3><pre><code>function vowels(str) {
-  var matches;
-  if(str){
-    matches = str.match(/[aeiou]/g)
-    if(matches){return matches}
+foo(123456) // RangeError: Maximum call stack size exceeded
+foo(1000)
+</code></pre><p>优化1：</p>
+<pre><code>&apos;use strict&apos;;
+var foo2 = (function(){
+  function _foo(acc, x){
+    if(x &lt;= 1) return acc
+    return _foo((x / 2) + acc, x - 1)
   }
-}
-
-function vowels(str) {
-   var matches;
-    if(str &amp;&amp; (matches = str.match(/[aeiou]/g))){
-      return matches
-    }
-}
-</code></pre><h3 id="标签语句"><a href="#标签语句" class="headerlink" title="标签语句"></a>标签语句</h3><pre><code>foo: for(var i = 0; i &lt; 4; i++) {
-  for (var j = 0; j &lt; 4; j++) {
-    if (j == i) {
-      // 会跳到foo的下一个循环
-      continue foo;
-    }
-
-    if((j * i) % 2 == 1) {
-      continue;
-    }
-
-    console.log(i, j);
+  return function(x){
+    return _foo(1, x)
   }
+})()
+
+foo2(123456) // RangeError: Maximum call stack size exceeded
+foo2(1000)
+</code></pre><p>  优化2:</p>
+<pre><code>&apos;use strict&apos;;
+function trampoline (res) {
+  while (typeof res == &apos;function&apos;){
+    res = res()
+  }
+  return res
 }
 
-// 1 0
-// 2 0
-// 2 1
-// 3 0
-// 3 2
-
-foo: for(var i = 0; i &lt; 4; i++) {
-  for (var j = 0; j &lt; 4; j++) {
-    if (j == i) {
-      break foo;
+var foo3 = (function(){
+  function _foo(acc, x){
+    if(x &lt;= 1) return acc
+    return function partial(){
+  return _foo((x / 2) + acc, x - 1)
     }
-
-    if((j * i) % 2 == 1) {
-      continue;
-    }
-
-    console.log(i, j);
   }
-}
-
-// 什么也不输出，看下面例子
-
-foo: for(var i = 0; i &lt; 4; i++) {
-  for (var j = 0; j &lt; 4; j++) {
-    if((j * i) &gt;= 3) {
-      break foo;
-    }
-    console.log(i, j);
+  return function(x){
+    return trampoline( _foo(1,x))
   }
-}
+})()
 
-// 0 0
-// 0 1
-// 0 2
-// 0 3
-// 1 0
-// 1 1
-// 1 2
-
-// break foo 是跳出循环，继续执行下面的代码
-
-// 我们也可以对带标签的代码块使用 break _
-
-function foo() {
-  bar: {
-    console.log(&apos;hello&apos;);
-    break bar;
-    console.log(&apos;never runs&apos;);
+foo3(123456) // 3810376848.5
+foo3(1000)
+</code></pre><p>  优化3:</p>
+<pre><code>&apos;use strict&apos;;
+function foo4(x) {
+  var acc = 1;
+  while(x &gt; 1){
+    acc = (x / 2) + acc
+    x = x - 1;
   }
-  console.log(&apos;world&apos;);
+  return acc
 }
 
-// hello
-// world
-</code></pre><h3 id="ASI"><a href="#ASI" class="headerlink" title="ASI"></a>ASI</h3><p>  ASI 是一个语法纠错机制，如它会替我们填上省略的分号。</p>
-<h3 id="命名参数偏差"><a href="#命名参数偏差" class="headerlink" title="命名参数偏差"></a>命名参数偏差</h3><pre><code>function foo(a) {
-    a = 42;
-    console.log(arguments[0]);
-}
-
-foo(2) // 42
-foo()  // undefined
-
-function foo(a) {
-    &quot;use strict&quot;;
-    a = 42;
-    console.log(arguments[0]);
-}
-
-foo(2) // 2
-foo()  // undefined
-</code></pre><h3 id="将阿拉伯数字每三位一逗号分隔"><a href="#将阿拉伯数字每三位一逗号分隔" class="headerlink" title="将阿拉伯数字每三位一逗号分隔"></a>将阿拉伯数字每三位一逗号分隔</h3><pre><code>function toMoney (number) {
-    if(isNaN(number)){throw &apos;请输入数字&apos;}
-    return (number-0).toLocaleString()
-}
-
-function toMoney (number) {
-    if(isNaN(number)){throw &apos;请输入数字&apos;}
-    let tmpArr = number.toString().split(&apos;.&apos;)
-    let integer = tmpArr[0].split(&apos;&apos;)
-    let result =&apos;&apos;
-    result = integer.reverse().join(&quot;&quot;).replace(/(\d{3})(?=[^$])/g, &quot;$1,&quot;).split(&quot;&quot;).reverse().join(&quot;&quot;)
-    if(tmpArr[1]){
-        result = result+&apos;.&apos;+tmpArr[1]
-    }
-    return result
-}
-</code></pre><h3 id="js-类型需要注意的点"><a href="#js-类型需要注意的点" class="headerlink" title="js 类型需要注意的点"></a>js 类型需要注意的点</h3><pre><code>[]
-
-if([]){console.log(1)} // 这里[]是true
-
-[] == true  // false
-[] == false // true
-[0] == 0 // true
-
-[] + []  // &apos;&apos;
-[] + {}  // &quot;[object Object]&quot;
-
-{}
-
-if([]){console.log(1)} // 这里[]是true
-
-{} + [] // 0
-
-{} + {} // chrome &quot;[object Object][object Object]&quot;
-        // firefox NaN
-</code></pre><p><code>这里又提了一遍，解释在上面已经标注过了</code></p>
-<h3 id="CSS的加载对页面的影响"><a href="#CSS的加载对页面的影响" class="headerlink" title="CSS的加载对页面的影响"></a>CSS的加载对页面的影响</h3><pre><code>1.css加载不会阻塞DOM树的解析
-2.css加载会阻塞DOM树的渲染
-3.css加载会阻塞后面js语句的执行
-</code></pre><h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener">正则</a></p>
-<p>方法：</p>
-<p>test 检索字符串中指定的值。返回 true 或 false。</p>
-<p>exec 检索字符串中指定的值。返回找到的值，并确定其位置。</p>
-<p>search 检索与正则表达式相匹配的值。</p>
-<p>match 找到一个或多个正则表达式的匹配。</p>
-<p>replace 替换与正则表达式匹配的子串。</p>
-<p>split 把字符串分割为字符串数组。</p>
-<p>转义字符：</p>
-<pre><code>\s 空格
-\S 非空格
-\d 数字
-\D 非数字
-\w 字符 (字母、数字、下划线)
-\W 非字符
-</code></pre><p>正则最后的标识符：</p>
-<pre><code>/.../i  表示不区分大小写，默认区分
-</code></pre><p>正则量词：</p>
-<pre><code>{n,m} 最少n次，最多m次
-
-{n,} 最少出现n次
-
-{n} 正好出现n次
-
-+ 最少出现一次
-
-? 0次或1次
-
-* 0次或多次
-</code></pre><h3 id="简单实现一个-module-exports"><a href="#简单实现一个-module-exports" class="headerlink" title="简单实现一个 module.exports"></a>简单实现一个 module.exports</h3><pre><code>(function(exports,require,module,__filename,__dirname){
-
-    // exports 内存中指向的就是module.exports指向的那块空间
-
-    // require 作用是能够在当前模块引入其它模块，就是引入模块
-
-    // module 基本包含了当前模块的全部信息
-
-    // __filename 当前模块的文件路径
-
-    // __dirname 存放当前模块的文件夹路径
-
-    this = {};
-
-    exports = this;
-
-    module.exports = exports;
-
-    return module.exports;
-
-})(exports,require,module,__filename,__dirname);
-</code></pre><h3 id="CSS-开启浏览器硬件加速"><a href="#CSS-开启浏览器硬件加速" class="headerlink" title="CSS 开启浏览器硬件加速"></a>CSS 开启浏览器硬件加速</h3><pre><code>transform
-
-opacity
-</code></pre><h3 id="前端实现路由跳转"><a href="#前端实现路由跳转" class="headerlink" title="前端实现路由跳转"></a>前端实现路由跳转</h3><ol>
-<li><p>history</p>
-</li>
-<li><p>利用hash hash改变页面不会刷新的特点实现路由匹配渲染指定页面</p>
-</li>
-</ol>
-<h4 id="React-中的-key-最好不要用-index"><a href="#React-中的-key-最好不要用-index" class="headerlink" title="React 中的 key 最好不要用 index"></a>React 中的 key 最好不要用 index</h4><h3 id="ES6-class"><a href="#ES6-class" class="headerlink" title="ES6 class"></a>ES6 class</h3><p>  <code>class内部默认是严格模式，和JavaScript中的对象写法是不一样的。使用typeof来判断class的类型的时候返回的结果是function。</code></p>
-<pre><code>// &quot;use strict&quot;;
-window.name = &apos;wahaha&apos;
-
-function A() {
-  this.name = &apos;123&apos;
-}
-
-A.prototype.getName = function () {
-  console.log(this.name)
-}
-
-let a1 = new A()
-a1.getName() // 123
-let a1GetName = a1.getName
-a1GetName() // &quot;use strict&quot; 时，与class 声明一样报错，Cannot read property &apos;name&apos; of undefined。不在严格模式下，输出 wahaha
-
-
-
-/**
- * class内部默认是严格模式，和JavaScript中的对象写法是不一样的。使用typeof来判断class的类型的时候返回的结果是function。
- */
-
-class B {
-  constructor() {
-    this.name = 123;
-  }
-  getName() {
-    console.log(this.name)
-  }
-}
-
-let b1 = new B()
-b1.getName()  // 123
-let b1GetName = b1.getName
-b1GetName()  // Cannot read property &apos;name&apos; of undefined  解析： class 内部默认使用了严格模式
-</code></pre><h1 id="2018-年总结"><a href="#2018-年总结" class="headerlink" title="2018 年总结"></a>2018 年总结</h1><h3 id="2018-年总结-1"><a href="#2018-年总结-1" class="headerlink" title="2018 年总结"></a>2018 年总结</h3><ol>
-<li><p>Bootstrap + JQ …</p>
-</li>
-<li><p>Zepto + rem …</p>
-</li>
-<li><p>Smarty + JQ + Fis3 …</p>
-</li>
-<li><p>Vue + Webpack + ElementUI</p>
-</li>
-<li><p>ECharts + HighCharts + 高德地图API + CSS3 动画 + JS 动画 + requestAnimationFrame</p>
-</li>
-<li><p>React + antd</p>
-</li>
-<li><p>Vue 源码</p>
-</li>
-<li><p>Redux 源码</p>
-</li>
-<li><p>简单了解rx.js (感觉真的非常棒)</p>
-</li>
-<li><p>haskell 了解函数式编程（为了更好了解和使用redux）</p>
-</li>
-<li><p>卡耐基 - 人性的优点</p>
-</li>
-<li><p>史蒂芬·科特勒 / 杰米·威尔  - 盗火</p>
-</li>
-<li><p>你不知道的js 系列</p>
-</li>
-<li><p>SICP（陪一个好友学了这个，，据说是编程内功，各种函数推导，搞到崩溃，学到了硬币找零，放弃了，其实是换了工作，比较忙不看了，，算了不找借口了，换了工作之后也没有再学了）</p>
-</li>
-</ol>
-<p>…<br>….<br>…..</p>
-<h1 id="2019-年"><a href="#2019-年" class="headerlink" title="2019 年"></a>2019 年</h1><ol>
-<li><p>React 源码精读</p>
-</li>
-<li><p>Rx.js 研究一哈</p>
-</li>
-<li><p>读3本非技术相关的书</p>
-</li>
-<li><p>希望浏览器里技术相关的书签会减少</p>
-</li>
-</ol>
-<hr>
+foo3(123456) // 3810376848.5
+foo3(1000)
+</code></pre><p>Chrome 测试结果</p>
+<p><img src="/img/otherJsPref.png" alt="jsPref"></p>
+<p><img src="/img/chromeTest.png" alt="jsPref"></p>
+<p>Firefox 测试结果</p>
+<p><img src="/img/fireFoxTest.png" alt="jsPref"></p>
+<p>Safari 测试结果</p>
+<p><img src="/img/safariTest.png" alt="jsPref"></p>
+<p><a href="https://jsperf.com/recursion-optimize/1" target="_blank" rel="noopener">Racket</a></p>
 
       
 
@@ -1419,7 +1008,7 @@ b1GetName()  // Cannot read property &apos;name&apos; of undefined  解析： cl
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/10/Other/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/13/PTC/">展开全文 >></a>
         </p>
       
 
@@ -1583,6 +1172,70 @@ array._reduceRight(function (acc, cur, index, arr) {
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/10/09/reduce/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-RXjs" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/09/RXjs/">RXjs</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/09/RXjs/" class="archive-article-date">
+  	<time datetime="2018-10-09T02:23:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="RXjs-Learn"><a href="#RXjs-Learn" class="headerlink" title="RXjs Learn"></a>RXjs Learn</h1><p><code>RxJS 是一个库，它通过使用 observable 序列来编写异步和基于事件的程序。它提供了一个核心类型 Observable，附属类型 (Observer、 Schedulers、 Subjects) 和受 [Array#extras] 启发的操作符 (map、filter、reduce、every, 等等)，这些数组操作符可以把异步事件作为集合来处理。</code></p>
+<hr>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/09/RXjs/">展开全文 >></a>
         </p>
       
 

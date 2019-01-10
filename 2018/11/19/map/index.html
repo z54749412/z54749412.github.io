@@ -6,24 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>PTC | NTFS</title>
+  <title>map | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="递归优化&amp;apos;use strict&amp;apos;; function foo(x) {   if(x&amp;lt;=1) return 1   return (x/2) + foo(x-1) }  foo(123456) // RangeError: Maximum call stack size exceeded foo(1000) 优化1： &amp;apos;use strict&amp;apos;; var">
+  <meta name="description" content="数组 map 方法理解数组 map 方法 /** * 简单的map方法实现 * @param {Array} arr * @param {function} fn */ function map(arr, fn) {     let result = []     for (let i = 0; i &amp;lt; arr.length; i++) {         result.push(fn.ca">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PTC">
-<meta property="og:url" content="http://yoursite.com/child/2018/11/21/PTC/index.html">
+<meta property="og:title" content="map">
+<meta property="og:url" content="http://yoursite.com/child/2018/11/19/map/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="递归优化&amp;apos;use strict&amp;apos;; function foo(x) {   if(x&amp;lt;=1) return 1   return (x/2) + foo(x-1) }  foo(123456) // RangeError: Maximum call stack size exceeded foo(1000) 优化1： &amp;apos;use strict&amp;apos;; var">
+<meta property="og:description" content="数组 map 方法理解数组 map 方法 /** * 简单的map方法实现 * @param {Array} arr * @param {function} fn */ function map(arr, fn) {     let result = []     for (let i = 0; i &amp;lt; arr.length; i++) {         result.push(fn.ca">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/otherJsPref.png">
-<meta property="og:image" content="http://yoursite.com/img/chromeTest.png">
-<meta property="og:image" content="http://yoursite.com/img/fireFoxTest.png">
-<meta property="og:image" content="http://yoursite.com/img/safariTest.png">
-<meta property="og:updated_time" content="2018-11-21T07:54:27.694Z">
+<meta property="og:updated_time" content="2019-01-10T10:16:02.899Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PTC">
-<meta name="twitter:description" content="递归优化&amp;apos;use strict&amp;apos;; function foo(x) {   if(x&amp;lt;=1) return 1   return (x/2) + foo(x-1) }  foo(123456) // RangeError: Maximum call stack size exceeded foo(1000) 优化1： &amp;apos;use strict&amp;apos;; var">
-<meta name="twitter:image" content="http://yoursite.com/img/otherJsPref.png">
+<meta name="twitter:title" content="map">
+<meta name="twitter:description" content="数组 map 方法理解数组 map 方法 /** * 简单的map方法实现 * @param {Array} arr * @param {function} fn */ function map(arr, fn) {     let result = []     for (let i = 0; i &amp;lt; arr.length; i++) {         result.push(fn.ca">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -153,93 +148,84 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-PTC" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-map" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      PTC
+      map
     </h1>
   
 
         
-        <a href="/2018/11/21/PTC/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:54:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
+        <a href="/2018/11/19/map/" class="archive-article-date">
+  	<time datetime="2018-11-19T12:00:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="递归优化"><a href="#递归优化" class="headerlink" title="递归优化"></a>递归优化</h3><pre><code>&apos;use strict&apos;;
-function foo(x) {
-  if(x&lt;=1) return 1
-  return (x/2) + foo(x-1)
-}
-
-foo(123456) // RangeError: Maximum call stack size exceeded
-foo(1000)
-</code></pre><p>优化1：</p>
-<pre><code>&apos;use strict&apos;;
-var foo2 = (function(){
-  function _foo(acc, x){
-    if(x &lt;= 1) return acc
-    return _foo((x / 2) + acc, x - 1)
-  }
-  return function(x){
-    return _foo(1, x)
-  }
-})()
-
-foo2(123456) // RangeError: Maximum call stack size exceeded
-foo2(1000)
-</code></pre><p>  优化2:</p>
-<pre><code>&apos;use strict&apos;;
-function trampoline (res) {
-  while (typeof res == &apos;function&apos;){
-    res = res()
-  }
-  return res
-}
-
-var foo3 = (function(){
-  function _foo(acc, x){
-    if(x &lt;= 1) return acc
-    return function partial(){
-  return _foo((x / 2) + acc, x - 1)
+        <h3 id="数组-map-方法理解"><a href="#数组-map-方法理解" class="headerlink" title="数组 map 方法理解"></a>数组 map 方法理解</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="noopener">数组 map 方法</a></p>
+<pre><code>/**
+* 简单的map方法实现
+* @param {Array} arr
+* @param {function} fn
+*/
+function map(arr, fn) {
+    let result = []
+    for (let i = 0; i &lt; arr.length; i++) {
+        result.push(fn.call(null, arr[i], i, arr))
     }
-  }
-  return function(x){
-    return trampoline( _foo(1,x))
-  }
-})()
-
-foo3(123456) // 3810376848.5
-foo3(1000)
-</code></pre><p>  优化3:</p>
-<pre><code>&apos;use strict&apos;;
-function foo4(x) {
-  var acc = 1;
-  while(x &gt; 1){
-    acc = (x / 2) + acc
-    x = x - 1;
-  }
-  return acc
+    return result
 }
 
-foo3(123456) // 3810376848.5
-foo3(1000)
-</code></pre><p>Chrome 测试结果</p>
-<p><img src="/img/otherJsPref.png" alt="jsPref"></p>
-<p><img src="/img/chromeTest.png" alt="jsPref"></p>
-<p>Firefox 测试结果</p>
-<p><img src="/img/fireFoxTest.png" alt="jsPref"></p>
-<p>Safari 测试结果</p>
-<p><img src="/img/safariTest.png" alt="jsPref"></p>
-<p><a href="https://jsperf.com/recursion-optimize/1" target="_blank" rel="noopener">Racket</a></p>
+/**
+* 原生map方法分析
+*/
+Array.prototype._map = function (callback /*, thisArg*/) {
+    if (this == null) {
+        // undefined == null
+        throw new TypeError(&apos;null or undefined&apos;);
+    }
+    if (typeof callback !== &apos;function&apos;) {
+        throw new TypeError(`${callback} is not a function`);
+    }
+    var oldArr = Object(this);
+    // 这里如果this为空那么oldArr为空对象
+    var len = oldArr.length &gt;&gt;&gt; 0;
+    // 如果oldArr为空对象那么就没有length 属性，然后用右移运算符加一个length属性
+    // or: var len = +oldArr.length || 0;
+    var thisArg;
+    if (arguments.length &gt; 1) {
+        thisArg = arguments[1];
+    }
+    // 这么做的好处在于，即时数组中有空也会被返回为空
+    var newArr = new Array(len);
+    var k = 0;
+    while (k &lt; len) {
+        if (k in oldArr) {
+            newArr[k] = callback.call(thisArg, oldArr[k], k, oldArr);
+        }
+        k++;
+    }
+    return newArr;
+}
 
+let arr = [1,2,3,4,5]
+let arr1 = map(arr, function(item, index, arr){
+    console.log(`item - ${item}; index - ${index}; arr - ${arr}`)
+    return item * 2
+})
+let arr2 = arr._map(function(item, index, arr){
+    console.log(`item - ${item}; index - ${index}; arr - ${arr}`)
+    return item * 2
+})
+
+console.log(arr1, arr2)
+</code></pre>
       
 
       
@@ -297,7 +283,7 @@ foo3(1000)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2018/11/21/PTC/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2018/11/19/map/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -311,18 +297,18 @@ foo3(1000)
   
 <nav id="article-nav">
   
-    <a href="/2018/11/23/interview/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/20/find/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          interview
+          find
         
       </div>
     </a>
   
   
-    <a href="/2018/11/21/promise-some/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">promise.some</div>
+    <a href="/2018/11/13/PTC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PTC</div>
       <i class="icon-circle-right"></i>
     </a>
   

@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>find | NTFS</title>
+  <title>promise.some | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数组 find 方法理解数组 find 方法 /** * find 方法返回数组中满足提供的测试函数的第一个元素的值。 否则返回 undefined。 * @param {Array} arr * @param {function} fn */  function find(arr, fn){     for (let i = 0; i &amp;lt; arr.length; i++) {">
+  <meta name="description" content="promise.some数组 promise.some 方法   promise.all方法只要有一个返回为reject，那么函数返回即为reject，现在需求为，即时返回reject，也返回resolve,resolve为成功的那些resolve，实现promise.some function some( promises, count = 1 ){      const wrapped = p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="find">
-<meta property="og:url" content="http://yoursite.com/child/2018/11/21/find/index.html">
+<meta property="og:title" content="promise.some">
+<meta property="og:url" content="http://yoursite.com/child/2018/11/22/promise-some/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="数组 find 方法理解数组 find 方法 /** * find 方法返回数组中满足提供的测试函数的第一个元素的值。 否则返回 undefined。 * @param {Array} arr * @param {function} fn */  function find(arr, fn){     for (let i = 0; i &amp;lt; arr.length; i++) {">
+<meta property="og:description" content="promise.some数组 promise.some 方法   promise.all方法只要有一个返回为reject，那么函数返回即为reject，现在需求为，即时返回reject，也返回resolve,resolve为成功的那些resolve，实现promise.some function some( promises, count = 1 ){      const wrapped = p">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T07:28:50.456Z">
+<meta property="og:updated_time" content="2019-01-10T10:16:16.455Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="find">
-<meta name="twitter:description" content="数组 find 方法理解数组 find 方法 /** * find 方法返回数组中满足提供的测试函数的第一个元素的值。 否则返回 undefined。 * @param {Array} arr * @param {function} fn */  function find(arr, fn){     for (let i = 0; i &amp;lt; arr.length; i++) {">
+<meta name="twitter:title" content="promise.some">
+<meta name="twitter:description" content="promise.some数组 promise.some 方法   promise.all方法只要有一个返回为reject，那么函数返回即为reject，现在需求为，即时返回reject，也返回resolve,resolve为成功的那些resolve，实现promise.some function some( promises, count = 1 ){      const wrapped = p">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -148,85 +148,40 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-find" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-promise-some" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      find
+      promise.some
     </h1>
   
 
         
-        <a href="/2018/11/21/find/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
+        <a href="/2018/11/22/promise-some/" class="archive-article-date">
+  	<time datetime="2018-11-22T13:37:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="数组-find-方法理解"><a href="#数组-find-方法理解" class="headerlink" title="数组 find 方法理解"></a>数组 find 方法理解</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" rel="noopener">数组 find 方法</a></p>
-<pre><code>/**
-* find 方法返回数组中满足提供的测试函数的第一个元素的值。 否则返回 undefined。
-* @param {Array} arr
-* @param {function} fn
-*/
+        <h3 id="promise-some"><a href="#promise-some" class="headerlink" title="promise.some"></a>promise.some</h3><p><a href="http://bluebirdjs.com/docs/api/promise.some.html" target="_blank" rel="noopener">数组 promise.some 方法</a></p>
+<p>  promise.all方法只要有一个返回为reject，那么函数返回即为reject，现在需求为，即时返回reject，也返回resolve,resolve为成功的那些resolve，实现promise.some</p>
+<pre><code>function some( promises, count = 1 ){
 
-function find(arr, fn){
-    for (let i = 0; i &lt; arr.length; i++) {
-        if (fn.call(null, arr[i], i, arr)) {
-            return  arr[i]
+    const wrapped = promises.map( promise =&gt; promise.then(value =&gt; ({ success: true, value }), () =&gt; ({ success: false })) );
+    return Promise.all( wrapped ).then(function(results){
+        const successful = results.filter(result =&gt; result.success);
+        if(successful.length &lt; count){
+            throw new Error(`Only ${successful.length} resolved.`)
         }
-    }
-    return undefined
+        return successful.map(result =&gt; result.value);
+    });
+
 }
-
-// find方法原生分析
-Array.prototype._find = function (callback /*, thisArg*/ ) {
-    if (this == null) {
-        // undefined == null
-        throw new TypeError(&apos;null or undefined&apos;);
-    }
-    if (typeof callback !== &apos;function&apos;) {
-        throw new TypeError(&apos;callback is not a function&apos;);
-    }
-    var oldArr = Object(this);
-    var len = oldArr.length &gt;&gt;&gt; 0;
-    var thisArg = arguments.length &gt;= 2 ? arguments[1] : void 0;
-    var k = 0;
-    while (k &lt; len) {
-        if (k in oldArr) {
-            var val = oldArr[k];
-            if (callback.call(thisArg, val, k, oldArr)) {
-                return val;
-            }
-        }
-        k++;
-    }
-    return undefined;
-}
-
-let array = [1,2,3,4,5]
-let result1 = find(array, function (item, index, arr) {
-    return item &gt; 2
-})
-let result2 = find(array, function(item, index, arr){
-    return item &gt; 6
-})
-
-let result3 = array._find(function (item, index, arr) {
-    return item &gt; 2
-})
-let result4 = array._find(function (item, index, arr) {
-    return item &gt; 6
-})
-console.log(result1)
-console.log(result2)
-console.log(result3)
-console.log(result4)
 </code></pre>
       
 
@@ -285,7 +240,7 @@ console.log(result4)
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2018/11/21/find/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2018/11/22/promise-some/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -299,11 +254,11 @@ console.log(result4)
   
 <nav id="article-nav">
   
-    <a href="/2018/11/21/promise-some/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/11/23/interview/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          promise.some
+          interview
         
       </div>
     </a>
