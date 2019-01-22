@@ -515,7 +515,70 @@ b1GetName()  // Cannot read property &apos;name&apos; of undefined  解析： cl
 </li>
 </ol>
 <p>2019.1.17 《JavaScript设计模式》</p>
-<hr>
+<h3 id="JS-由一个习题引发一系列问题总结"><a href="#JS-由一个习题引发一系列问题总结" class="headerlink" title="JS 由一个习题引发一系列问题总结"></a>JS 由一个习题引发一系列问题总结</h3><p><code>LeetCode：Add Digits - 非负整数各位相加</code></p>
+<ul>
+<li><p>数学解法</p>
+<p>  function f(n) {</p>
+<pre><code>return (n - 1) % 9 + 1;
+</code></pre><p>  }</p>
+</li>
+</ul>
+<p><a href="https://my.oschina.net/Tsybius2014" target="_blank" rel="noopener">解题原理</a></p>
+<ul>
+<li><p>我的解法</p>
+<p>  function foo(n){</p>
+<pre><code>let sum = (n + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
+
+let result = (sum + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
+
+return result
+</code></pre><p>  }</p>
+</li>
+</ul>
+<p>然后进行覆盖测试</p>
+<pre><code>f(123) // 6
+
+foo(123) // 6
+
+f(123456789) // 9
+
+foo(123456789) // 9
+</code></pre><p>这个时候想测试下 结果为3位的</p>
+<pre><code>f(9999999999998889) // 6
+
+foo(9999999999998889) // 5
+</code></pre><p>这时候一脸懵逼，用计算器加了一下，结果为141 想加为 6 那么证明位写的方法有问题。</p>
+<pre><code>function foo(n){
+
+    let sum = (n + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
+
+    console.log(sum)
+
+    let result = (sum + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
+
+    return result
+
+}
+
+foo(9999999999998889) // 140
+</code></pre><p>啥情况，咋滴啦，为啥啊？</p>
+<p>然后我试着打印了下数组(9999999999998889 + ‘’).split(‘’)结果是[“9”, “9”, “9”, “9”, “9”, “9”, “9”, “9”, “9”, “9”, “9”, “9”, “8”, “8”, “8”, “8”] 最后一位不对难道是切割数组问题然后我又去打印了(9999999999998889 + ‘’)结果为”9999999999998888”，嗯，问题找到了，用各种浏览器已经试过了，数字超过16位后转为字符串会失准，该问题在node环境同样复现（node 版本11.2.0）那这个问题是因为数字转字符串出的问题么？继而我用String方法把一个16位数字转位字符串，String(9999999999998889) 结果仍然为 “9999999999998888” 不准确的，那么toString()方法去转(9999999999998889).toString() 结果还是 “9999999999998888”不准确的，然后试着用一个变量直接去接收一个大于等于16位的数字，发现同样丢失精度。</p>
+<pre><code>let n = 9999999999998889
+
+n // 9999999999998888
+
+n - 1 // 9999999999998888 (这里还是有点奇怪的，难怪上面的那个方法结果是正确的)
+
+let m = 9999999999999999
+
+m // 10000000000000000
+
+m - 1  // 10000000000000000
+
+m - 9  // 9999999999999992
+
+m - 10 // 9999999999999990
+</code></pre><h4 id="JS-没办法准确记录一个大于等于16位的数字。-关于数字失准的原因"><a href="#JS-没办法准确记录一个大于等于16位的数字。-关于数字失准的原因" class="headerlink" title="JS 没办法准确记录一个大于等于16位的数字。 关于数字失准的原因"></a>JS 没办法准确记录一个大于等于16位的数字。 <a href="https://javascript.ruanyifeng.com/grammar/number.html#toc2" target="_blank" rel="noopener">关于数字失准的原因</a></h4><hr>
 
       
 
@@ -578,29 +641,7 @@ b1GetName()  // Cannot read property &apos;name&apos; of undefined  解析： cl
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="01-明确你的前端学习路线与方法"><a href="#01-明确你的前端学习路线与方法" class="headerlink" title="01 | 明确你的前端学习路线与方法"></a>01 | 明确你的前端学习路线与方法</h3><p>程序 = 算法 + 数据结构</p>
-<p>JavaScript 之父 Brendan Eich 曾经在 Wikipedia 的讨论页上解释 JavaScript 最初想设计一个带有 prototype 的 sicp</p>
-<h3 id="02-列一份前端知识架构图"><a href="#02-列一份前端知识架构图" class="headerlink" title="02 | 列一份前端知识架构图"></a>02 | 列一份前端知识架构图</h3><p>用一定的词法和语法，表达一定语义，从而操作运行时。</p>
-<p>文法中的语法和语义基本是一一对应关系</p>
-<blockquote>
-<p>文档元信息：通常是出现在 head 标签中的元素，包含了描述文档自身的一些信息；</p>
-</blockquote>
-<blockquote>
-<p>语义相关：扩展了纯文本，表达文章结构、不同语言要素的标签；</p>
-</blockquote>
-<blockquote>
-<p>链接：提供到文档内和文档外的链接；</p>
-</blockquote>
-<blockquote>
-<p>替换型标签：引入声音、图片、视频等外部元素替换自身的一类标签；</p>
-</blockquote>
-<blockquote>
-<p>表单：用于填写和提交信息的一类标签；</p>
-</blockquote>
-<blockquote>
-<p>表格：表头、表尾、单元格等表格的结构。</p>
-</blockquote>
-<hr>
+        <h3 id="winter-重学前端"><a href="#winter-重学前端" class="headerlink" title="winter 重学前端"></a>winter 重学前端</h3><hr>
 
       
 
