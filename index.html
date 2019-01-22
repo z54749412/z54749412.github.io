@@ -527,11 +527,13 @@ b1GetName()  // Cannot read property &apos;name&apos; of undefined  解析： cl
 <li>我的解法</li>
 </ul>
 <pre><code>function foo(n){
+
     let sum = (n + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
 
     let result = (sum + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
 
     return result
+
 }
 </code></pre><p>然后进行覆盖测试</p>
 <pre><code>f(123) // 6
