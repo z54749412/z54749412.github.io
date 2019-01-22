@@ -524,17 +524,16 @@ b1GetName()  // Cannot read property &apos;name&apos; of undefined  解析： cl
 }
 </code></pre><p><a href="https://my.oschina.net/Tsybius2014" target="_blank" rel="noopener">解题原理</a></p>
 <ul>
-<li><p>我的解法</p>
-<p>  function foo(n){</p>
-<pre><code>let sum = (n + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
-
-let result = (sum + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
-
-return result
-</code></pre><p>  }</p>
-</li>
+<li>我的解法</li>
 </ul>
-<p>然后进行覆盖测试</p>
+<pre><code>function foo(n){
+    let sum = (n + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
+
+    let result = (sum + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
+
+    return result
+}
+</code></pre><p>然后进行覆盖测试</p>
 <pre><code>f(123) // 6
 
 foo(123) // 6
@@ -548,7 +547,6 @@ foo(123456789) // 9
 foo(9999999999998889) // 5
 </code></pre><p>这时候一脸懵逼，用计算器加了一下，结果为141 想加为 6 那么证明位写的方法有问题。</p>
 <pre><code>function foo(n){
-
     let sum = (n + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
 
     console.log(sum)
@@ -556,7 +554,6 @@ foo(9999999999998889) // 5
     let result = (sum + &apos;&apos;).split(&apos;&apos;).reduce((accumulator, current) =&gt; Number(accumulator) + Number(current))
 
     return result
-
 }
 
 foo(9999999999998889) // 140
