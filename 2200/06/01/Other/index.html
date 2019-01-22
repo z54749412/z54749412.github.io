@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="2018 年JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a ===">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-22T08:17:00.546Z">
+<meta property="og:updated_time" content="2019-01-22T08:22:35.974Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Other">
 <meta name="twitter:description" content="2018 年JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a ===">
@@ -519,13 +519,12 @@ b1GetName()  // Cannot read property &apos;name&apos; of undefined  解析： cl
 <p>2019.1.17 《JavaScript设计模式》</p>
 <h3 id="JS-由一个习题引发一系列问题总结"><a href="#JS-由一个习题引发一系列问题总结" class="headerlink" title="JS 由一个习题引发一系列问题总结"></a>JS 由一个习题引发一系列问题总结</h3><p><code>LeetCode：Add Digits - 非负整数各位相加</code></p>
 <ul>
-<li><p>数学解法</p>
-<p>  function f(n) {</p>
-<pre><code>return (n - 1) % 9 + 1;
-</code></pre><p>  }</p>
-</li>
+<li>数学解法</li>
 </ul>
-<p><a href="https://my.oschina.net/Tsybius2014" target="_blank" rel="noopener">解题原理</a></p>
+<pre><code>function f(n) {
+    return (n - 1) % 9 + 1;
+}
+</code></pre><p><a href="https://my.oschina.net/Tsybius2014" target="_blank" rel="noopener">解题原理</a></p>
 <ul>
 <li><p>我的解法</p>
 <p>  function foo(n){</p>
@@ -580,6 +579,10 @@ m - 1  // 10000000000000000
 m - 9  // 9999999999999992
 
 m - 10 // 9999999999999990
+
+Number.MAX_VALUE  // 1.7976931348623157e+308
+
+Number.MIN_VALUE // 5e-324
 </code></pre><h4 id="JS-没办法准确记录一个大于等于16位的数字。-关于数字失准的原因"><a href="#JS-没办法准确记录一个大于等于16位的数字。-关于数字失准的原因" class="headerlink" title="JS 没办法准确记录一个大于等于16位的数字。 关于数字失准的原因"></a>JS 没办法准确记录一个大于等于16位的数字。 <a href="https://javascript.ruanyifeng.com/grammar/number.html#toc2" target="_blank" rel="noopener">关于数字失准的原因</a></h4><hr>
 
       
