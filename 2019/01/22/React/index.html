@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com/child">
-  <title>重学前端 | NTFS</title>
+  <title>React | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="winter 重学前端">
+  <meta name="description" content="dangerouslySetInnerHTMLdangerouslySetInnerHTML反应的替代使用innerHTML在浏览器DOM。 function createMarkup() {     return {__html: &amp;apos;First &amp;amp;middot; Second&amp;apos;}; }  function MyComponent() {     return &amp;lt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重学前端">
-<meta property="og:url" content="http://yoursite.com/child/2019/01/17/重学前端/index.html">
+<meta property="og:title" content="React">
+<meta property="og:url" content="http://yoursite.com/child/2019/01/22/React/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="winter 重学前端">
+<meta property="og:description" content="dangerouslySetInnerHTMLdangerouslySetInnerHTML反应的替代使用innerHTML在浏览器DOM。 function createMarkup() {     return {__html: &amp;apos;First &amp;amp;middot; Second&amp;apos;}; }  function MyComponent() {     return &amp;lt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-22T04:07:34.612Z">
+<meta property="og:updated_time" content="2019-01-22T09:14:48.987Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="重学前端">
-<meta name="twitter:description" content="winter 重学前端">
+<meta name="twitter:title" content="React">
+<meta name="twitter:description" content="dangerouslySetInnerHTMLdangerouslySetInnerHTML反应的替代使用innerHTML在浏览器DOM。 function createMarkup() {     return {__html: &amp;apos;First &amp;amp;middot; Second&amp;apos;}; }  function MyComponent() {     return &amp;lt;">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -148,28 +148,85 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-重学前端" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-React" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      重学前端
+      React
     </h1>
   
 
         
-        <a href="/2019/01/17/重学前端/" class="archive-article-date">
-  	<time datetime="2019-01-17T03:17:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-17</time>
+        <a href="/2019/01/22/React/" class="archive-article-date">
+  	<time datetime="2019-01-22T08:39:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="winter-重学前端"><a href="#winter-重学前端" class="headerlink" title="winter 重学前端"></a>winter 重学前端</h3><hr>
+        <h2 id="dangerouslySetInnerHTML"><a href="#dangerouslySetInnerHTML" class="headerlink" title="dangerouslySetInnerHTML"></a><a href="https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml" target="_blank" rel="noopener">dangerouslySetInnerHTML</a></h2><p>dangerouslySetInnerHTML反应的替代使用innerHTML在浏览器DOM。</p>
+<pre><code>function createMarkup() {
+    return {__html: &apos;First &amp;middot; Second&apos;};
+}
 
+function MyComponent() {
+    return &lt;div dangerouslySetInnerHTML={createMarkup()} /&gt;;
+}
+</code></pre><h2 id="Portals"><a href="#Portals" class="headerlink" title="Portals"></a><a href="https://reactjs.org/docs/portals.html#___gatsby" target="_blank" rel="noopener">Portals</a></h2><p>Portals 可以将 react 子节点的 DOM 结构，渲染到 react 父节点之外的 DOM 中。</p>
+<pre><code>ReactDOM.createPortal(child, container)
+</code></pre><p>第一个参数 child 是任何可以被渲染的 ReactChild，比如 element, string 或者 fragment. 第二个参数 container 是 一个 DOM 元素。</p>
+<h2 id="Error-boundaries"><a href="#Error-boundaries" class="headerlink" title="Error boundaries"></a><a href="https://reactjs.org/docs/error-boundaries.html#introducing-error-boundaries" target="_blank" rel="noopener">Error boundaries</a></h2><p>Error Boundaries来处理组件内部的错误，从而可以修正错误组件。</p>
+<pre><code>componentDidCatch(error, info) {
+    this.setState({ hasError: true });
+}
+</code></pre><h2 id="React-lazy"><a href="#React-lazy" class="headerlink" title="React.lazy"></a><a href="https://reactjs.org/docs/code-splitting.html#reactlazy" target="_blank" rel="noopener">React.lazy</a></h2><pre><code>const OtherComponent = React.lazy(() =&gt; import(&apos;./OtherComponent&apos;));
+
+function MyComponent() {
+  return (
+    &lt;div&gt;
+      &lt;OtherComponent /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><h2 id="Suspense"><a href="#Suspense" class="headerlink" title="Suspense"></a><a href="https://reactjs.org/docs/code-splitting.html#reactlazy" target="_blank" rel="noopener">Suspense</a></h2><p>如果模块包含OtherComponent MyComponent尚未加载的渲染的时候,我们必须展示一些预览内容,同时我们等待加载,比如加载指标。这是使用Suspense组件来完成的。</p>
+<pre><code>const OtherComponent = React.lazy(() =&gt; import(&apos;./OtherComponent&apos;));
+const AnotherComponent = React.lazy(() =&gt; import(&apos;./AnotherComponent&apos;));
+
+function MyComponent() {
+  return (
+    &lt;div&gt;
+      &lt;Suspense fallback={&lt;div&gt;Loading...&lt;/div&gt;}&gt;
+        &lt;section&gt;
+          &lt;OtherComponent /&gt;
+          &lt;AnotherComponent /&gt;
+        &lt;/section&gt;
+      &lt;/Suspense&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><h2 id="Code-Splitting"><a href="#Code-Splitting" class="headerlink" title="Code Splitting"></a><a href="https://reactjs.org/docs/code-splitting.html#code-splitting" target="_blank" rel="noopener">Code Splitting</a></h2><p>代码分隔应用程序的最佳方法是通过动态导入()语法，代码分割是允许我们去延迟加载我们的import，意味着我们在渲染当前页面的时候去提升当前页面的性能，提高渲染速度。</p>
+<pre><code>import(&quot;./math&quot;).then(math =&gt; {
+  console.log(math.add(16, 26));
+});
+</code></pre><h2 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a><a href="https://reactjs.org/docs/fragments.html#keyed-fragments" target="_blank" rel="noopener">Fragments</a></h2><p>React 中一个常见模式是为一个组件返回多个元素。Fragments 可以让你聚合一个子元素列表，并且不在DOM中增加额外节点。</p>
+<pre><code>function Glossary(props) {
+  return (
+    &lt;dl&gt;
+      {props.items.map(item =&gt; (
+        // Without the `key`, React will fire a key warning
+        &lt;React.Fragment key={item.id}&gt;
+          &lt;dt&gt;{item.term}&lt;/dt&gt;
+          &lt;dd&gt;{item.description}&lt;/dd&gt;
+        &lt;/React.Fragment&gt;
+      ))}
+    &lt;/dl&gt;
+  );
+}
+</code></pre><h2 id="Refs-and-the-DOM"><a href="#Refs-and-the-DOM" class="headerlink" title="Refs and the DOM"></a><a href="https://reactjs.org/docs/refs-and-the-dom.html#when-to-use-refs" target="_blank" rel="noopener">Refs and the DOM</a></h2><h2 id="getSnapshotBeforeUpdate"><a href="#getSnapshotBeforeUpdate" class="headerlink" title="getSnapshotBeforeUpdate"></a><a href="https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate" target="_blank" rel="noopener">getSnapshotBeforeUpdate</a></h2><h2 id="static-getDerivedStateFromProps-props-state"><a href="#static-getDerivedStateFromProps-props-state" class="headerlink" title="static getDerivedStateFromProps(props, state)"></a><a href="https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops" target="_blank" rel="noopener">static getDerivedStateFromProps(props, state)</a></h2>
       
 
       
@@ -227,7 +284,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2019/01/17/重学前端/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/child/2019/01/22/React/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -241,18 +298,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/01/22/Vue/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2200/06/01/Other/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Vue
+          Other
         
       </div>
     </a>
   
   
-    <a href="/2018/11/23/promise/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">promise</div>
+    <a href="/2019/01/22/Vue/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vue</div>
       <i class="icon-circle-right"></i>
     </a>
   
