@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="dangerouslySetInnerHTMLdangerouslySetInnerHTML反应的替代使用innerHTML在浏览器DOM。 function createMarkup() {     return {__html: &amp;apos;First &amp;amp;middot; Second&amp;apos;}; }  function MyComponent() {     return &amp;lt;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-22T09:14:48.987Z">
+<meta property="og:updated_time" content="2019-01-24T13:50:47.775Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React">
 <meta name="twitter:description" content="dangerouslySetInnerHTMLdangerouslySetInnerHTML反应的替代使用innerHTML在浏览器DOM。 function createMarkup() {     return {__html: &amp;apos;First &amp;amp;middot; Second&amp;apos;}; }  function MyComponent() {     return &amp;lt;">
@@ -226,7 +226,25 @@ function MyComponent() {
     &lt;/dl&gt;
   );
 }
-</code></pre><h2 id="Refs-and-the-DOM"><a href="#Refs-and-the-DOM" class="headerlink" title="Refs and the DOM"></a><a href="https://reactjs.org/docs/refs-and-the-dom.html#when-to-use-refs" target="_blank" rel="noopener">Refs and the DOM</a></h2><h2 id="getSnapshotBeforeUpdate"><a href="#getSnapshotBeforeUpdate" class="headerlink" title="getSnapshotBeforeUpdate"></a><a href="https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate" target="_blank" rel="noopener">getSnapshotBeforeUpdate</a></h2><h2 id="static-getDerivedStateFromProps-props-state"><a href="#static-getDerivedStateFromProps-props-state" class="headerlink" title="static getDerivedStateFromProps(props, state)"></a><a href="https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops" target="_blank" rel="noopener">static getDerivedStateFromProps(props, state)</a></h2>
+</code></pre><h2 id="Refs-and-the-DOM"><a href="#Refs-and-the-DOM" class="headerlink" title="Refs and the DOM"></a><a href="https://reactjs.org/docs/refs-and-the-dom.html#when-to-use-refs" target="_blank" rel="noopener">Refs and the DOM</a></h2><h2 id="getSnapshotBeforeUpdate"><a href="#getSnapshotBeforeUpdate" class="headerlink" title="getSnapshotBeforeUpdate"></a><a href="https://reactjs.org/docs/react-component.html#getsnapshotbeforeupdate" target="_blank" rel="noopener">getSnapshotBeforeUpdate</a></h2><h2 id="static-getDerivedStateFromProps-props-state"><a href="#static-getDerivedStateFromProps-props-state" class="headerlink" title="static getDerivedStateFromProps(props, state)"></a><a href="https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops" target="_blank" rel="noopener">static getDerivedStateFromProps(props, state)</a></h2><h1 id="React-源码分析"><a href="#React-源码分析" class="headerlink" title="React 源码分析"></a>React 源码分析</h1><h2 id="React-createElement"><a href="#React-createElement" class="headerlink" title="React.createElement"></a>React.createElement</h2><pre><code>React.createElement(type, config, children)
+
+jsx
+
+&lt;div key=&quot;1&quot;&gt;
+  &lt;span&gt;test1&lt;/span&gt;
+  &lt;span id=&quot;s1&quot;&gt;test2&lt;/span&gt;
+&lt;/div&gt;
+
+=&gt;
+
+js
+
+React.createElement(
+  &apos;div&apos;, { key: &apos;1&apos; },
+  React.createElement(&apos;span&apos;, null, test1)
+  React.createElement(&apos;span&apos;, { id: &apos;s1&apos; }, test2)
+)
+</code></pre>
       
 
       
