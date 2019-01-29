@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com/child">
   <title>重学前端 | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="winter 重学前端">
+  <meta name="description" content="winter 重学前端装箱转换拆箱转换 对象到 String 和 Number 的转换都遵循“先拆箱再转换”的规则。通过拆箱转换，把对象变成基本类型，再从基本类型转换为对应的 String 或者 Number。  拆箱转换会尝试调用 valueOf 和 toString 来获得拆箱后的基本类型。如果 valueOf 和 toString 都不存在，或者没有返回基本类型，则会产生类型错误 TypeE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重学前端">
 <meta property="og:url" content="http://yoursite.com/child/2019/01/17/重学前端/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="winter 重学前端">
+<meta property="og:description" content="winter 重学前端装箱转换拆箱转换 对象到 String 和 Number 的转换都遵循“先拆箱再转换”的规则。通过拆箱转换，把对象变成基本类型，再从基本类型转换为对应的 String 或者 Number。  拆箱转换会尝试调用 valueOf 和 toString 来获得拆箱后的基本类型。如果 valueOf 和 toString 都不存在，或者没有返回基本类型，则会产生类型错误 TypeE">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-22T04:07:34.612Z">
+<meta property="og:updated_time" content="2019-01-28T02:16:36.564Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重学前端">
-<meta name="twitter:description" content="winter 重学前端">
+<meta name="twitter:description" content="winter 重学前端装箱转换拆箱转换 对象到 String 和 Number 的转换都遵循“先拆箱再转换”的规则。通过拆箱转换，把对象变成基本类型，再从基本类型转换为对应的 String 或者 Number。  拆箱转换会尝试调用 valueOf 和 toString 来获得拆箱后的基本类型。如果 valueOf 和 toString 都不存在，或者没有返回基本类型，则会产生类型错误 TypeE">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -168,7 +168,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="winter-重学前端"><a href="#winter-重学前端" class="headerlink" title="winter 重学前端"></a>winter 重学前端</h3><hr>
+        <h3 id="winter-重学前端"><a href="#winter-重学前端" class="headerlink" title="winter 重学前端"></a>winter 重学前端</h3><h4 id="装箱转换"><a href="#装箱转换" class="headerlink" title="装箱转换"></a>装箱转换</h4><h4 id="拆箱转换"><a href="#拆箱转换" class="headerlink" title="拆箱转换"></a>拆箱转换</h4><ul>
+<li><p>对象到 String 和 Number 的转换都遵循“先拆箱再转换”的规则。通过拆箱转换，把对象变成基本类型，再从基本类型转换为对应的 String 或者 Number。</p>
+</li>
+<li><p>拆箱转换会尝试调用 valueOf 和 toString 来获得拆箱后的基本类型。如果 valueOf 和 toString 都不存在，或者没有返回基本类型，则会产生类型错误 TypeError。</p>
+</li>
+<li><p>在 ES6 之后，还允许对象通过显式指定 @@toPrimitive Symbol 来覆盖原有的行为。</p>
+<p>  var o = {</p>
+<pre><code>valueOf : () =&gt; {console.log(&quot;valueOf&quot;); return {}},
+toString : () =&gt; {console.log(&quot;toString&quot;); return {}}
+</code></pre><p>  }</p>
+<p>  o[Symbol.toPrimitive] = () =&gt; {console.log(“toPrimitive”); return “hello”}</p>
+<p>  console.log(o + “”)<br>  // toPrimitive<br>  // hello</p>
+</li>
+</ul>
+<hr>
 
       
 
