@@ -586,7 +586,22 @@ Number.MAX_SAFE_INTEGER // 9007199254740991
 <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform" target="_blank" rel="noopener">text-transform</a></p>
 </blockquote>
 <p>none | capitalize(将每个单词的第一个字母转换成大写) | uppercase(将每个单词转换成大写 ) | lowercase(将每个单词转换成小写 )</p>
+<h3 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h3><pre><code>[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt) // [1, NaN, NaN]
 
+[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt(item, index, arr))
+
+[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt(&apos;1&apos;, 0, [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;])) // 1
+[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt(&apos;2&apos;, 1, [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;])) // NAN
+[&quot;1&quot;, &quot;2&quot;, &quot;3&quot;].map(parseInt(&apos;3&apos;, 2, [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;])) // NAN
+
+parseInt(&quot;10&quot;);            //返回 10
+parseInt(&quot;19&quot;,10);        //返回 19 (10+9)
+parseInt(&quot;11&quot;,2);        //返回 3 (2+1)
+parseInt(&quot;17&quot;,8);        //返回 15 (8+7)
+parseInt(&quot;1f&quot;,16);        //返回 31 (16+15)
+parseInt(&quot;010&quot;);        //未定：返回 10 或 8
+</code></pre><p><code>parseInt(string, radix) 第二个参数可以不输，默认为0，则数字将以 10 为基础来解析。如果它以 “0x” 或 “0X” 开头，将以 16 为基数。如果该参数小于 2 或者大于 36，则 parseInt() 将返回 NaN。</code></p>
+<h3 id="search-和-match"><a href="#search-和-match" class="headerlink" title="search 和 match"></a>search 和 match</h3>
       
 
       
