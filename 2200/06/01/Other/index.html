@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="2018 年JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a ===">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-12T09:35:01.840Z">
+<meta property="og:updated_time" content="2019-02-14T07:36:57.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Other">
 <meta name="twitter:description" content="2018 年JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a ===">
@@ -603,7 +603,20 @@ parseInt(&quot;17&quot;,8);        //返回 15 (8+7)
 parseInt(&quot;1f&quot;,16);        //返回 31 (16+15)
 parseInt(&quot;010&quot;);        //未定：返回 10 或 8
 </code></pre><p><code>parseInt(string, radix) 第二个参数可以不输，默认为0，则数字将以 10 为基础来解析。如果它以 “0x” 或 “0X” 开头，将以 16 为基数。如果该参数小于 2 或者大于 36，则 parseInt() 将返回 NaN。</code></p>
-<h3 id="search-和-match"><a href="#search-和-match" class="headerlink" title="search 和 match"></a>search 和 match</h3>
+<h3 id="search-和-match"><a href="#search-和-match" class="headerlink" title="search 和 match"></a>search 和 match</h3><h3 id="Proxy-和-Object-defineproperty"><a href="#Proxy-和-Object-defineproperty" class="headerlink" title="Proxy 和 Object.defineproperty"></a>Proxy 和 Object.defineproperty</h3><ul>
+<li><p>Proxy可以直接监听对象而非属性</p>
+</li>
+<li><p>Proxy可以直接监听数组变化</p>
+</li>
+</ul>
+<h3 id="vue路由的钩子函数"><a href="#vue路由的钩子函数" class="headerlink" title="vue路由的钩子函数"></a>vue路由的钩子函数</h3><p>首页可以控制导航跳转，beforeEach，afterEach等，一般用于页面title的修改。一些需要登录才能调整页面的重定向功能。</p>
+<p>beforeEach主要有3个参数to，from，next：</p>
+<p>to：route即将进入的目标路由对象，</p>
+<p>from：route当前导航正要离开的路由</p>
+<p>next：function一定要调用该方法resolve这个钩子。执行效果依赖next方法的调用参数。可以控制网页的跳转。</p>
+<h3 id="Vue中-route和-router的区别"><a href="#Vue中-route和-router的区别" class="headerlink" title="Vue中$route和$router的区别"></a>Vue中$route和$router的区别</h3><p>$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。而$router是“路由实例”对象包括了路由的跳转方法，钩子函数等。</p>
+<h3 id="Vue常用的修饰符？"><a href="#Vue常用的修饰符？" class="headerlink" title="Vue常用的修饰符？"></a>Vue常用的修饰符？</h3><p>.prevent: 提交事件不再重载页面；.stop: 阻止单击事件冒泡；.self: 当事件发生在该元素本身而不是子元素的时候会触发；.capture: 事件侦听，事件发生的时候会调用</p>
+
       
 
       
