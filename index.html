@@ -928,8 +928,21 @@ React.createElement(
   React.createElement(&apos;span&apos;, null, test1)
   React.createElement(&apos;span&apos;, { id: &apos;s1&apos; }, test2)
 )
-</code></pre><p>##</p>
-
+</code></pre><h2 id="React-更新方式"><a href="#React-更新方式" class="headerlink" title="React 更新方式"></a>React 更新方式</h2><h3 id="ReactDOM-render-hydrate"><a href="#ReactDOM-render-hydrate" class="headerlink" title="ReactDOM.render || hydrate"></a>ReactDOM.render || hydrate</h3><ul>
+<li>创建 ReactRoot</li>
+<li>创建 FiberRoot 和 RootFiber</li>
+<li><p>创建更新</p>
+<p>  ReactDOM.render(element, container, callback)</p>
+</li>
+</ul>
+<blockquote>
+<p>FiberRoot<br>整个应用的起点<br>包含应用挂载的目标节点<br>记录整个应用更新过程的各种信息</p>
+</blockquote>
+<blockquote>
+<p>Fiber<br>每一个 ReactElement 对应一个 Fiber 对象<br>记录节点的各种状态<br>串联整个应用形成树结构</p>
+</blockquote>
+<p>FiberRoot - current -&gt; RootFiber - child -&gt; App - child -&gt; div  - child -&gt; input - sibling -&gt; list</p>
+<h3 id="setState"><a href="#setState" class="headerlink" title="setState"></a>setState</h3><h3 id="forceUpdate"><a href="#forceUpdate" class="headerlink" title="forceUpdate"></a>forceUpdate</h3>
       
 
       
