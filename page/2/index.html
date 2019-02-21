@@ -146,6 +146,127 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-find" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/20/find/">find</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/20/find/" class="archive-article-date">
+  	<time datetime="2018-11-20T07:24:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="数组-find-方法理解"><a href="#数组-find-方法理解" class="headerlink" title="数组 find 方法理解"></a>数组 find 方法理解</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/find" target="_blank" rel="noopener">数组 find 方法</a></p>
+<pre><code>/**
+* find 方法返回数组中满足提供的测试函数的第一个元素的值。 否则返回 undefined。
+* @param {Array} arr
+* @param {function} fn
+*/
+
+function find(arr, fn){
+    for (let i = 0; i &lt; arr.length; i++) {
+        if (fn.call(null, arr[i], i, arr)) {
+            return  arr[i]
+        }
+    }
+    return undefined
+}
+
+// find方法原生分析
+Array.prototype._find = function (callback /*, thisArg*/ ) {
+    if (this == null) {
+        // undefined == null
+        throw new TypeError(&apos;null or undefined&apos;);
+    }
+    if (typeof callback !== &apos;function&apos;) {
+        throw new TypeError(&apos;callback is not a function&apos;);
+    }
+    var oldArr = Object(this);
+    var len = oldArr.length &gt;&gt;&gt; 0;
+    var thisArg = arguments.length &gt;= 2 ? arguments[1] : void 0;
+    var k = 0;
+    while (k &lt; len) {
+        if (k in oldArr) {
+            var val = oldArr[k];
+            if (callback.call(thisArg, val, k, oldArr)) {
+                return val;
+            }
+        }
+        k++;
+    }
+    return undefined;
+}
+
+let array = [1,2,3,4,5]
+let result1 = find(array, function (item, index, arr) {
+    return item &gt; 2
+})
+let result2 = find(array, function(item, index, arr){
+    return item &gt; 6
+})
+
+let result3 = array._find(function (item, index, arr) {
+    return item &gt; 2
+})
+let result4 = array._find(function (item, index, arr) {
+    return item &gt; 6
+})
+console.log(result1)
+console.log(result2)
+console.log(result3)
+console.log(result4)
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/20/find/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-map" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2585,78 +2706,6 @@ zipWith&apos; f (x:xs) (y:ys) = f x y : zipWith&apos; f xs ys
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/07/18/Haskell/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Pure-Function" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/18/Pure-Function/">Pure Function</a>
-    </h1>
-  
-
-        
-        <a href="/2018/07/18/Pure-Function/" class="archive-article-date">
-  	<time datetime="2018-07-18T00:26:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>什么是纯函数？</p>
-<blockquote>
-<p>纯函数是这样一种函数，即相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用。</p>
-<blockquote>
-<p>这里又提出了函数副作用，那么什么是函数副作用？</p>
-<blockquote>
-<p>函数副作用指当调用函数时，除了返回函数值之外，还对主调用函数产生附加的影响。</p>
-</blockquote>
-</blockquote>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/18/Pure-Function/">展开全文 >></a>
         </p>
       
 
