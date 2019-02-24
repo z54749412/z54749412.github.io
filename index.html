@@ -614,7 +614,27 @@ parseInt(&quot;010&quot;);        //未定：返回 10 或 8
 <p>next：function一定要调用该方法resolve这个钩子。执行效果依赖next方法的调用参数。可以控制网页的跳转。</p>
 <h3 id="Vue中-route和-router的区别"><a href="#Vue中-route和-router的区别" class="headerlink" title="Vue中$route和$router的区别"></a>Vue中$route和$router的区别</h3><p>$route是“路由信息对象”，包括path，params，hash，query，fullPath，matched，name等路由信息参数。而$router是“路由实例”对象包括了路由的跳转方法，钩子函数等。</p>
 <h3 id="Vue常用的修饰符？"><a href="#Vue常用的修饰符？" class="headerlink" title="Vue常用的修饰符？"></a>Vue常用的修饰符？</h3><p>.prevent: 提交事件不再重载页面；.stop: 阻止单击事件冒泡；.self: 当事件发生在该元素本身而不是子元素的时候会触发；.capture: 事件侦听，事件发生的时候会调用</p>
-<h3 id="will-change"><a href="#will-change" class="headerlink" title="will-change"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/will-change" target="_blank" rel="noopener">will-change</a></h3><h3 id="避免重排，减少重绘"><a href="#避免重排，减少重绘" class="headerlink" title="避免重排，减少重绘"></a>避免重排，减少重绘</h3>
+<h3 id="will-change"><a href="#will-change" class="headerlink" title="will-change"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/will-change" target="_blank" rel="noopener">will-change</a></h3><h3 id="避免重排，减少重绘"><a href="#避免重排，减少重绘" class="headerlink" title="避免重排，减少重绘"></a>避免重排，减少重绘</h3><h3 id="ES6-扩展运算符"><a href="#ES6-扩展运算符" class="headerlink" title="ES6 扩展运算符"></a>ES6 扩展运算符</h3><p>Object.assign() 方法执行会触发 Object.defineProperty 中的 setter 方法而利用 es6 的扩展不会</p>
+<pre><code>Object.defineProperty(Object.prototype, &apos;a&apos;, {
+  set(value) {
+    console.log(&apos;set called!&apos;)
+  }
+})
+
+let obj = {a: 10}
+
+console.log({...obj})
+// {a: 10}
+
+console.log(Object.assign({}, obj))
+// set called!
+// {}
+</code></pre><ul>
+<li>spread 属性只复制可枚举属性。</li>
+<li>继承属性即使是可枚举的，也会被忽略：</li>
+<li>spread 和 Object.assign 只是对象的浅复制。 如果属性中包含对象，则仅复制对象的引用：</li>
+</ul>
+
       
 
       
