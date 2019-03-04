@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="2018 年JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a ===">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-02T15:11:14.392Z">
+<meta property="og:updated_time" content="2019-03-04T02:36:54.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Other">
 <meta name="twitter:description" content="2018 年JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a ===">
@@ -636,7 +636,57 @@ console.log(Object.assign({}, obj))
 <li>继承属性即使是可枚举的，也会被忽略：</li>
 <li>spread 和 Object.assign 只是对象的浅复制。 如果属性中包含对象，则仅复制对象的引用：</li>
 </ul>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><pre><code>class Person{
+    constructor(name){
+        this.name = name;
+    }
+    static sayHi(){
+        console.log(&apos;hi&apos;);
+    }
+    sayName(){
+        console.log(`hello~ my name is ${this.name}`);
+    }
+}
+class Chinese extends Person{
+    constructor(name, age){
+        super(name);
+        this.age = age;
+    }
+    sayAge(){
+        console.log(`I&apos;m ${this.age} years old!`);
+    }
+}
 
+let male = new Person(&apos;Male&apos;);
+let xiaoming = new Chinese(&apos;XiaoMing&apos;, 18);
+console.log(&apos;male: &apos;, male); // male:  Person {name: &quot;Male&quot;}
+Person.sayHi(); // hi
+male.sayName(); // hello~ my name is Male
+console.log(&apos;xiaoming: &apos;, xiaoming); // xiaoming:  Chinese {name: &quot;XiaoMing&quot;, age: 18}
+Chinese.sayHi(); // hi
+xiaoming.sayName(); // hello~ my name is XiaoMing
+xiaoming.sayAge(); // I&apos;m 18 years old!
+
+Chinese.__proto__ === Person; // true
+Person.__proto__ === Function.prototype; // true
+Function.prototype.__proto__ === Object.prototype; // true
+Object.prototype.__proto__ === null; // true
+// 2、实例原型链
+xiaoming.__proto__ === Chinese.prototype; // true
+Chinese.prototype.__proto__ === Person.prototype; // true
+Person.prototype.__proto__ === Object.prototype; // true
+Object.prototype.__proto__ === null; // true
+
+/*
+Function.__proto__=== Function.prototype
+
+Function.__proto__.__proto__=== Object.prototype
+
+Function.__proto__.__proto__.__proto__ === null
+
+Function.prototype.__proto__ === Object.prototype
+*/
+</code></pre>
       
 
       
