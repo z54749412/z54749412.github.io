@@ -689,6 +689,17 @@ Function.prototype.__proto__ === Object.prototype
 <h3 id="为什么-session-适合用-redis-？"><a href="#为什么-session-适合用-redis-？" class="headerlink" title="为什么 session 适合用 redis ？"></a>为什么 session 适合用 redis ？</h3><p>session 访问频繁，对性能要求极高</p>
 <p>session 可以不考虑断电丢失的数据的问题</p>
 <p>session 数据量不会很大</p>
+<h2 id="redis-操作"><a href="#redis-操作" class="headerlink" title="redis 操作"></a>redis 操作</h2><p>启动 redis</p>
+<ol>
+<li><p>redis-server</p>
+</li>
+<li><p>redis-cli</p>
+<p> set [key] [value] // 设置 key 值</p>
+<p> get [key]  // 获取某一个 key 值</p>
+<p> keys * // 获取所有的设置的key</p>
+<p> del [key] // 删除 key 值</p>
+</li>
+</ol>
 
       
 
