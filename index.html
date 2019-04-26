@@ -706,6 +706,13 @@ get [key]  // 获取某一个 key 值
 keys * // 获取所有的设置的key
 
 del [key] // 删除 key 值
+</code></pre><h2 id="大屏-rem-方案"><a href="#大屏-rem-方案" class="headerlink" title="大屏 rem 方案"></a>大屏 rem 方案</h2><pre><code>(function setMetaAndRem () {
+  let meta = document.querySelector(&apos;meta[name=&quot;viewport&quot;]&apos;);
+  let dpr = window.devicePixelRatio;
+  meta.setAttribute(&apos;content&apos;, &apos;initial-scale=&apos; + 1/dpr + &apos;, maximum-scale=&apos; + 1/dpr + &apos;, minimum-scale=&apos; + 1/dpr + &apos;, user-scalable=no&apos;);
+  let html = document.documentElement;
+  html.style.fontSize = (window.innerWidth / 10) + &apos;px&apos;;
+})();
 </code></pre>
       
 
