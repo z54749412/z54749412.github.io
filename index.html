@@ -713,6 +713,14 @@ del [key] // 删除 key 值
   let html = document.documentElement;
   html.style.fontSize = (window.innerWidth / 10) + &apos;px&apos;;
 })();
+</code></pre><h2 id="利用-crontab-进行日志拆分"><a href="#利用-crontab-进行日志拆分" class="headerlink" title="利用 crontab 进行日志拆分"></a>利用 crontab 进行日志拆分</h2><p>crontab -e 编辑定时任务</p>
+<p>crontab -l 查询定时任务</p>
+<pre><code>* 0 * * * sh /Users/ntfs/Desk    top/Learn/Node/nodeServer/blog0    1/src/utils/copy.sh
+</code></pre><p>可实行sh文件编写</p>
+<pre><code>#!/bin/sh
+cd /Users/ntfs/Desktop/Learn/Node/nodeServer/blog01/logs
+cp access.log $(date +%Y-%m-%d).access.log
+echo &quot;&quot; &gt; access.log
 </code></pre>
       
 

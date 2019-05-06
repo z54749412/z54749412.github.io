@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="2018 年JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a ===">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-28T14:40:47.347Z">
+<meta property="og:updated_time" content="2019-05-06T01:09:44.279Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Other">
 <meta name="twitter:description" content="2018 年JS数据类型Javascript 其中内置类型:空值 (null)未定义 (undefined)布尔值 (boolean)数字 (number)字符串 (string)对象 (object)其中数组(Array) 函数(function) 是object的一个子类型 符号 (symbol)null 判断var a = null;  (!a &amp;amp;&amp;amp; typeof a ===">
@@ -715,6 +715,14 @@ del [key] // 删除 key 值
   let html = document.documentElement;
   html.style.fontSize = (window.innerWidth / 10) + &apos;px&apos;;
 })();
+</code></pre><h2 id="利用-crontab-进行日志拆分"><a href="#利用-crontab-进行日志拆分" class="headerlink" title="利用 crontab 进行日志拆分"></a>利用 crontab 进行日志拆分</h2><p>crontab -e 编辑定时任务</p>
+<p>crontab -l 查询定时任务</p>
+<pre><code>* 0 * * * sh /Users/ntfs/Desk    top/Learn/Node/nodeServer/blog0    1/src/utils/copy.sh
+</code></pre><p>可实行sh文件编写</p>
+<pre><code>#!/bin/sh
+cd /Users/ntfs/Desktop/Learn/Node/nodeServer/blog01/logs
+cp access.log $(date +%Y-%m-%d).access.log
+echo &quot;&quot; &gt; access.log
 </code></pre>
       
 
