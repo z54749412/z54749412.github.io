@@ -721,7 +721,11 @@ del [key] // 删除 key 值
 cd /Users/ntfs/Desktop/Learn/Node/nodeServer/blog01/logs
 cp access.log $(date +%Y-%m-%d).access.log
 echo &quot;&quot; &gt; access.log
-</code></pre>
+</code></pre><h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><p>如何预防 sql 注入</p>
+<p>使用 mysql 自带 escape 方法</p>
+<p>如何预防 XSS 攻击</p>
+<p>使用 xss 插件，将 script 标签转译</p>
+
       
 
       
@@ -734,6 +738,85 @@ echo &quot;&quot; &gt; access.log
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2200/06/01/Other/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/08/Node/">Node</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/08/Node/" class="archive-article-date">
+  	<time datetime="2019-05-08T01:15:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="不使用框架开发-node-server-总结"><a href="#不使用框架开发-node-server-总结" class="headerlink" title="不使用框架开发 node server 总结"></a>不使用框架开发 node server 总结</h2><ol>
+<li>处理 http 接口</li>
+<li>连接数据库</li>
+<li>实现登陆</li>
+<li>安全</li>
+<li>日志</li>
+</ol>
+<ul>
+<li><p>http，nodejs 处理 http、处理路由、连接mysql</p>
+</li>
+<li><p>cookie，session，redis，nginx 反向代理</p>
+</li>
+<li><p>sql 注入，xss 攻击，加密</p>
+</li>
+<li><p>日志， stream（收集日志），contrab（拆分日志），readline（分析日志）</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/08/Node/">展开全文 >></a>
         </p>
       
 
@@ -1609,122 +1692,6 @@ toString : () =&gt; {console.log(&quot;toString&quot;); return {}}
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/11/22/promise-some/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-filter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/21/filter/">filter</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/21/filter/" class="archive-article-date">
-  	<time datetime="2018-11-21T07:24:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="数组-filter-方法理解"><a href="#数组-filter-方法理解" class="headerlink" title="数组 filter 方法理解"></a>数组 filter 方法理解</h3><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" target="_blank" rel="noopener">数组 filter 方法</a></p>
-<pre><code>/**
-* filter 方法使用指定的函数测试所有元素， 并创建一个包含所有通过测试的元素的新数组。
-* @param {Array} arr
-* @param {function} fn
-*/
-
-function filter(arr, fn){
-    let result = []
-    for (let i = 0; i &lt; arr.length; i++) {
-        if (fn.call(null, arr[i], i, arr)){
-            result.push(arr[i])
-        }
-    }
-    return result
-}
-
-Array.prototype._filter = function (callback /*, thisArg*/ ) {
-    if (this == null) {
-        // undefined == null
-        throw new TypeError(&apos;null or undefined&apos;);
-    }
-    if (typeof callback !== &apos;function&apos;) {
-        throw new TypeError(&apos;callback is not a function&apos;);
-    }
-    var oldArr = Object(this);
-    var len = oldArr.length &gt;&gt;&gt; 0;
-    var newArr = [];
-    var thisArg = arguments.length &gt;= 2 ? arguments[1] : void 0;
-    var k = 0;
-    while (k &lt; len) {
-        if (k in oldArr) {
-            var val = oldArr[k];
-            if (callback.call(thisArg, val, k, oldArr)) {
-                newArr.push(val);
-            }
-        }
-        k++;
-    }
-    return newArr;
-}
-
-var arr = [1,2,3,4,5]
-var arr1 = filter(arr, function(item, index, arr){
-    console.log(`item - ${item}; index - ${index}; arr - ${arr}`)
-    return item &gt; 3
-})
-
-var arr2 = arr._filter(function (item, index, arr) {
-    console.log(`item - ${item}; index - ${index}; arr - ${arr}`)
-    return item &gt; 3
-})
-console.log(arr1)
-console.log(arr2)
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/21/filter/">展开全文 >></a>
         </p>
       
 
