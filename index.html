@@ -281,94 +281,95 @@
 <li><p>遇到 http 请求，根据 path 和 method 判断触发</p>
 </li>
 <li><p>实现 next 机制</p>
-<p>  /**</p>
-<pre><code>* express 基本实现
-*/
-</code></pre><p>  const http = require(‘http’)<br>  const slice = Array.prototype.slice</p>
-<p>  class Express {</p>
-<pre><code>constructor() {
-  this.routes = {
-    all: [],
-    get: [],
-    post: []
-  }
-}
-
-register (path) {
-  const info = {}
-  if (typeof path === &apos;string&apos;) {
-    info.path = path
-    info.stack = slice.call(arguments, 1)
-  } else {
-    info.path = &apos;/&apos;
-    info.stack = slice.call(arguments, 0)
-  }
-  console.log(info.stack)
-  return info
-}
-use () {
-  const info = this.register.apply(this, arguments)
-  this.routes.all.push(info)
-}
-get () {
-  const info = this.register.apply(this, arguments)
-  this.routes.get.push(info)
-}
-post () {
-  const info = this.register.apply(this, arguments)
-  this.routes.post.push(info)
-}
-match (method, url) {
-  let stack = []
-  if (url === &apos;/favicon.ico&apos;) {
-    return stack
-  }
-  let curRoutes = []
-  curRoutes = curRoutes.concat(this.routes.all)
-  curRoutes = curRoutes.concat(this.routes[method])
-
-  curRoutes.forEach(routeInfo =&gt; {
-    if (url.indexOf(routeInfo.path) === 0) {
-      stack = stack.concat(routeInfo.stack)
-    }
-  })
-  return stack
-
-}
-handle (req, res, stack) {
-  const next = () =&gt; {
-    const middleware = stack.shift()
-    middleware &amp;&amp; middleware(req, res, next)
-  }
-  next()
-}
-callback () {
-  return (req, res) =&gt; {
-    res.json = (data) =&gt; {
-      res.setHeader(&apos;Content-type&apos;, &apos;application/json&apos;)
-      res.end(
-        JSON.stringify(data)
-      )
-    }
-    const url = req.url
-    const method = req.method.toLowerCase()
-
-    const resultList = this.match(method, url)
-
-    this.handle(req, res, resultList)
-  }
-}
-listen (...args) {
-  const server = http.createServer(this.callback())
-  server.listen(...args)
-}
-</code></pre><p>  }</p>
-<p>  module.exports = () =&gt; {</p>
-<pre><code>return new Express()
-</code></pre><p>  }</p>
 </li>
 </ul>
+<pre><code>// express 基本实现
+const http = require(&apos;http&apos;)
+const slice = Array.prototype.slice
 
+class Express {
+  constructor() {
+    this.routes = {
+      all: [],
+      get: [],
+      post: []
+    }
+  }
+
+  register (path) {
+    const info = {}
+    if (typeof path === &apos;string&apos;) {
+      info.path = path
+      info.stack = slice.call(arguments, 1)
+    } else {
+      info.path = &apos;/&apos;
+      info.stack = slice.call(arguments, 0)
+    }
+    console.log(info.stack)
+    return info
+  }
+  use () {
+    const info = this.register.apply(this, arguments)
+    this.routes.all.push(info)
+  }
+  get () {
+    const info = this.register.apply(this, arguments)
+    this.routes.get.push(info)
+  }
+  post () {
+    const info = this.register.apply(this, arguments)
+    this.routes.post.push(info)
+  }
+  match (method, url) {
+    let stack = []
+    if (url === &apos;/favicon.ico&apos;) {
+      return stack
+    }
+    let curRoutes = []
+    curRoutes = curRoutes.concat(this.routes.all)
+    curRoutes = curRoutes.concat(this.routes[method])
+
+    curRoutes.forEach(routeInfo =&gt; {
+      if (url.indexOf(routeInfo.path) === 0) {
+        stack = stack.concat(routeInfo.stack)
+      }
+    })
+    return stack
+
+  }
+  handle (req, res, stack) {
+    const next = () =&gt; {
+      const middleware = stack.shift()
+      middleware &amp;&amp; middleware(req, res, next)
+    }
+    next()
+  }
+  callback () {
+    return (req, res) =&gt; {
+      res.json = (data) =&gt; {
+        res.setHeader(&apos;Content-type&apos;, &apos;application/json&apos;)
+        res.end(
+          JSON.stringify(data)
+        )
+      }
+      const url = req.url
+      const method = req.method.toLowerCase()
+
+      const resultList = this.match(method, url)
+
+      this.handle(req, res, resultList)
+    }
+  }
+  listen (...args) {
+    const server = http.createServer(this.callback())
+    server.listen(...args)
+  }
+}
+
+module.exports = () =&gt; {
+  return new Express()
+}
+</code></pre>
       
 
       
