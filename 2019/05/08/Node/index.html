@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com/child">
   <title>Node | NTFS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="不使用框架开发 node server 总结 处理 http 接口 连接数据库 实现登陆 安全 日志   http，nodejs 处理 http、处理路由、连接mysql  cookie，session，redis，nginx 反向代理  sql 注入，xss 攻击，加密  日志， stream（收集日志），contrab（拆分日志），readline（分析日志）   express 框架使用总结">
+  <meta name="description" content="不使用框架开发 node server 总结 处理 http 接口 连接数据库 实现登陆 安全 日志   http，nodejs 处理 http、处理路由、连接mysql cookie，session，redis，nginx 反向代理 sql 注入，xss 攻击，加密 日志， stream（收集日志），contrab（拆分日志），readline（分析日志）  express 框架使用总结 使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Node">
 <meta property="og:url" content="http://yoursite.com/child/2019/05/08/Node/index.html">
 <meta property="og:site_name" content="NTFS">
-<meta property="og:description" content="不使用框架开发 node server 总结 处理 http 接口 连接数据库 实现登陆 安全 日志   http，nodejs 处理 http、处理路由、连接mysql  cookie，session，redis，nginx 反向代理  sql 注入，xss 攻击，加密  日志， stream（收集日志），contrab（拆分日志），readline（分析日志）   express 框架使用总结">
+<meta property="og:description" content="不使用框架开发 node server 总结 处理 http 接口 连接数据库 实现登陆 安全 日志   http，nodejs 处理 http、处理路由、连接mysql cookie，session，redis，nginx 反向代理 sql 注入，xss 攻击，加密 日志， stream（收集日志），contrab（拆分日志），readline（分析日志）  express 框架使用总结 使用">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-14T02:53:28.374Z">
+<meta property="og:updated_time" content="2019-05-18T04:31:46.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Node">
-<meta name="twitter:description" content="不使用框架开发 node server 总结 处理 http 接口 连接数据库 实现登陆 安全 日志   http，nodejs 处理 http、处理路由、连接mysql  cookie，session，redis，nginx 反向代理  sql 注入，xss 攻击，加密  日志， stream（收集日志），contrab（拆分日志），readline（分析日志）   express 框架使用总结">
+<meta name="twitter:description" content="不使用框架开发 node server 总结 处理 http 接口 连接数据库 实现登陆 安全 日志   http，nodejs 处理 http、处理路由、连接mysql cookie，session，redis，nginx 反向代理 sql 注入，xss 攻击，加密 日志， stream（收集日志），contrab（拆分日志），readline（分析日志）  express 框架使用总结 使用">
   
     <link rel="alternative" href="/atom.xml" title="NTFS" type="application/atom+xml">
   
@@ -180,117 +180,153 @@
 <li>日志</li>
 </ol>
 <ul>
-<li><p>http，nodejs 处理 http、处理路由、连接mysql</p>
-</li>
-<li><p>cookie，session，redis，nginx 反向代理</p>
-</li>
-<li><p>sql 注入，xss 攻击，加密</p>
-</li>
-<li><p>日志， stream（收集日志），contrab（拆分日志），readline（分析日志）</p>
-</li>
+<li>http，nodejs 处理 http、处理路由、连接mysql</li>
+<li>cookie，session，redis，nginx 反向代理</li>
+<li>sql 注入，xss 攻击，加密</li>
+<li>日志， stream（收集日志），contrab（拆分日志），readline（分析日志）</li>
 </ul>
 <h2 id="express-框架使用总结"><a href="#express-框架使用总结" class="headerlink" title="express 框架使用总结"></a>express 框架使用总结</h2><ol>
-<li><p>使用 express-session, connect-redis, 登陆验证中间件</p>
-</li>
-<li><p>使用 morgan 记录日志</p>
-</li>
-<li><p>express 中间件原理</p>
-</li>
+<li>使用 express-session, connect-redis, 登陆验证中间件</li>
+<li>使用 morgan 记录日志</li>
+<li>express 中间件原理</li>
 </ol>
 <ul>
-<li><p>app.use 注册中间件</p>
-</li>
-<li><p>遇到 http 请求，根据 path 和 method 判断触发</p>
-</li>
-<li><p>实现 next 机制</p>
-</li>
+<li>app.use 注册中间件</li>
+<li>遇到 http 请求，根据 path 和 method 判断触发</li>
+<li>实现 next 机制</li>
 </ul>
 <pre><code>// express 基本实现
 const http = require(&apos;http&apos;)
 const slice = Array.prototype.slice
-
 class Express {
-  constructor() {
-    this.routes = {
-      all: [],
-      get: [],
-      post: []
+    constructor() {
+        this.routes = {
+            all: [],
+            get: [],
+            post: []
+        }
     }
-  }
-
-  register (path) {
-    const info = {}
-    if (typeof path === &apos;string&apos;) {
-      info.path = path
-      info.stack = slice.call(arguments, 1)
-    } else {
-      info.path = &apos;/&apos;
-      info.stack = slice.call(arguments, 0)
+    register (path) {
+        const info = {}
+        if (typeof path === &apos;string&apos;) {
+            info.path = path
+            info.stack = slice.call(arguments, 1)
+        } else {
+            info.path = &apos;/&apos;
+            info.stack = slice.call(arguments, 0)
+        }
+        console.log(info.stack)
+        return info
     }
-    console.log(info.stack)
-    return info
-  }
-  use () {
-    const info = this.register.apply(this, arguments)
-    this.routes.all.push(info)
-  }
-  get () {
-    const info = this.register.apply(this, arguments)
-    this.routes.get.push(info)
-  }
-  post () {
-    const info = this.register.apply(this, arguments)
-    this.routes.post.push(info)
-  }
-  match (method, url) {
-    let stack = []
-    if (url === &apos;/favicon.ico&apos;) {
-      return stack
+    use () {
+        const info = this.register.apply(this, arguments)
+        this.routes.all.push(info)
     }
-    let curRoutes = []
-    curRoutes = curRoutes.concat(this.routes.all)
-    curRoutes = curRoutes.concat(this.routes[method])
-
-    curRoutes.forEach(routeInfo =&gt; {
-      if (url.indexOf(routeInfo.path) === 0) {
-        stack = stack.concat(routeInfo.stack)
-      }
-    })
-    return stack
-
-  }
-  handle (req, res, stack) {
-    const next = () =&gt; {
-      const middleware = stack.shift()
-      middleware &amp;&amp; middleware(req, res, next)
+    get () {
+        const info = this.register.apply(this, arguments)
+        this.routes.get.push(info)
     }
-    next()
-  }
-  callback () {
-    return (req, res) =&gt; {
-      res.json = (data) =&gt; {
-        res.setHeader(&apos;Content-type&apos;, &apos;application/json&apos;)
-        res.end(
-          JSON.stringify(data)
-        )
-      }
-      const url = req.url
-      const method = req.method.toLowerCase()
-
-      const resultList = this.match(method, url)
-
-      this.handle(req, res, resultList)
+    post () {
+        const info = this.register.apply(this, arguments)
+        this.routes.post.push(info)
     }
-  }
-  listen (...args) {
-    const server = http.createServer(this.callback())
-    server.listen(...args)
-  }
+    match (method, url) {
+        let stack = []
+        if (url === &apos;/favicon.ico&apos;) {
+            return stack
+        }
+        let curRoutes = []
+        curRoutes = curRoutes.concat(this.routes.all)
+        curRoutes = curRoutes.concat(this.routes[method])
+
+        curRoutes.forEach(routeInfo =&gt; {
+            if (url.indexOf(routeInfo.path) === 0) {
+                stack = stack.concat(routeInfo.stack)
+            }
+        })
+        return stack
+    }
+    handle (req, res, stack) {
+        const next = () =&gt; {
+            const middleware = stack.shift()
+            middleware &amp;&amp; middleware(req, res, next)
+        }
+        next()
+    }
+    callback () {
+        return (req, res) =&gt; {
+            res.json = (data) =&gt; {
+                res.setHeader(&apos;Content-type&apos;, &apos;application/json&apos;)
+                res.end(
+                    JSON.stringify(data)
+                )
+            }
+            const url = req.url
+            const method = req.method.toLowerCase()
+            const resultList = this.match(method, url)
+            this.handle(req, res, resultList)
+        }
+    }
+    listen (...args) {
+        const server = http.createServer(this.callback())
+        server.listen(...args)
+    }
 }
-
 module.exports = () =&gt; {
-  return new Express()
+    return new Express()
 }
+</code></pre><h2 id="Koa2-框架使用总结"><a href="#Koa2-框架使用总结" class="headerlink" title="Koa2 框架使用总结"></a>Koa2 框架使用总结</h2><ol>
+<li>使用 async/await 的好处</li>
+<li>Koa2 的使用，以及如何操作 session， redis 日志</li>
+<li>Koa2 中间件的使用和原理</li>
+</ol>
+<pre><code>const http = require(&apos;http&apos;)
+// 组合中间件
+function compose(middlewareList) {
+    return function (ctx) {
+        function dispatch(i) {
+            const fn = middlewareList[i]
+            try {
+                return Promise.resolve(fn(ctx, dispatch.bind(null, i + 1)))
+            } catch (error) {
+                return Promise.reject(error)
+            }
+        }
+        return dispatch(0)
+    }
+}
+class koa2Test {
+    constructor() {
+        this.middlewareList = []
+    }
+    use(fn) {
+        this.middlewareList.push(fn)
+        return this
+    }
+    createContext(req, res) {
+        const ctx = {
+            req,
+            res
+        }
+        ctx.query = req.query
+        return ctx
+    }
+    handleRequest(ctx, fn) {
+        return fn(ctx)
+    }
+    callback() {
+        const fn = compose(this.middlewareList)
+        return (req, res) =&gt; {
+            const ctx = this.createContext(req, res)
+            return this.handleRequest(ctx, fn)
+        }
+    }
+    listen(...args) {
+        const server = http.createServer(this.callback())
+        server.listen(...args)
+    }
+}
+module.exports = koa2Test
 </code></pre>
       
 
