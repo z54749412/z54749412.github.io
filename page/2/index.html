@@ -150,6 +150,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-promise-some" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/11/22/promise-some/">promise.some</a>
+    </h1>
+  
+
+        
+        <a href="/2018/11/22/promise-some/" class="archive-article-date">
+  	<time datetime="2018-11-22T13:37:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="promise-some"><a href="#promise-some" class="headerlink" title="promise.some"></a>promise.some</h3><p><a href="http://bluebirdjs.com/docs/api/promise.some.html" target="_blank" rel="noopener">数组 promise.some 方法</a></p>
+<p>  promise.all方法只要有一个返回为reject，那么函数返回即为reject，现在需求为，即时返回reject，也返回resolve,resolve为成功的那些resolve，实现promise.some</p>
+<pre><code>function some( promises, count = 1 ){
+
+    const wrapped = promises.map( promise =&gt; promise.then(value =&gt; ({ success: true, value }), () =&gt; ({ success: false })) );
+    return Promise.all( wrapped ).then(function(results){
+        const successful = results.filter(result =&gt; result.success);
+        if(successful.length &lt; count){
+            throw new Error(`Only ${successful.length} resolved.`)
+        }
+        return successful.map(result =&gt; result.value);
+    });
+
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/11/22/promise-some/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-filter" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1620,103 +1696,6 @@ Fib(n) = {  1                     n=1
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/08/15/美文/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Currying" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/15/Currying/">Currying</a>
-    </h1>
-  
-
-        
-        <a href="/2018/08/15/Currying/" class="archive-article-date">
-  	<time datetime="2018-08-15T00:51:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Currying （柯里化）：是把接受多个参数的函数变换成接受一个单一参数的函数，并且返回接受余下的参数而且返回结果的新函数的技术。</p>
-<pre><code>var add = function(x) {
-    return function(y) {
-        return x + y;
-    };
-};
-
-var increment = add(1);
-var addTen = add(10);
-
-increment(2);
-// 3
-
-addTen(2);
-// 12
-</code></pre><hr>
-<pre><code>const toString = Object.prototype.toString;
-
-var isType = function (type) {
-    return function (obj){
-        return toString.call(obj) == `[object ${type}]`;
-    }
-}
-
-let isString = isType(&apos;String&apos;)
-
-isString(123)  // false
-
-isString(&apos;test&apos;) // true
-
-let isArray = isType(&apos;Array&apos;)
-
-isArray([])  // true
-
-isArray(123) //false
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/15/Currying/">展开全文 >></a>
         </p>
       
 

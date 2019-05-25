@@ -233,6 +233,104 @@
 
 
   
+    <article id="post-Python" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/05/25/Python/">Python</a>
+    </h1>
+  
+
+        
+        <a href="/2019/05/25/Python/" class="archive-article-date">
+  	<time datetime="2019-05-25T05:41:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Python-Learn"><a href="#Python-Learn" class="headerlink" title="Python Learn"></a>Python Learn</h2><ul>
+<li>python3</li>
+</ul>
+<p>输出 print()</p>
+<p>函数 def</p>
+<h3 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h3><pre><code>from collections import deque
+
+graph = {}
+graph[&quot;you&quot;] = [&quot;alice&quot;, &quot;bob&quot;, &quot;claire&quot;]
+graph[&quot;bob&quot;] = [&quot;anuj&quot;, &quot;peggy&quot;]
+graph[&quot;alice&quot;] = [&quot;peggy&quot;]
+graph[&quot;claire&quot;] = [&quot;thom&quot;, &quot;jonny&quot;]
+graph[&quot;anuj&quot;] = []
+graph[&quot;peggy&quot;] = []
+graph[&quot;thom&quot;] = []
+graph[&quot;jonny&quot;] = []
+
+def search(name):
+    search_queue = deque()
+    search_queue += graph[name]
+    searched = []
+    while search_queue:
+        person = search_queue.popleft()
+        if person not in searched:
+            if person_is_seller(person):
+                print(person + &quot; is a mango seller!&quot;)
+                return True
+            else:
+                search_queue += graph[person]
+                searched.append(person)
+    return False
+
+def person_is_seller(name):
+    return name[-1] == &apos;m&apos;
+
+search(&quot;you&quot;)
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/05/25/Python/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Node" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1230,82 +1328,6 @@ toString : () =&gt; {console.log(&quot;toString&quot;); return {}}
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/11/23/interview/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-promise-some" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/22/promise-some/">promise.some</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/22/promise-some/" class="archive-article-date">
-  	<time datetime="2018-11-22T13:37:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="promise-some"><a href="#promise-some" class="headerlink" title="promise.some"></a>promise.some</h3><p><a href="http://bluebirdjs.com/docs/api/promise.some.html" target="_blank" rel="noopener">数组 promise.some 方法</a></p>
-<p>  promise.all方法只要有一个返回为reject，那么函数返回即为reject，现在需求为，即时返回reject，也返回resolve,resolve为成功的那些resolve，实现promise.some</p>
-<pre><code>function some( promises, count = 1 ){
-
-    const wrapped = promises.map( promise =&gt; promise.then(value =&gt; ({ success: true, value }), () =&gt; ({ success: false })) );
-    return Promise.all( wrapped ).then(function(results){
-        const successful = results.filter(result =&gt; result.success);
-        if(successful.length &lt; count){
-            throw new Error(`Only ${successful.length} resolved.`)
-        }
-        return successful.map(result =&gt; result.value);
-    });
-
-}
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/22/promise-some/">展开全文 >></a>
         </p>
       
 
