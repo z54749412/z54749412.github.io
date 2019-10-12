@@ -974,13 +974,17 @@ React.createElement(
 <li><p>拆箱转换会尝试调用 valueOf 和 toString 来获得拆箱后的基本类型。如果 valueOf 和 toString 都不存在，或者没有返回基本类型，则会产生类型错误 TypeError。</p>
 </li>
 <li><p>在 ES6 之后，还允许对象通过显式指定 @@toPrimitive Symbol 来覆盖原有的行为。</p>
-<p>  var o = {</p>
-<pre><code>valueOf : () =&gt; {console.log(&quot;valueOf&quot;); return {}},
-toString : () =&gt; {console.log(&quot;toString&quot;); return {}}
-</code></pre><p>  }<br>  o[Symbol.toPrimitive] = () =&gt; {console.log(“toPrimitive”); return “hello”}<br>  console.log(o + “”)<br>  // toPrimitive<br>  // hello</p>
 </li>
 </ul>
-<hr>
+<pre><code>var o = {
+  valueOf : () =&gt; {console.log(&quot;valueOf&quot;); return {}},
+  toString : () =&gt; {console.log(&quot;toString&quot;); return {}}
+}
+o[Symbol.toPrimitive] = () =&gt; {console.log(&quot;toPrimitive&quot;); return &quot;hello&quot;}
+console.log(o + &quot;&quot;)
+// toPrimitive
+// hello
+</code></pre><hr>
 
       
 
