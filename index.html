@@ -977,9 +977,7 @@ React.createElement(
 <p>  var o = {</p>
 <pre><code>valueOf : () =&gt; {console.log(&quot;valueOf&quot;); return {}},
 toString : () =&gt; {console.log(&quot;toString&quot;); return {}}
-</code></pre><p>  }</p>
-<p>  o[Symbol.toPrimitive] = () =&gt; {console.log(“toPrimitive”); return “hello”}</p>
-<p>  console.log(o + “”)<br>  // toPrimitive<br>  // hello</p>
+</code></pre><p>  }<br>  o[Symbol.toPrimitive] = () =&gt; {console.log(“toPrimitive”); return “hello”}<br>  console.log(o + “”)<br>  // toPrimitive<br>  // hello</p>
 </li>
 </ul>
 <hr>

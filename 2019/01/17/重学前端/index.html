@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="winter 重学前端装箱转换拆箱转换 对象到 String 和 Number 的转换都遵循“先拆箱再转换”的规则。通过拆箱转换，把对象变成基本类型，再从基本类型转换为对应的 String 或者 Number。  拆箱转换会尝试调用 valueOf 和 toString 来获得拆箱后的基本类型。如果 valueOf 和 toString 都不存在，或者没有返回基本类型，则会产生类型错误 TypeE">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-28T02:16:36.564Z">
+<meta property="og:updated_time" content="2019-10-12T09:05:17.449Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重学前端">
 <meta name="twitter:description" content="winter 重学前端装箱转换拆箱转换 对象到 String 和 Number 的转换都遵循“先拆箱再转换”的规则。通过拆箱转换，把对象变成基本类型，再从基本类型转换为对应的 String 或者 Number。  拆箱转换会尝试调用 valueOf 和 toString 来获得拆箱后的基本类型。如果 valueOf 和 toString 都不存在，或者没有返回基本类型，则会产生类型错误 TypeE">
@@ -181,9 +181,7 @@
 <p>  var o = {</p>
 <pre><code>valueOf : () =&gt; {console.log(&quot;valueOf&quot;); return {}},
 toString : () =&gt; {console.log(&quot;toString&quot;); return {}}
-</code></pre><p>  }</p>
-<p>  o[Symbol.toPrimitive] = () =&gt; {console.log(“toPrimitive”); return “hello”}</p>
-<p>  console.log(o + “”)<br>  // toPrimitive<br>  // hello</p>
+</code></pre><p>  }<br>  o[Symbol.toPrimitive] = () =&gt; {console.log(“toPrimitive”); return “hello”}<br>  console.log(o + “”)<br>  // toPrimitive<br>  // hello</p>
 </li>
 </ul>
 <hr>
