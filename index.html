@@ -233,6 +233,159 @@
 
 
   
+    <article id="post-数据结构与算法JavaScript描述" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/18/数据结构与算法JavaScript描述/">数据结构与算法JavaScript描述</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/18/数据结构与算法JavaScript描述/" class="archive-article-date">
+  	<time datetime="2019-11-18T01:37:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Day-one-Page-19"><a href="#Day-one-Page-19" class="headerlink" title="Day one (Page 19)"></a>Day one (Page 19)</h3><blockquote>
+<p>数组：</p>
+<ol>
+<li>数组的特点（特殊的对象）</li>
+<li>创建数组的方式</li>
+<li>读取数组</li>
+<li>数组操作 (concat, splice)</li>
+</ol>
+</blockquote>
+<h3 id="Day-two-Page-34"><a href="#Day-two-Page-34" class="headerlink" title="Day two (Page 34)"></a>Day two (Page 34)</h3><blockquote>
+<p>数组：<br>  二维数组<br>  对象数组<br>  数组的迭代方法</p>
+</blockquote>
+<blockquote>
+<p>列表：</p>
+<ul>
+<li>列表是一组有序的数据。每个列表中的数据项成为元素。在 js 中，列表中的元素可以是任意类型的数据。</li>
+</ul>
+</blockquote>
+<p>  listSize（属性）    列表的元素个数<br>  pos（属性）    列表的当前位置<br>  length（属性）    返回列表元素的个数<br>  clear（方法）    清空列表中的所有元素<br>  toString（方法）    返回列表的字符串形式<br>  getElement（方法）    返回当前位置的元素<br>  insert（方法）    在现有元素后插入新元素<br>  append（方法）    在列表的末尾添加新元素<br>  remove（方法）    从列表中删除元素<br>  front（方法）    将列表的当前位置设移动到第一个元素<br>  end（方法）    将列表的当前位置移动到最后一个元素<br>  prev（方法）    将当前位置后移一位<br>  next（方法）    将当前位置前移一位<br>  currPos（方法）    返回列表的当前位置<br>  moveTo（方法）    将当前位置移动到指定位置</p>
+<h3 id="Day-three-Page-37"><a href="#Day-three-Page-37" class="headerlink" title="Day three (Page 37)"></a>Day three (Page 37)</h3><pre><code>function List() {
+  this.listSize = 0
+  this.pos = 0
+  this.dataStore = []
+  this.clear = clear
+  this.find = find
+  this.toString = toString
+  this.insert = insert
+  this.append = append
+  this.remove = remove
+  this.front = front
+  this.end = end
+  this.prev = prev
+  this.next = next
+  this.length = length
+  this.currPos = currPos
+  this.moveTo = moveTo
+  this.getElement = getElement
+  this.length = length
+  this.contains = contains
+}
+
+function find(element) {
+  for (let i = 0; i &lt; this.dataStore.length; i++) {
+    if (this.dataStore[i] === element) {
+      return i
+    }
+  }
+  return -1
+}
+
+function append(element) {
+  this.dataStore[this.listSize++] = element
+}
+
+function remove(element) {
+  let fondAt = this.find(element)
+  if (fondAt &gt; -1) {
+    this.dataStore.splice(foundAt, 1)
+    --this.listSize
+    return true
+  }
+  return false
+}
+
+function toString() {
+  return this.dataStore
+}
+
+function insert(element, after) {
+  const insertPos = this.find(after)
+  if (insertPos &gt; -1) {
+    this.dataStore.splice(insertPos+1, 0, element)
+    ++this.listSize
+    return true
+  }
+  return false
+}
+
+function clear() {
+  delete this.dataStore
+  this.dataStore = []
+  this.listSize = this.pos = 0
+}
+
+function contains(element) {
+  const index = find(element)
+  if (index &gt; -1) {
+    return true
+  }
+  return false
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/18/数据结构与算法JavaScript描述/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-云服务搭建小程序" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1253,82 +1406,6 @@ console.log(o + &quot;&quot;)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/11/23/promise/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-debounce" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/23/debounce/">debounce</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/23/debounce/" class="archive-article-date">
-  	<time datetime="2018-11-23T03:21:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="防抖函数实现"><a href="#防抖函数实现" class="headerlink" title="防抖函数实现"></a>防抖函数实现</h3><pre><code>function debounce(fn, wait) {
-    var timer = null;
-    return function () {
-        var context = this
-        var args = arguments
-        if (timer) {
-            clearTimeout(timer);
-            timer = null;
-        }
-        timer = setTimeout(function () {
-            fn.apply(context, args)
-        }, wait)
-    }
-}
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/23/debounce/">展开全文 >></a>
         </p>
       
 
