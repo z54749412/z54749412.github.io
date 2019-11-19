@@ -415,13 +415,23 @@ function clear() {
 <ul>
 <li>将数字转换为二进制和八进制</li>
 <li>num 要转换数字</li>
-<li><p>base 进制</p>
-<p>function mulBase(num, base) {<br>var s = new Stack()<br>do {<br>  s.push(num % base)<br>  num = Math.floor(num /= base)<br>} while (num &gt; 0)<br>var converted = ‘’<br>while (s.length() &gt; 0) {<br>  converted += s.pop()<br>}<br>return converted<br>}</p>
-</li>
+<li>base 进制</li>
 </ul>
 </li>
 </ul>
-<h3 id="Day5-Page"><a href="#Day5-Page" class="headerlink" title="Day5 (Page )"></a>Day5 (Page )</h3><blockquote>
+<pre><code>function mulBase(num, base) {
+  var s = new Stack()
+  do {
+    s.push(num % base)
+    num = Math.floor(num /= base)
+  } while (num &gt; 0)
+  var converted = &apos;&apos;
+  while (s.length() &gt; 0) {
+    converted += s.pop()
+  }
+  return converted
+}
+</code></pre><h3 id="Day5-Page"><a href="#Day5-Page" class="headerlink" title="Day5 (Page )"></a>Day5 (Page )</h3><blockquote>
 <p>队列</p>
 </blockquote>
 
