@@ -412,12 +412,11 @@ function clear() {
 }
 </code></pre><ul>
 <li><p>栈的应用</p>
-<p>  /*</p>
 <ul>
 <li>将数字转换为二进制和八进制</li>
 <li>num 要转换数字</li>
-<li><p>base 进制<br>*/</p>
-<p>function mulBase(num, base) {<br>var s = new Stack()<br>do {<br> s.push(num % base)<br> num = Math.floor(num /= base)<br>} while (num &gt; 0)<br>var converted = ‘’<br>while (s.length() &gt; 0) {<br> converted += s.pop()<br>}<br>return converted<br>}</p>
+<li><p>base 进制</p>
+<p>function mulBase(num, base) {<br>var s = new Stack()<br>do {<br>  s.push(num % base)<br>  num = Math.floor(num /= base)<br>} while (num &gt; 0)<br>var converted = ‘’<br>while (s.length() &gt; 0) {<br>  converted += s.pop()<br>}<br>return converted<br>}</p>
 </li>
 </ul>
 </li>
