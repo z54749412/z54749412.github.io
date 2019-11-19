@@ -263,7 +263,12 @@
 </ol>
 </blockquote>
 <h3 id="Day2-Page-34"><a href="#Day2-Page-34" class="headerlink" title="Day2 (Page 34)"></a>Day2 (Page 34)</h3><blockquote>
-<p>数组：<br>  二维数组<br>  对象数组<br>  数组的迭代方法</p>
+<p>数组：</p>
+<ul>
+<li>二维数组</li>
+<li>对象数组</li>
+<li>数组的迭代方法</li>
+</ul>
 </blockquote>
 <blockquote>
 <p>列表：</p>
@@ -271,7 +276,23 @@
 <li>列表是一组有序的数据。每个列表中的数据项成为元素。在 js 中，列表中的元素可以是任意类型的数据。</li>
 </ul>
 </blockquote>
-<p>  listSize（属性）    列表的元素个数<br>  pos（属性）    列表的当前位置<br>  length（属性）    返回列表元素的个数<br>  clear（方法）    清空列表中的所有元素<br>  toString（方法）    返回列表的字符串形式<br>  getElement（方法）    返回当前位置的元素<br>  insert（方法）    在现有元素后插入新元素<br>  append（方法）    在列表的末尾添加新元素<br>  remove（方法）    从列表中删除元素<br>  front（方法）    将列表的当前位置设移动到第一个元素<br>  end（方法）    将列表的当前位置移动到最后一个元素<br>  prev（方法）    将当前位置后移一位<br>  next（方法）    将当前位置前移一位<br>  currPos（方法）    返回列表的当前位置<br>  moveTo（方法）    将当前位置移动到指定位置</p>
+<ul>
+<li>listSize（属性）    列表的元素个数</li>
+<li>pos（属性）    列表的当前位置</li>
+<li>length（属性）    返回列表元素的个数</li>
+<li>clear（方法）    清空列表中的所有元素</li>
+<li>toString（方法）    返回列表的字符串形式</li>
+<li>getElement（方法）    返回当前位置的元素</li>
+<li>insert（方法）    在现有元素后插入新元素</li>
+<li>append（方法）    在列表的末尾添加新元素</li>
+<li>remove（方法）    从列表中删除元素</li>
+<li>front（方法）    将列表的当前位置设移动到第一个元素</li>
+<li>end（方法）    将列表的当前位置移动到最后一个元素</li>
+<li>prev（方法）    将当前位置后移一位</li>
+<li>next（方法）    将当前位置前移一位</li>
+<li>currPos（方法）    返回列表的当前位置</li>
+<li>moveTo（方法）    将当前位置移动到指定位置</li>
+</ul>
 <h3 id="Day3-Page-37"><a href="#Day3-Page-37" class="headerlink" title="Day3 (Page 37)"></a>Day3 (Page 37)</h3><pre><code>function List() {
   this.listSize = 0
   this.pos = 0
@@ -411,15 +432,14 @@ function clear() {
   this.top = 0
 }
 </code></pre><ul>
-<li><p>栈的应用</p>
-<ul>
-<li>将数字转换为二进制和八进制</li>
-<li>num 要转换数字</li>
-<li>base 进制</li>
+<li>栈的应用</li>
 </ul>
-</li>
-</ul>
-<pre><code>function mulBase(num, base) {
+<pre><code>* 将数字转换为二进制和八进制
+* num 要转换数字
+* base 进制
+
+
+function mulBase(num, base) {
   var s = new Stack()
   do {
     s.push(num % base)
