@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="Day1 (Page 19) 数组：  数组的特点（特殊的对象） 创建数组的方式 读取数组 数组操作 (concat, splice)   Day2 (Page 34) 数组：  二维数组  对象数组  数组的迭代方法   列表：  列表是一组有序的数据。每个列表中的数据项成为元素。在 js 中，列表中的元素可以是任意类型的数据。     listSize（属性）    列表的元素个数  pos（">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-19T01:47:38.606Z">
+<meta property="og:updated_time" content="2019-11-19T01:49:51.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法JavaScript描述">
 <meta name="twitter:description" content="Day1 (Page 19) 数组：  数组的特点（特殊的对象） 创建数组的方式 读取数组 数组操作 (concat, splice)   Day2 (Page 34) 数组：  二维数组  对象数组  数组的迭代方法   列表：  列表是一组有序的数据。每个列表中的数据项成为元素。在 js 中，列表中的元素可以是任意类型的数据。     listSize（属性）    列表的元素个数  pos（">
@@ -298,27 +298,47 @@ function getElement() {
 <p>栈： 栈是一种高效的数据结构，因为数据只能在栈顶添加或删除</p>
 </blockquote>
 <ul>
-<li><p>LIFO（last-in-first-out）后进先出</p>
-<p>function Stack() {<br>  this.dataStore = []<br>  this.top = 0<br>  this.push = push<br>  this.pop = pop<br>  this.peek = peek<br>  this.length = length<br>  this.clear = clear<br>}</p>
-<p>function push(element) {<br>  this.dataStore[this.top++] = element<br>}</p>
-<p>function pop() {<br>  return this.dataStore[–this.top]<br>}</p>
-<p>function peek() {<br>  return this.dataStore[this.top - 1]<br>}</p>
-<p>function length() {<br>  return this.top<br>}</p>
-<p>function clear() {<br>  this.top = 0<br>}</p>
-</li>
+<li>LIFO（last-in-first-out）后进先出</li>
+</ul>
+<pre><code>function Stack() {
+  this.dataStore = []
+  this.top = 0
+  this.push = push
+  this.pop = pop
+  this.peek = peek
+  this.length = length
+  this.clear = clear
+}
+
+function push(element) {
+  this.dataStore[this.top++] = element
+}
+
+function pop() {
+  return this.dataStore[--this.top]
+}
+
+function peek() {
+  return this.dataStore[this.top - 1]
+}
+
+function length() {
+  return this.top
+}
+
+function clear() {
+  this.top = 0
+}
+</code></pre><ul>
 <li><p>栈的应用</p>
-<p>/*</p>
+<p>  /*</p>
 <ul>
 <li>将数字转换为二进制和八进制</li>
 <li>num 要转换数字</li>
-<li>base 进制<br>*/</li>
+<li><p>base 进制<br>*/</p>
+<p>function mulBase(num, base) {<br>var s = new Stack()<br>do {<br> s.push(num % base)<br> num = Math.floor(num /= base)<br>} while (num &gt; 0)<br>var converted = ‘’<br>while (s.length() &gt; 0) {<br> converted += s.pop()<br>}<br>return converted<br>}</p>
+</li>
 </ul>
-<p>function mulBase(num, base) {<br>  var s = new Stack()<br>  do {</p>
-<pre><code>s.push(num % base)
-num = Math.floor(num /= base)
-</code></pre><p>  } while (num &gt; 0)<br>  var converted = ‘’<br>  while (s.length() &gt; 0) {</p>
-<pre><code>converted += s.pop()
-</code></pre><p>  }<br>  return converted<br>}</p>
 </li>
 </ul>
 <h3 id="Day5-Page"><a href="#Day5-Page" class="headerlink" title="Day5 (Page )"></a>Day5 (Page )</h3><blockquote>
