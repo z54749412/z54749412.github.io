@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="Day1 (Page 19) 数组：  数组的特点（特殊的对象） 创建数组的方式 读取数组 数组操作 (concat, splice)   Day2 (Page 34) 数组：  二维数组 对象数组 数组的迭代方法    列表：  列表是一组有序的数据。每个列表中的数据项成为元素。在 js 中，列表中的元素可以是任意类型的数据。    listSize（属性）    列表的元素个数 pos（属性）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-19T01:56:17.034Z">
+<meta property="og:updated_time" content="2019-11-20T02:00:01.794Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法JavaScript描述">
 <meta name="twitter:description" content="Day1 (Page 19) 数组：  数组的特点（特殊的对象） 创建数组的方式 读取数组 数组操作 (concat, splice)   Day2 (Page 34) 数组：  二维数组 对象数组 数组的迭代方法    列表：  列表是一组有序的数据。每个列表中的数据项成为元素。在 js 中，列表中的元素可以是任意类型的数据。    listSize（属性）    列表的元素个数 pos（属性）">
@@ -370,10 +370,138 @@ function mulBase(num, base) {
   }
   return converted
 }
-</code></pre><h3 id="Day5-Page"><a href="#Day5-Page" class="headerlink" title="Day5 (Page )"></a>Day5 (Page )</h3><blockquote>
+</code></pre><h3 id="Day5-Page-75"><a href="#Day5-Page-75" class="headerlink" title="Day5 (Page 75)"></a>Day5 (Page 75)</h3><blockquote>
 <p>队列</p>
 </blockquote>
+<ul>
+<li>先进先出</li>
+</ul>
+<pre><code>function Queue() {
+  this.dataStore = []
+  this.enqueue = enqueue
+  this.dequeue = dequeue
+  this.front = front
+  this.back = back
+  this.toString = toString
+  this.empty = empty
+}
 
+function enqueue(element) {
+  this.dataStore.push(element)
+}
+
+function dequeue() {
+  return this.dataStore.shift()
+}
+
+function front() {
+  return this.dataStorep[0]
+}
+
+function back() {
+  return this.dataStore[this.dataStore.length - 1]
+}
+
+function toString() {
+  var retStr = &apos;&apos;
+  for (let i = 0; i &lt; this.dataStore.length; i++) {
+    retStr += this.dataStore[i] + &apos;\n&apos;
+  }
+  return retStr
+}
+
+function empty() {
+  return this.dataStore.length ==== 0
+}
+</code></pre><blockquote>
+<p>优先队列</p>
+</blockquote>
+<blockquote>
+<p>链表</p>
+</blockquote>
+<ul>
+<li>JS中数据被实现为对象，所以性能不是很优，尽管做了大量的优化。</li>
+</ul>
+<ul>
+<li>单链表</li>
+</ul>
+<pre><code>function Node(element) {
+  this.element = element
+  this.next = null
+}
+
+function LList() {
+  this.head = new Node(&apos;head&apos;)
+  this.find = find
+  this.insert = insert
+  this.remove = remove
+  this.display = display
+}
+
+function find(item) {
+  var currNode = this.head
+  while (currNode.element != item) {
+    currNode = currNode.next
+  }
+  return currNode
+}
+
+function insert(newElement, item) {
+  var newNode = new Node(newElement)
+  var current = this.find(item)
+  newNode.next = current.next
+  current.next = newNode
+}
+
+function display() {
+  var currNode = this.head
+  while (!(currNode.next === null)) {
+    console.log(currNode.next.element)
+    currNode = currNode.next
+  }
+}
+
+function findPrevious(item) {
+  var currNode = this.head
+  while (!(currNode.next === null) &amp;&amp; (currNode.next.element !== item)) {
+    currNode = currNode.next
+  }
+  return currNode
+}
+
+function remove(item) {
+  var preNode = this.findPrevious(item)
+  if (!(prevNode.next === null)) {
+    prevNode.next = prevNode.next.next
+  }
+}
+</code></pre><ul>
+<li>双向链表</li>
+</ul>
+<pre><code>function Node(element) {
+  this.element = element
+  this.next = null
+  this.previous = null
+}
+
+function insert(newElement, item) {
+  var newNode = new Node(newElement)
+  var current = this.find(item)
+  newNode.next = current.next
+  newNode.previous = current
+  current.next = newNode
+}
+
+function remove(item) {
+  var currNode = this.find(item)
+  if (!(currNode.next === null)) {
+    currNode.previous.next = currNode.next
+    currNode.next.previous = currNode.previous
+    currNode.next = null
+    currNode.previous = null
+  }
+}
+</code></pre><h3 id="Day6-Page-75"><a href="#Day6-Page-75" class="headerlink" title="Day6 (Page 75)"></a>Day6 (Page 75)</h3>
       
 
       
