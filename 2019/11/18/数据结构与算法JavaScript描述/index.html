@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="NTFS">
 <meta property="og:description" content="Day1 (Page 19) 数组：  数组的特点（特殊的对象） 创建数组的方式 读取数组 数组操作 (concat, splice)   Day2 (Page 34) 数组：  二维数组 对象数组 数组的迭代方法    列表：  列表是一组有序的数据。每个列表中的数据项成为元素。在 js 中，列表中的元素可以是任意类型的数据。    listSize（属性）    列表的元素个数 pos（属性）">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-20T02:00:01.794Z">
+<meta property="og:updated_time" content="2019-11-21T01:52:09.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构与算法JavaScript描述">
 <meta name="twitter:description" content="Day1 (Page 19) 数组：  数组的特点（特殊的对象） 创建数组的方式 读取数组 数组操作 (concat, splice)   Day2 (Page 34) 数组：  二维数组 对象数组 数组的迭代方法    列表：  列表是一组有序的数据。每个列表中的数据项成为元素。在 js 中，列表中的元素可以是任意类型的数据。    listSize（属性）    列表的元素个数 pos（属性）">
@@ -501,7 +501,47 @@ function remove(item) {
     currNode.previous = null
   }
 }
-</code></pre><h3 id="Day6-Page-75"><a href="#Day6-Page-75" class="headerlink" title="Day6 (Page 75)"></a>Day6 (Page 75)</h3>
+</code></pre><h3 id="Day6-Page-81"><a href="#Day6-Page-81" class="headerlink" title="Day6 (Page 81)"></a>Day6 (Page 81)</h3><pre><code>function findLast() {
+  var currNode = this.head
+  while (!(currNode.next === null)) {
+    currNode = currNode.next
+  }
+  return currNode
+}
+
+function dispReverse() {
+  var currNode = this.head
+  currNode = this.findLast()
+  while (!(currNode.previous === null)) {
+    console.log(currNode.element)
+    currNode = currNode.previous
+  }
+}
+</code></pre><ul>
+<li>循环链表</li>
+</ul>
+<pre><code>function LList() {
+  this.head = new Node(&apos;head&apos;)
+  this.head.next = this.head
+  this.find = find
+  this.insert = insert
+  this.display = display
+  this.findPrevious = findPrevious
+  this.remove = remove
+}
+
+function display() {
+  var currNode = this.head
+  while (!(currNode.next === null) &amp;&amp; !(currNode.next.element === &apos;head&apos; )) {
+    console.log(currNode.next.element)
+    currNode = currNode.next
+  }
+}
+</code></pre><blockquote>
+<p>字典</p>
+</blockquote>
+<pre><code>+ 字典是一种以键 - 值对形式存储的数据结构。
+</code></pre><h3 id="Day7-Page-81"><a href="#Day7-Page-81" class="headerlink" title="Day7 (Page 81)"></a>Day7 (Page 81)</h3>
       
 
       

@@ -582,7 +582,47 @@ function remove(item) {
     currNode.previous = null
   }
 }
-</code></pre><h3 id="Day6-Page-75"><a href="#Day6-Page-75" class="headerlink" title="Day6 (Page 75)"></a>Day6 (Page 75)</h3>
+</code></pre><h3 id="Day6-Page-81"><a href="#Day6-Page-81" class="headerlink" title="Day6 (Page 81)"></a>Day6 (Page 81)</h3><pre><code>function findLast() {
+  var currNode = this.head
+  while (!(currNode.next === null)) {
+    currNode = currNode.next
+  }
+  return currNode
+}
+
+function dispReverse() {
+  var currNode = this.head
+  currNode = this.findLast()
+  while (!(currNode.previous === null)) {
+    console.log(currNode.element)
+    currNode = currNode.previous
+  }
+}
+</code></pre><ul>
+<li>循环链表</li>
+</ul>
+<pre><code>function LList() {
+  this.head = new Node(&apos;head&apos;)
+  this.head.next = this.head
+  this.find = find
+  this.insert = insert
+  this.display = display
+  this.findPrevious = findPrevious
+  this.remove = remove
+}
+
+function display() {
+  var currNode = this.head
+  while (!(currNode.next === null) &amp;&amp; !(currNode.next.element === &apos;head&apos; )) {
+    console.log(currNode.next.element)
+    currNode = currNode.next
+  }
+}
+</code></pre><blockquote>
+<p>字典</p>
+</blockquote>
+<pre><code>+ 字典是一种以键 - 值对形式存储的数据结构。
+</code></pre><h3 id="Day7-Page-81"><a href="#Day7-Page-81" class="headerlink" title="Day7 (Page 81)"></a>Day7 (Page 81)</h3>
       
 
       
